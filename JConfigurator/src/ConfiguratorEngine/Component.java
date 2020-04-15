@@ -1,10 +1,16 @@
 package ConfiguratorEngine;
 
+import javax.xml.bind.annotation.*;
 
+@XmlTransient
 public abstract class Component {
-private String name;
-private int price;
-private int power;
+
+	@XmlElement(name="name")
+	private String name;
+	@XmlElement(name="price")
+	private int price;
+	@XmlElement(name="power")
+	private int power;
 
 
 

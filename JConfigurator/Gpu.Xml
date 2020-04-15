@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gpuDao>
+    <GPUs>
+        <GPU>
+            <name>ASUS GTX 1050 2GB</name>
+            <price>130</price>
+            <power>85</power>
+            <memory>2</memory>
+        </GPU>
+        <GPU>
+            <name>Gigabyte GTX 1060 6GB</name>
+            <price>290</price>
+            <power>135</power>
+            <memory>6</memory>
+        </GPU>
+        <GPU>
+            <name>Gibabyte GTX 1070 8GB</name>
+            <price>530</price>
+            <power>190</power>
+            <memory>8</memory>
+        </GPU>
+        <GPU>
+            <name>Gibabyte GTX 1080 8GB</name>
+            <price>655</price>
+            <power>120</power>
+            <memory>8</memory>
+        </GPU>
+        <GPU>
+            <name>Palit Titan Z 12GB</name>
+            <price>1170</price>
+            <power>490</power>
+            <memory>12</memory>
+        </GPU>
+        <GPU>
+            <name>MSI GTX950 2GB</name>
+            <price>139</price>
+            <power>130</power>
+            <memory>2</memory>
+        </GPU>
+        <GPU>
+            <name>KFA2 GTX1080 8GB</name>
+            <price>730</price>
+            <power>180</power>
+            <memory>8</memory>
+        </GPU>
+        <GPU>
+            <name>Gibabyte Aorus GTX 1080ti 11GB</name>
+            <price>896</price>
+            <power>230</power>
+            <memory>11</memory>
+        </GPU>
+    </GPUs>
+</gpuDao>
