@@ -8,6 +8,7 @@ public class Motherboard extends Component {
 	int size;
 	
 	
+	
 	public String getSocket() {
 		return socket;
 	}
