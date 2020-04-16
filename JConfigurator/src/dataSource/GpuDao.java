@@ -6,8 +6,10 @@ import ConfiguratorEngine.Gpu;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GpuDao {
+public class GpuDao extends ComponentDao {
 
+	
+	ArrayList<Gpu> componentList;
     @XmlElementWrapper(name="GPUs")
     @XmlElement(name="GPU")
 	ArrayList<Gpu> gpuList;

@@ -35,6 +35,7 @@ public class Client {
 		    gpuDao.getGpuList().add(gpu6);
 		    gpuDao.getGpuList().add(gpu7);
 		    gpuDao.getGpuList().add(gpu8);
+		    gpuDao.getGpuList().add(gpu9);
 		    
 
 				  

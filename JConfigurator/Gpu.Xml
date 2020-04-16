@@ -49,5 +49,11 @@
             <power>230</power>
             <memory>11</memory>
         </GPU>
+        <GPU>
+            <name>Gigabyte GTX 980ti</name>
+            <price>373</price>
+            <power>258</power>
+            <memory>6</memory>
+        </GPU>
     </GPUs>
 </gpuDao>
