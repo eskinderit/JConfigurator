@@ -39,7 +39,7 @@ public class GpuDao  {
 		  
 		JAXBContext ctx = JAXBContext.newInstance(GpuDao.class); 
 		  Unmarshaller unm = ctx.createUnmarshaller();
-		  String s = "src/dataSource/Gpu.Xml";
+		  String s = "C:\\Users\\ralu1\\git\\JConfigurator\\JConfigurator\\src\\dataSource\\Gpu.Xml";
 		  File fout = new File(s);
 		  GpuDao gpuNew = (GpuDao)unm.unmarshal(fout); 		  
 		  ArrayList<Gpu> gpuList1 = gpuNew.getGpuList(); 		  
@@ -52,7 +52,7 @@ public class GpuDao  {
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(GpuDao.class); 
 		  Unmarshaller unm = ctx.createUnmarshaller();
-		  String s = "src/dataSource/Gpu.Xml";
+		  String s = "C:\\Users\\ralu1\\git\\JConfigurator\\JConfigurator\\src\\dataSource\\Gpu.Xml";
 		  File fout = new File(s);
 		  GpuDao gpuDao = (GpuDao)unm.unmarshal(fout); 		   		  
 		  
@@ -99,7 +99,7 @@ public class GpuDao  {
 		 
 		  
 		  
-		  File fout = new File("src/dataSource/Gpu.Xml");
+		  File fout = new File("C:\\Users\\ralu1\\git\\JConfigurator\\JConfigurator\\src\\dataSource\\Gpu.Xml");
 		  m.marshal(gpuDao,fout);
 		  
 		  Unmarshaller unm = ctx.createUnmarshaller(); 
