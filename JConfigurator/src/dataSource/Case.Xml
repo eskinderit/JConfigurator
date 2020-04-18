@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<caseDao>
+    <Motherboard>
+        <name>Corsair Spec 01 (ATX)</name>
+        <price>56</price>
+        <power>10</power>
+        <size>3</size>
+    </Motherboard>
+    <Motherboard>
+        <name>Thermaltake Core V1 (MINI-ITX)</name>
+        <price>44</price>
+        <power>10</power>
+        <size>1</size>
+    </Motherboard>
+    <Motherboard>
+        <name>Corsair Carbide Air 540 (ATX)</name>
+        <price>149</price>
+        <power>10</power>
+        <size>3</size>
+    </Motherboard>
+    <Motherboard>
+        <name>NZXT s340 (ATX)</name>
+        <price>78</price>
+        <power>10</power>
+        <size>3</size>
+    </Motherboard>
+    <Motherboard>
+        <name>NZXT H440 (ATX)</name>
+        <price>170</price>
+        <power>10</power>
+        <size>3</size>
+    </Motherboard>
+    <Motherboard>
+        <name>Corsair Obsidian 750D (ATX)</name>
+        <price>156</price>
+        <power>10</power>
+        <size>3</size>
+    </Motherboard>
+</caseDao>

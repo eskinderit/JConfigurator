@@ -1,8 +1,8 @@
 package ConfiguratorEngine;
 
 public class Storage extends Component{
-	int capacity;
-	boolean ssd;
+	private int capacity;
+	private boolean ssd;
 	
 	public int getCapacity() {
 		return capacity;

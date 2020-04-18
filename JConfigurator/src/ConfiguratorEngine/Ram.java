@@ -1,8 +1,8 @@
 package ConfiguratorEngine;
 
 public class Ram extends Component {
-	String ramType;
-	int dimension;
+	private String ramType;
+	private int dimension;
 	public String getRamType() {
 		return ramType;
 	}

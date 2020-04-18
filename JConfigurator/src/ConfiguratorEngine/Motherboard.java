@@ -1,14 +1,32 @@
 package ConfiguratorEngine;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
 public class Motherboard extends Component {
-	String socket;
-	String chipset;
-	String ramType;
-	boolean oc;
-	int size;
+	private String socket;
+	private String chipset;
+	private String ramType;
+	private boolean oc;
+	private int size;
 	
-	
-	
+	public Motherboard(String name, int price, int power, String socket, String chipset, String ramType, boolean oc, int size) {
+		super(name, price, power);
+		this.socket=socket;
+		this.chipset=chipset;
+		this.socket=socket;
+		this.ramType=ramType;
+		this.oc=oc;
+		this.size=size;
+	}
+
+	@SuppressWarnings("unused")
+	private Motherboard() {
+		super();
+	}
+
+
 	public String getSocket() {
 		return socket;
 	}
@@ -39,5 +57,13 @@ public class Motherboard extends Component {
 	public void setSize(int size) {
 		this.size = size;
 	}
+
+	@Override
+	public String toString() {
+		return "Motherboard [socket=" + getSocket() + ", chipset=" + getChipset() + ", ramType=" + getRamType() + ", oc=" + isOc()
+				+ ", size=" + getSize() + "]";
+	}
+
+	
 	
 }

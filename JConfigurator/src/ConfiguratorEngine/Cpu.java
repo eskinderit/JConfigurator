@@ -1,8 +1,8 @@
 package ConfiguratorEngine;
 
 public class Cpu extends Component{
-	String socket;
-	boolean oc;
+	private String socket;
+	private boolean oc;
 	
 	public String getSocket() {
 		return socket;

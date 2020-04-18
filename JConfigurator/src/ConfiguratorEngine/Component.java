@@ -6,12 +6,11 @@ import javax.xml.bind.annotation.*;
 public abstract class Component {
 
 	@XmlElement(name="name")
-	private String name;
+	protected String name;
 	@XmlElement(name="price")
-	private int price;
+	protected int price;
 	@XmlElement(name="power")
-	private int power;
-
+	protected int power;
 
 
 public Component() {
@@ -39,7 +38,6 @@ public int getPrice() {
 	return price;
 }
 
-//public abstract Component createComponentFromString(String[] metadata);
 
 
 }

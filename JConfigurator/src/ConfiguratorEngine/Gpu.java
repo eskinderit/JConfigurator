@@ -1,8 +1,6 @@
 package ConfiguratorEngine;
 import javax.xml.bind.annotation.*;
 
-
-
 @XmlRootElement
 public class Gpu extends Component {
 
@@ -33,5 +31,7 @@ public void setMemory(int memory) {
   @Override public String toString() { return "Gpu [name=" + this.getName() +
   ", price=" + this.getPrice() + ", power=" + this.getPower() +
   ", memory="+this.getMemory()+"]"; }
- 
+  
+
+
 }
