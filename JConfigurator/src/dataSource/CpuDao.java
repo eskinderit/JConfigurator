@@ -1,8 +1,6 @@
 package dataSource;
-import java.util.Arrays;
-import java.io.File;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,7 +13,7 @@ import ConfiguratorEngine.Cpu;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CpuDao extends ComponentDao{
+public class CpuDao extends ComponentDao<Cpu>{
 	
 	@XmlElement(name="Cpu")
 	private ArrayList <Cpu> cpuList;
@@ -28,21 +26,21 @@ public class CpuDao extends ComponentDao{
 
 	@Override
 	public ArrayList<Cpu> readComponents() throws JAXBException{
-		return ComponentDao.<Cpu,CpuDao>_readComponents ("src/dataSource/Cpu.Xml", CpuDao.class);
+		return this.<CpuDao>_readComponents ("src/dataSource/Cpu.Xml", CpuDao.class);
 	}
 	@Override
 	public ArrayList<Cpu> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return ComponentDao.<Cpu,CpuDao>_removeComponents (toDeleteList,"src/dataSource/Cpu.Xml", CpuDao.class);
+		return this.<CpuDao>_removeComponents (toDeleteList,"src/dataSource/Cpu.Xml", CpuDao.class);
 	}
 	@Override
 	public ArrayList<Cpu> setDefaultComponents() throws JAXBException {
-		return ComponentDao.<Cpu,CpuDao>_setDefaultComponents("src/dataSource/CpuDefault.Xml","src/dataSource/Cpu.Xml", CpuDao.class);
+		return this.<CpuDao>_setDefaultComponents("src/dataSource/CpuDefault.Xml","src/dataSource/Cpu.Xml", CpuDao.class);
 	}
 
 	@Override
-	public ArrayList addComponents(ArrayList toAddList) throws JAXBException {
+	public ArrayList<Cpu> addComponents(ArrayList<Cpu> toAddList) throws JAXBException {
 
-		return ComponentDao.<Cpu,CpuDao>_addComponents ("src/dataSource/Cpu.Xml",toAddList, CpuDao.class);
+		return this.<CpuDao>_addComponents ("src/dataSource/Cpu.Xml",toAddList, CpuDao.class);
 	}
 	
 	

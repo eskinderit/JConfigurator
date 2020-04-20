@@ -13,38 +13,38 @@ import ConfiguratorEngine.Component;
 import javax.xml.bind.annotation.*;
 
 @XmlTransient
-public abstract class ComponentDao <C extends Component>{
+public abstract class ComponentDao <T1 extends Component>{
 
 
-	protected ArrayList<C> componentList;
+	protected ArrayList<T1> componentList;
 	
 	
 	
 	
 	public ComponentDao() {
-		this.componentList = new ArrayList<C>();
+		this.componentList = new ArrayList<T1>();
 	}
 
 
 
-	public ArrayList<C> getComponentList() {
+	public ArrayList<T1> getComponentList() {
 		return componentList;
 	}
 
-	public void setComponentList(ArrayList<C> componentList) {
+	public void setComponentList(ArrayList<T1> componentList) {
 		this.componentList = componentList;
 	}
 
 
-	public abstract ArrayList<Component> readComponents() throws JAXBException;
+	public abstract ArrayList<T1> readComponents() throws JAXBException;
 	
-	public abstract ArrayList<Component> deleteComponents(int toDeleteList[]) throws JAXBException;
+	public abstract ArrayList<T1> deleteComponents(int toDeleteList[]) throws JAXBException;
 	
-	public abstract ArrayList<Component> addComponents(ArrayList<Component> toAddList) throws JAXBException;
+	public abstract ArrayList<T1> addComponents(ArrayList<T1> toAddList) throws JAXBException;
 	
-	public abstract ArrayList<Component> setDefaultComponents() throws JAXBException;
+	public abstract ArrayList<T1> setDefaultComponents() throws JAXBException;
 
-	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _readComponents(String myFile, Class<T2> class2Bound) throws JAXBException {
+	 protected <T2 extends ComponentDao<T1>> ArrayList<T1> _readComponents(String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
 		JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller();
@@ -55,7 +55,7 @@ public abstract class ComponentDao <C extends Component>{
 		
 	}
 	
-	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _removeComponents(int toDelete[], String myFile, Class<T2> class2Bound) throws JAXBException {
+	 protected <T2 extends ComponentDao<T1>> ArrayList<T1> _removeComponents(int toDelete[], String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
 		  Arrays.sort(toDelete);
 		  
@@ -80,7 +80,7 @@ public abstract class ComponentDao <C extends Component>{
 		  
 		  return componentDao.getComponentList(); }
 	 
-	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _addComponents(String myFile, ArrayList<T1> componentListToAdd, Class<T2> class2Bound) throws JAXBException {
+	 protected < T2 extends ComponentDao<T1>> ArrayList<T1> _addComponents(String myFile, ArrayList<T1> componentListToAdd, Class<T2> class2Bound) throws JAXBException {
 		  
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
@@ -98,7 +98,7 @@ public abstract class ComponentDao <C extends Component>{
 		  
 		  return componentDao.getComponentList(); }
 
-	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _setDefaultComponents(String sourceFile, String destinationFile, Class<T2> class2Bound) throws JAXBException {
+	 protected <T2 extends ComponentDao<T1>> ArrayList<T1> _setDefaultComponents(String sourceFile, String destinationFile, Class<T2> class2Bound) throws JAXBException {
 		
 		JAXBContext context=JAXBContext.newInstance(class2Bound);
 		Unmarshaller ums=context.createUnmarshaller();
