@@ -19,8 +19,6 @@ public abstract class ComponentDao <T1 extends Component>{
 	protected ArrayList<T1> componentList;
 	
 	
-	
-	
 	public ComponentDao() {
 		this.componentList = new ArrayList<T1>();
 	}
@@ -49,7 +47,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller();
 		  File fout = new File(myFile);
-		  T2 newComponent = (T2)unm.unmarshal(fout); 		  
+		  T2 newComponent = class2Bound.cast(unm.unmarshal(fout)); 		  
 		  ArrayList<T1> co = newComponent.getComponentList(); 		  
 		  return co;
 		
@@ -62,7 +60,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller(); 
 		  File fout =new File(myFile);
-		  T2 componentDao = (T2)unm.unmarshal(fout); 
+		  T2 componentDao = class2Bound.cast(unm.unmarshal(fout)); 
 		  
 		  for(int i=0; i<toDelete.length; i++) {
 			  for (int j=0; j<componentDao.getComponentList().size(); j++)
@@ -86,7 +84,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller();  
 		  File fout = new File(myFile);
-		  T2 componentDao = (T2)unm.unmarshal(fout);
+		  T2 componentDao = class2Bound.cast(unm.unmarshal(fout));
 		  
 		  
 		  componentDao.getComponentList().addAll(componentListToAdd);
@@ -102,7 +100,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		
 		JAXBContext context=JAXBContext.newInstance(class2Bound);
 		Unmarshaller ums=context.createUnmarshaller();
-		T2 componentDao =(T2)ums.unmarshal(new File(sourceFile));
+		T2 componentDao =class2Bound.cast(ums.unmarshal(new File(sourceFile)));
 		
 		Marshaller mrs = context.createMarshaller();
 		mrs.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
