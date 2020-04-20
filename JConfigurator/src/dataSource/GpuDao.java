@@ -9,7 +9,7 @@ import ConfiguratorEngine.Gpu;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GpuDao extends ComponentDao<Gpu>{
+public class GpuDao extends ComponentDao<Gpu, GpuDao>{
 
 
     @XmlElement(name="Gpu")
@@ -23,21 +23,21 @@ public class GpuDao extends ComponentDao<Gpu>{
 
 	@Override
 	public ArrayList<Gpu> readComponents() throws JAXBException{
-		return this.<GpuDao>_readComponents ("src/dataSource/Gpu.Xml", GpuDao.class);
+		return this._readComponents ("src/dataSource/xmlSource/Gpu.Xml", GpuDao.class);
 	}
 	@Override
 	public ArrayList<Gpu> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this.<GpuDao>_removeComponents (toDeleteList,"src/dataSource/Gpu.Xml", GpuDao.class);
+		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Gpu.Xml", GpuDao.class);
 	}
 	@Override
 	public ArrayList<Gpu> setDefaultComponents() throws JAXBException {
-		return this.<GpuDao>_setDefaultComponents("src/dataSource/GpuDefault.Xml","src/dataSource/Gpu.Xml", GpuDao.class);
+		return this._setDefaultComponents("src/dataSource/xmlSource/GpuDefault.Xml","src/dataSource/xmlSource/Gpu.Xml", GpuDao.class);
 	}
 
 	@Override
 	public ArrayList<Gpu> addComponents(ArrayList<Gpu> toAddList) throws JAXBException {
 
-		return this.<GpuDao>_addComponents ("src/dataSource/Gpu.Xml",toAddList, GpuDao.class);
+		return this._addComponents ("src/dataSource/xmlSource/Gpu.Xml",toAddList, GpuDao.class);
 	}
 	
 	

@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MotherboardDao extends ComponentDao<Motherboard>{
+public class MotherboardDao extends ComponentDao<Motherboard, MotherboardDao>{
 	 
 	@XmlElement(name="Motherboard")
 	private ArrayList<Motherboard> motherboardList;
@@ -20,22 +20,22 @@ public class MotherboardDao extends ComponentDao<Motherboard>{
 
 	@Override
 	public ArrayList<Motherboard> readComponents() throws JAXBException{
-		return this.<MotherboardDao>_readComponents ("src/dataSource/Motherboard.Xml", MotherboardDao.class);
+		return this._readComponents ("src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
 	}
 	
 	@Override
 	public ArrayList<Motherboard> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this.<MotherboardDao>_removeComponents (toDeleteList,"src/dataSource/Motherboard.Xml", MotherboardDao.class);
+		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
 	}
 	
 	@Override
 	public ArrayList<Motherboard> addComponents(ArrayList<Motherboard> toAddList) throws JAXBException{
-		return this.<MotherboardDao>_addComponents ("src/dataSource/Motherboard.Xml",toAddList, MotherboardDao.class);
+		return this._addComponents ("src/dataSource/xmlSource/Motherboard.Xml",toAddList, MotherboardDao.class);
 	}
 	
 	@Override
 	public ArrayList<Motherboard> setDefaultComponents() throws JAXBException {
-		return this.<MotherboardDao>_setDefaultComponents("src/dataSource/MotherboardDefault.Xml","src/dataSource/Motherboard.Xml", MotherboardDao.class);
+		return this._setDefaultComponents("src/dataSource/xmlSource/MotherboardDefault.Xml","src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
 	}
 
 

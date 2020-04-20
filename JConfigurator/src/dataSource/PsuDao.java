@@ -11,7 +11,7 @@ import ConfiguratorEngine.Psu;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class PsuDao extends ComponentDao<Psu>{
+public class PsuDao extends ComponentDao<Psu, PsuDao>{
 
 	@XmlElement(name="Psu")
 	private ArrayList<Psu> psuList;
@@ -24,22 +24,22 @@ public class PsuDao extends ComponentDao<Psu>{
 
 	@Override
 	public ArrayList<Psu> readComponents() throws JAXBException{
-		return this.<PsuDao>_readComponents ("src/dataSource/Psu.Xml", PsuDao.class);
+		return this._readComponents ("src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
 	}
 	
 	@Override
 	public ArrayList<Psu> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this.<PsuDao>_removeComponents (toDeleteList,"src/dataSource/Psu.Xml", PsuDao.class);
+		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
 	}
 	
 	@Override
 	public ArrayList<Psu> addComponents(ArrayList<Psu> toAddList) throws JAXBException{
-		return this.<PsuDao>_addComponents ("src/dataSource/Psu.Xml",toAddList, PsuDao.class);
+		return this._addComponents ("src/dataSource/xmlSource/Psu.Xml",toAddList, PsuDao.class);
 	}
 	
 	@Override
 	public ArrayList<Psu> setDefaultComponents() throws JAXBException {
-		return this.<PsuDao>_setDefaultComponents("src/dataSource/PsuDefault.Xml","src/dataSource/Psu.Xml", PsuDao.class);
+		return this._setDefaultComponents("src/dataSource/xmlSource/PsuDefault.Xml","src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
 	}
 
 

@@ -10,7 +10,7 @@ import ConfiguratorEngine.Ram;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RamDao extends ComponentDao<Ram>{
+public class RamDao extends ComponentDao<Ram, RamDao>{
 	
 	@XmlElement(name="Ram")
 	ArrayList<Ram> ramList;
@@ -24,22 +24,22 @@ public class RamDao extends ComponentDao<Ram>{
 
 	@Override
 	public ArrayList<Ram> readComponents() throws JAXBException{
-		return this.<RamDao>_readComponents ("src/dataSource/Ram.Xml", RamDao.class);
+		return this._readComponents ("src/dataSource/xmlSource/Ram.Xml", RamDao.class);
 	}
 	
 	@Override
 	public ArrayList<Ram> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this.<RamDao>_removeComponents (toDeleteList,"src/dataSource/Ram.Xml", RamDao.class);
+		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Ram.Xml", RamDao.class);
 	}
 	
 	@Override
 	public ArrayList<Ram> addComponents(ArrayList<Ram> toAddList) throws JAXBException{
-		return this.<RamDao>_addComponents ("src/dataSource/Ram.Xml",toAddList, RamDao.class);
+		return this._addComponents ("src/dataSource/xmlSource/Ram.Xml",toAddList, RamDao.class);
 	}
 	
 	@Override
 	public ArrayList<Ram> setDefaultComponents() throws JAXBException {
-		return this.<RamDao>_setDefaultComponents("src/dataSource/RamDefault.Xml","src/dataSource/Ram.Xml", RamDao.class);
+		return this._setDefaultComponents("src/dataSource/xmlSource/RamDefault.Xml","src/dataSource/xmlSource/Ram.Xml", RamDao.class);
 	}
 
 	

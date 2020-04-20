@@ -8,7 +8,7 @@ import ConfiguratorEngine.Case;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CaseDao extends ComponentDao<Case>{
+public class CaseDao extends ComponentDao<Case,CaseDao>{
 
 	@XmlElement(name="Case")
 	private ArrayList<Case> caseList;
@@ -21,22 +21,22 @@ public class CaseDao extends ComponentDao<Case>{
 
 	@Override
 	public ArrayList<Case> readComponents() throws JAXBException{
-		return this.<CaseDao>_readComponents ("src/dataSource/Case.Xml", CaseDao.class);
+		return this._readComponents ("src/dataSource/xmlSource/Case.Xml", CaseDao.class);
 	}
 	
 	@Override
 	public ArrayList<Case> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this.<CaseDao>_removeComponents (toDeleteList,"src/dataSource/Case.Xml", CaseDao.class);
+		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Case.Xml", CaseDao.class);
 	}
 	
 	@Override
 	public ArrayList<Case> addComponents(ArrayList<Case> toAddList) throws JAXBException{
-		return this.<CaseDao>_addComponents ("src/dataSource/Case.Xml",toAddList, CaseDao.class);
+		return this._addComponents ("src/dataSource/xmlSource/Case.Xml",toAddList, CaseDao.class);
 	}
 	
 	@Override
 	public ArrayList<Case> setDefaultComponents() throws JAXBException {
-		return this.<CaseDao>_setDefaultComponents("src/dataSource/CaseDefault.Xml","src/dataSource/Case.Xml", CaseDao.class);
+		return this._setDefaultComponents("src/dataSource/xmlSource/CaseDefault.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
 	}
 
 

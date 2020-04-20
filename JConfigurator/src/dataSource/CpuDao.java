@@ -13,7 +13,7 @@ import ConfiguratorEngine.Cpu;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CpuDao extends ComponentDao<Cpu>{
+public class CpuDao extends ComponentDao<Cpu, CpuDao>{
 	
 	@XmlElement(name="Cpu")
 	private ArrayList <Cpu> cpuList;
@@ -26,21 +26,21 @@ public class CpuDao extends ComponentDao<Cpu>{
 
 	@Override
 	public ArrayList<Cpu> readComponents() throws JAXBException{
-		return this.<CpuDao>_readComponents ("src/dataSource/Cpu.Xml", CpuDao.class);
+		return this._readComponents ("src/dataSource/xmlSource/Cpu.Xml", CpuDao.class);
 	}
 	@Override
 	public ArrayList<Cpu> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this.<CpuDao>_removeComponents (toDeleteList,"src/dataSource/Cpu.Xml", CpuDao.class);
+		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Cpu.Xml", CpuDao.class);
 	}
 	@Override
 	public ArrayList<Cpu> setDefaultComponents() throws JAXBException {
-		return this.<CpuDao>_setDefaultComponents("src/dataSource/CpuDefault.Xml","src/dataSource/Cpu.Xml", CpuDao.class);
+		return this._setDefaultComponents("src/dataSource/xmlSource/CpuDefault.Xml","src/dataSource/xmlSource/Cpu.Xml", CpuDao.class);
 	}
 
 	@Override
 	public ArrayList<Cpu> addComponents(ArrayList<Cpu> toAddList) throws JAXBException {
 
-		return this.<CpuDao>_addComponents ("src/dataSource/Cpu.Xml",toAddList, CpuDao.class);
+		return this._addComponents ("src/dataSource/xmlSource/Cpu.Xml",toAddList, CpuDao.class);
 	}
 	
 	

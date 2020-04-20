@@ -13,7 +13,7 @@ import ConfiguratorEngine.Component;
 import javax.xml.bind.annotation.*;
 
 @XmlTransient
-public abstract class ComponentDao <T1 extends Component>{
+public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDao<T1,T2>>{
 
 
 	protected ArrayList<T1> componentList;
@@ -42,7 +42,7 @@ public abstract class ComponentDao <T1 extends Component>{
 	
 	public abstract ArrayList<T1> setDefaultComponents() throws JAXBException;
 
-	 protected <T2 extends ComponentDao<T1>> ArrayList<T1> _readComponents(String myFile, Class<T2> class2Bound) throws JAXBException {
+	 protected  ArrayList<T1> _readComponents(String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
 		JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller();
@@ -53,7 +53,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		
 	}
 	
-	 protected <T2 extends ComponentDao<T1>> ArrayList<T1> _removeComponents(int toDelete[], String myFile, Class<T2> class2Bound) throws JAXBException {
+	 protected  ArrayList<T1> _removeComponents(int toDelete[], String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
 		  Arrays.sort(toDelete);
 		  
@@ -78,7 +78,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		  
 		  return componentDao.getComponentList(); }
 	 
-	 protected < T2 extends ComponentDao<T1>> ArrayList<T1> _addComponents(String myFile, ArrayList<T1> componentListToAdd, Class<T2> class2Bound) throws JAXBException {
+	 protected  ArrayList<T1> _addComponents(String myFile, ArrayList<T1> componentListToAdd, Class<T2> class2Bound) throws JAXBException {
 		  
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
@@ -96,7 +96,7 @@ public abstract class ComponentDao <T1 extends Component>{
 		  
 		  return componentDao.getComponentList(); }
 
-	 protected <T2 extends ComponentDao<T1>> ArrayList<T1> _setDefaultComponents(String sourceFile, String destinationFile, Class<T2> class2Bound) throws JAXBException {
+	 protected  ArrayList<T1> _setDefaultComponents(String sourceFile, String destinationFile, Class<T2> class2Bound) throws JAXBException {
 		
 		JAXBContext context=JAXBContext.newInstance(class2Bound);
 		Unmarshaller ums=context.createUnmarshaller();
