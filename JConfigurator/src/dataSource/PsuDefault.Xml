@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <psuDao>
-    <Motherboard>
+    <Psu>
         <name>XFX XTR 550W</name>
         <price>85</price>
         <power>550</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>XFX P1 750W</name>
         <price>116</price>
         <power>750</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>EVGA 430 W</name>
         <price>48</price>
         <power>430</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>Corsair HX1200i</name>
         <price>280</price>
         <power>1200</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>Antec VP400</name>
         <price>38</price>
         <power>400</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>Seasonic 520II-520</name>
         <price>49</price>
         <power>520</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>XFX 550TS</name>
         <price>88</price>
         <power>550</power>
-    </Motherboard>
-    <Motherboard>
+    </Psu>
+    <Psu>
         <name>EVGA SUPERNOVA</name>
         <price>157</price>
         <power>750</power>
-    </Motherboard>
+    </Psu>
 </psuDao>

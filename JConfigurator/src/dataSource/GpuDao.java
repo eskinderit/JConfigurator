@@ -16,7 +16,7 @@ import ConfiguratorEngine.Gpu;
 public class GpuDao extends ComponentDao{
 
 
-    @XmlElement(name="GPU")
+    @XmlElement(name="Gpu")
 	ArrayList<Gpu> gpuList;
 
 

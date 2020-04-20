@@ -82,6 +82,34 @@ public class Client {
 			  System.out.println("\n Lista attuale: \n");
 			  readMotherboardList.forEach(System.out::println);
 			  
+			  //Test Read
+			  
+			  
+			  CpuDao cpuDao1 = new CpuDao();
+			  ArrayList<Cpu> readCpuList =cpuDao1.readComponents();
+			  System.out.println("\n Lista attuale: \n");
+			  readCpuList.forEach(System.out::println);
+			  
+			  RamDao rDao1 = new RamDao();
+			  ArrayList<Ram> readRamList =rDao1.readComponents();
+			  System.out.println("\n Lista attuale: \n");
+			  readRamList.forEach(System.out::println);
+			  
+			  StorageDao StorageDao1 = new StorageDao();
+			  ArrayList<Storage> readStorageList =StorageDao1.readComponents();
+			  System.out.println("\n Lista attuale: \n");
+			  readStorageList.forEach(System.out::println);
+			  
+			  CaseDao CaseDao1 = new CaseDao();
+			  ArrayList<Case> readCaseList =CaseDao1.readComponents();
+			  System.out.println("\n Lista attuale: \n");
+			  readCaseList.forEach(System.out::println);
+			  
+			  PsuDao PsuDao1 = new PsuDao();
+			  ArrayList<Psu> readPsuList =PsuDao1.readComponents();
+			  System.out.println("\n Lista attuale: \n");
+			  readPsuList.forEach(System.out::println);
+			  
 			 
 	}
 
