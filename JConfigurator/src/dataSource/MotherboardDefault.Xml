@@ -11,6 +11,16 @@
         <socket>LGA1151</socket>
     </Motherboard>
     <Motherboard>
+        <name>Asus prime h270 plus (lga1151 DDR4)</name>
+        <price>108</price>
+        <power>10</power>
+        <chipset>H270</chipset>
+        <oc>false</oc>
+        <ramType>DDR4</ramType>
+        <size>3</size>
+        <socket>LGA1151</socket>
+    </Motherboard>
+    <Motherboard>
         <name>MSI b350m (AM4 DDR4)</name>
         <price>89</price>
         <power>10</power>
@@ -39,6 +49,16 @@
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>LGA1151</socket>
+    </Motherboard>
+    <Motherboard>
+        <name>Gigabyte ga-ab359m-g3 (AM4 DDR4)</name>
+        <price>96</price>
+        <power>10</power>
+        <chipset>ab359m</chipset>
+        <oc>true</oc>
+        <ramType>DDR4</ramType>
+        <size>3</size>
+        <socket>AM4</socket>
     </Motherboard>
     <Motherboard>
         <name>Asus Crosshair VI Hero (AM4 DDR4)</name>
@@ -79,25 +99,5 @@
         <ramType>DDR4</ramType>
         <size>1</size>
         <socket>LGA1151</socket>
-    </Motherboard>
-    <Motherboard>
-        <name>Prova Inserimento 1</name>
-        <price>3</price>
-        <power>4</power>
-        <chipset>simula</chipset>
-        <oc>true</oc>
-        <ramType>LGA1151</ramType>
-        <size>3</size>
-        <socket>prova</socket>
-    </Motherboard>
-    <Motherboard>
-        <name>Prova Inserimento 2</name>
-        <price>0</price>
-        <power>1</power>
-        <chipset>simula2</chipset>
-        <oc>false</oc>
-        <ramType>LGA1151</ramType>
-        <size>4</size>
-        <socket>prova2</socket>
     </Motherboard>
 </motherboardDao>

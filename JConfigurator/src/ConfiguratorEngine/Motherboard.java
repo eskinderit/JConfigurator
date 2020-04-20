@@ -60,8 +60,8 @@ public class Motherboard extends Component {
 
 	@Override
 	public String toString() {
-		return "Motherboard [socket=" + getSocket() + ", chipset=" + getChipset() + ", ramType=" + getRamType() + ", oc=" + isOc()
-				+ ", size=" + getSize() + "]";
+		return "Motherboard [name=" +name +", price=" +price +", power=" +power +", socket=" + socket + ", chipset=" + chipset + ", ramType=" + ramType + ", oc=" + oc
+				+ ", size=" + size + "]";
 	}
 
 	

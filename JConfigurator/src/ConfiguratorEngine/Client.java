@@ -8,64 +8,81 @@ public class Client {
 
 	public static void main(String[] args) throws JAXBException {
 		
-		
-		
-		  //Test resetDefaultGpus - riscrive le Gpu di default
+	//GPU	
+
+		  //Test Set
 		  
-		  ArrayList<Gpu> defaultGpuList = GpuDao.resetDefaultComponents();
+		  GpuDao gpuDao1 = new GpuDao();
+		  ArrayList<Gpu> defaultGpuList = gpuDao1.setDefaultComponents();
 		  System.out.println("\n Lista resettata: \n");
 		  defaultGpuList.forEach(System.out::println);
 		  
-		  
-		  //Test addGpus - aggiunge una collection di gpu a quelle gia presenti
-		  
-		  ArrayList<Gpu> gpuList = new ArrayList<>(); Gpu g1 = new
-		  Gpu("Prova Inserimento 1", 3, 4, 5); Gpu g2 = new Gpu("Prova Inserimento 2",
-		  0, 1, 2); gpuList.add(g1); gpuList.add(g2);
-		  System.out.println("\n Lista modificata (inserimento) NEW: \n"); ArrayList<Gpu>
-		  newList = GpuDao.nuovaAggiunta(gpuList);
+			
+			  //Test Add
+			  
+		   
+		  	ArrayList<Gpu> gpuList = new ArrayList<>(); 
+		  	Gpu g1 = new Gpu("Prova Inserimento 1", 3, 4, 5); 
+		  	Gpu g2 = new Gpu("Prova Inserimento 2", 0, 1, 2); 
+		  	gpuList.add(g1); 
+		  	gpuList.add(g2);
+		  	System.out.println("\n Lista modificata (inserimento): \n"); 
+		  	GpuDao gpuDao2 = new GpuDao(); 
+		  	ArrayList<Gpu> newList = gpuDao2.addComponents(gpuList);
 		  newList.forEach(System.out::println);
-		  
-		  //Remove addGpus - rimuove una collection di gpu a quelle gia presenti
-		  
-		  ArrayList<Gpu> gpuRemoveList = new ArrayList<>(); Gpu g11 = new Gpu("Prova Inserimento 1", 3, 4, 5); 
-		  gpuRemoveList.add(g11);
-		  System.out.println("\n Lista modificata (remove) tricked: \n"); 
-		  int a[] = new int[2];
-		  a[0]=10;
-		  a[1]=1;
-		  ArrayList<Gpu> newList1 = GpuDao.nuovaRimozione(a);
-		  newList1.forEach(System.out::println);
-		  
-		  //Test readGpus - legge le gpu presenti in lista
-		 		
-		ArrayList<Gpu> actualList = GpuDao.nuovaLettura();
-		System.out.println("Lista attuale trick: \n");
-		actualList.forEach(System.out::println);
-	
-		
-	
-		
-		  //Test resetDefaultMotherboards - riscrive le Gpu di default
-		  
-		  ArrayList<Motherboard> defaultMotherboardList =
-		  MotherboardDao.resetDefaultComponents();
-		  System.out.println("\n Lista resettata: \n");
-		  defaultMotherboardList.forEach(System.out::println);
-		  
-		  //Test resetDefaultPsus - riscrive le Gpu di default
-		  
-		  ArrayList<Psu> defaultPsuList = PsuDao.resetDefaultComponents();
-		  System.out.println("\n Lista resettata: \n");
-		  defaultPsuList.forEach(System.out::println);
-		  
-		  //Test resetDefaultPsus - riscrive le Gpu di default
-		  
-		  ArrayList<Case> defaultCaseList = CaseDao.resetDefaultComponents();
-		  System.out.println("\n Lista resettata: \n");
-		  defaultCaseList.forEach(System.out::println);
-		 
 
+			  
+			  //Test Remove
+			  
+		  	GpuDao gpuDao3 = new GpuDao(); 
+		  	System.out.println("\n Lista modificata (remove): \n"); int a[] = new int[2];
+		  	a[0]=10; a[1]=1; ArrayList<Gpu> newList1 = gpuDao3.deleteComponents(a);
+		  	newList1.forEach(System.out::println);
+			  
+			  //Test Read
+		      GpuDao gpuDao4 = new GpuDao();
+			  ArrayList<Gpu> actualList = gpuDao4.readComponents();
+			  System.out.println("Lista attuale: \n");
+			  actualList.forEach(System.out::println);
+			  
+			  //MOTHERBOARD
+			  
+			  //Test Set
+			  MotherboardDao moboDao1 = new MotherboardDao();
+			  ArrayList<Motherboard> defaultMotherboardList =
+			  moboDao1.setDefaultComponents();
+			  System.out.println("\n Lista resettata: \n");
+			  defaultMotherboardList.forEach(System.out::println);
+			  
+			  //Test Add
+			  
+			  ArrayList<Motherboard> moboList = new ArrayList<>(); Motherboard m1 = new
+			  Motherboard("Prova Inserimento 1", 3, 4, "prova","simula","LGA1151",true, 3 ); 
+			  Motherboard m2 = new Motherboard("Prova Inserimento 2", 0, 1, "prova2",
+			  "simula2", "LGA1151", false, 4); moboList.add(m1); moboList.add(m2);
+			  System.out.println("\n Lista modificata (inserimento): \n");
+			  MotherboardDao moboDao2 = new MotherboardDao();
+			  ArrayList<Motherboard> newList2 = moboDao2.addComponents(moboList);
+			  newList2.forEach(System.out::println);
+			  
+			  //Test Remove
+			  
+			  System.out.println("\n Lista modificata (remove): \n"); 
+			  int b[] = new int[2];
+			  b[0]=5; 
+			  b[1]=1; 
+			  MotherboardDao moboDao3 = new MotherboardDao();
+			  ArrayList<Motherboard> newList3 = moboDao3.deleteComponents(b); newList3.forEach(System.out::println);
+			  
+			  //Test Read
+			  
+			  
+			  MotherboardDao moboDao4 = new MotherboardDao();
+			  ArrayList<Motherboard> readMotherboardList =moboDao4.readComponents();
+			  System.out.println("\n Lista attuale: \n");
+			  readMotherboardList.forEach(System.out::println);
+			  
+			 
 	}
 
 

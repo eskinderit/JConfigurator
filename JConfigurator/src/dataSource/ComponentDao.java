@@ -13,35 +13,38 @@ import ConfiguratorEngine.Component;
 import javax.xml.bind.annotation.*;
 
 @XmlTransient
-public abstract class ComponentDao{
+public abstract class ComponentDao <C extends Component>{
 
 
-	protected ArrayList<Component> componentList;
+	protected ArrayList<C> componentList;
 	
 	
 	
 	
 	public ComponentDao() {
-		this.componentList = new ArrayList<Component>();
+		this.componentList = new ArrayList<C>();
 	}
 
 
 
-	public ArrayList getComponentList() {
+	public ArrayList<C> getComponentList() {
 		return componentList;
 	}
 
-
-
-
-	public void setComponentList(ArrayList componentList) {
+	public void setComponentList(ArrayList<C> componentList) {
 		this.componentList = componentList;
 	}
 
 
+	public abstract ArrayList<Component> readComponents() throws JAXBException;
+	
+	public abstract ArrayList<Component> deleteComponents(int toDeleteList[]) throws JAXBException;
+	
+	public abstract ArrayList<Component> addComponents(ArrayList<Component> toAddList) throws JAXBException;
+	
+	public abstract ArrayList<Component> setDefaultComponents() throws JAXBException;
 
-
-	static public <T1 extends Component, T2 extends ComponentDao> ArrayList<T1> readComponents(String myFile, Class class2Bound) throws JAXBException {
+	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _readComponents(String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
 		JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller();
@@ -52,17 +55,15 @@ public abstract class ComponentDao{
 		
 	}
 	
-	static public <T1 extends Component, T2 extends ComponentDao> ArrayList<T1> removeComponents(int toDelete[], String myFile, Class class2Bound) throws JAXBException {
+	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _removeComponents(int toDelete[], String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
 		  Arrays.sort(toDelete);
-		  //Reading
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller(); 
 		  File fout =new File(myFile);
 		  T2 componentDao = (T2)unm.unmarshal(fout); 
 		  
-		  //Deleting
 		  for(int i=0; i<toDelete.length; i++) {
 			  for (int j=0; j<componentDao.getComponentList().size(); j++)
 			  if (toDelete[i]==j) {
@@ -71,7 +72,7 @@ public abstract class ComponentDao{
 					  toDelete[k]=toDelete[k]-1;
 			  }
 		  }
-		  //Rewriting
+
 		  
 		  Marshaller m = ctx.createMarshaller();
 		  m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
@@ -79,20 +80,17 @@ public abstract class ComponentDao{
 		  
 		  return componentDao.getComponentList(); }
 	 
-	static public <T1 extends Component, T2 extends ComponentDao> ArrayList<T1> addComponents(String myFile, ArrayList<T1> componentListToAdd, Class class2Bound) throws JAXBException {
+	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _addComponents(String myFile, ArrayList<T1> componentListToAdd, Class<T2> class2Bound) throws JAXBException {
 		  
-		  //Reading
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller();  
 		  File fout = new File(myFile);
 		  T2 componentDao = (T2)unm.unmarshal(fout);
 		  
-		  //Adding
 		  
 		  componentDao.getComponentList().addAll(componentListToAdd);
 		  
-		  //Overwrite
 		  
 		  Marshaller m = ctx.createMarshaller();
 		  m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
@@ -100,5 +98,16 @@ public abstract class ComponentDao{
 		  
 		  return componentDao.getComponentList(); }
 
-    //TODO mancano set e reset
+	static protected <T1 extends Component, T2 extends ComponentDao<T1>> ArrayList<T1> _setDefaultComponents(String sourceFile, String destinationFile, Class<T2> class2Bound) throws JAXBException {
+		
+		JAXBContext context=JAXBContext.newInstance(class2Bound);
+		Unmarshaller ums=context.createUnmarshaller();
+		T2 componentDao =(T2)ums.unmarshal(new File(sourceFile));
+		
+		Marshaller mrs = context.createMarshaller();
+		mrs.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		mrs.marshal(componentDao, new File(destinationFile));
+		
+		return componentDao.getComponentList();
+	}
 }
