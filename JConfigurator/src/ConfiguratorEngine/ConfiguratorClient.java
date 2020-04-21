@@ -63,7 +63,6 @@ public class ConfiguratorClient {
 		int m=Integer.parseInt(s);
 		Motherboard motherboard=ml.get(m);
 		controller.getFullConfig().setMyMotherboard(motherboard);
-		System.out.println("Motherboard selected: "+motherboard);
 		
 		//	RAM
 				
@@ -78,7 +77,6 @@ public class ConfiguratorClient {
 		s=input.nextLine();
 		int r=Integer.parseInt(s);
 		Ram ram=rl.get(r);
-		System.out.println("Ram Selected: "+ram);
 		controller.getFullConfig().setMyRam(ram);
 		
 		//	CASE
@@ -95,7 +93,6 @@ public class ConfiguratorClient {
 		s=input.nextLine();
 		int cs=Integer.parseInt(s);
 		Case case1 = cl.get(cs);
-		System.out.println("Case selected: "+case1);
 		controller.getFullConfig().setMyCase1(case1);
 		
 		//STORAGE
@@ -108,7 +105,6 @@ public class ConfiguratorClient {
 		int str=Integer.parseInt(s);
 		Storage storage = storageList.readComponents().get(str);
 		controller.getFullConfig().setMyStorage(storage);
-		System.out.println("Storage Selected: "+storage);
 		
 		System.out.println("Total power: "+controller.totalPower());
 		
