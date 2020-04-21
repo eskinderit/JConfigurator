@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
+import configurationController.CustomerController;
 import dataSource.CaseDao;
 import dataSource.CpuDao;
 import dataSource.GpuDao;
@@ -17,7 +18,7 @@ public class ConfiguratorClient {
 		
 		//	CPU
 		
-		Controller controller=new Controller();
+		CustomerController controller=new CustomerController();
 		CpuDao cpuList = new CpuDao();
 		cpuList.setDefaultComponents();
 		
@@ -26,23 +27,34 @@ public class ConfiguratorClient {
 		
 		@SuppressWarnings("resource")
 		Scanner input=new Scanner(System.in);
-		System.out.println("Select cpu: ");
-		String s=input.nextLine();
-		int c=Integer.parseInt(s);
-		Cpu cpu=cpuList.readComponents().get(c);
+		int c;
+		String s;
 		
+		do{
+			System.out.println("Select cpu: ");
+			s=input.nextLine();
+			c=Integer.parseInt(s);
+		}while(c>=cpuList.readComponents().size());
+		
+		Cpu cpu=cpuList.readComponents().get(c);
 		controller.getFullConfig().setMyCpu(cpu);
 		
 		//	GPU
 		
 		GpuDao gpuList=new GpuDao();
 		gpuList.setDefaultComponents();
+		
 		for(Gpu g:gpuList.readComponents()) {
 			System.out.println(g);
 		}
-		System.out.println("Select Gpu: ");
-		s=input.nextLine();
-		int g=Integer.parseInt(s);
+		int g;
+		
+		do {
+			System.out.println("Select Gpu: ");
+			s=input.nextLine();
+			g=Integer.parseInt(s);
+		}while(g>=gpuList.readComponents().size());
+		
 		Gpu gpu=gpuList.readComponents().get(g);
 		controller.getFullConfig().setMyGpu(gpu);
 		
@@ -53,14 +65,20 @@ public class ConfiguratorClient {
 		motherboardList.setDefaultComponents();
 		
 		//	Check
+		
 		ml=controller.checkMotherboard(motherboardList);
 		
-		System.out.println("Select Motherboard: ");
 		for(Motherboard m:ml)
 			System.out.println(m);
 		
-		s=input.nextLine();
-		int m=Integer.parseInt(s);
+		int m;
+		
+		do {
+			System.out.println("Select Motherboard: ");
+			s=input.nextLine();
+			m=Integer.parseInt(s);
+		}while(m>=motherboardList.readComponents().size());
+		
 		Motherboard motherboard=ml.get(m);
 		controller.getFullConfig().setMyMotherboard(motherboard);
 		
@@ -69,13 +87,22 @@ public class ConfiguratorClient {
 		RamDao ramList=new RamDao();
 		ramList.setDefaultComponents();
 		ArrayList<Ram> rl = new ArrayList<Ram>();
+		
 		//	Check
+		
 		rl=controller.checkRam(ramList);
+		
 		for(Ram r:rl)
 			System.out.println(r);
-		System.out.println("Select Ram");
-		s=input.nextLine();
-		int r=Integer.parseInt(s);
+		
+		int r;
+		
+		do {
+			System.out.println("Select Ram");
+			s=input.nextLine();
+			r=Integer.parseInt(s);
+		}while(r>=rl.size());
+		
 		Ram ram=rl.get(r);
 		controller.getFullConfig().setMyRam(ram);
 		
@@ -86,29 +113,44 @@ public class ConfiguratorClient {
 		caseList.setDefaultComponents();
 		
 		//	Check
+		
 		cl=controller.checkCase(caseList);
+		
 		for(Case cs:cl)
 			System.out.println(cs);
-		System.out.println("Select Case: ");
-		s=input.nextLine();
-		int cs=Integer.parseInt(s);
+		
+		int cs;
+		
+		do {
+			System.out.println("Select Case: ");
+			s=input.nextLine();
+			cs=Integer.parseInt(s);
+		}while(cs>=cl.size());
+		
 		Case case1 = cl.get(cs);
 		controller.getFullConfig().setMyCase1(case1);
 		
 		//STORAGE
+		
 		StorageDao storageList=new StorageDao();
 		storageList.setDefaultComponents();
+		
 		for(Storage str:storageList.readComponents())
 			System.out.println(str);
-		System.out.println("Select storage: ");
-		s=input.nextLine();
-		int str=Integer.parseInt(s);
+		
+		int str;
+		
+		do {
+			System.out.println("Select storage: ");
+			s=input.nextLine();
+			str=Integer.parseInt(s);
+		}while(str>=storageList.readComponents().size());
+		
 		Storage storage = storageList.readComponents().get(str);
 		controller.getFullConfig().setMyStorage(storage);
 		
-		System.out.println("Total power: "+controller.totalPower());
-		
 		//	PSU
+		
 		PsuDao psuList = new PsuDao();
 		ArrayList<Psu> pl = new ArrayList<Psu>();
 		psuList.setDefaultComponents();
@@ -116,15 +158,23 @@ public class ConfiguratorClient {
 		//	Check	
 		
 		pl=controller.checkPsu(psuList);
+		
 		for(Psu p:pl)
 			System.out.println(p);
-		System.out.println("Select Psu: ");
-		s=input.nextLine();
-		int p=Integer.parseInt(s);
+		
+		int p;
+		
+		do {
+			System.out.println("Select Psu: ");
+			s=input.nextLine();
+			p=Integer.parseInt(s);
+		}while(p>=pl.size());
+		
 		Psu psu = pl.get(p);
 		controller.getFullConfig().setMyPsu(psu);
 		
 		System.out.println(controller.getFullConfig());
+		
 	}
 
 }

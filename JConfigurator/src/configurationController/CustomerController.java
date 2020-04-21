@@ -1,24 +1,30 @@
-package ConfiguratorEngine;
+package configurationController;
 
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
+import ConfiguratorEngine.Case;
+import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.Motherboard;
+import ConfiguratorEngine.Psu;
+import ConfiguratorEngine.Ram;
 import dataSource.CaseDao;
 import dataSource.MotherboardDao;
 import dataSource.PsuDao;
 import dataSource.RamDao;
 
-public class Controller {
+public class CustomerController {
 	private FullConfig fullConfig;
+	
 
-	public Controller(FullConfig fullConfig) {
+	public CustomerController(FullConfig fullConfig) {
 		super();
 		this.fullConfig = fullConfig;
 	}
-
-	public Controller() {
-		this.fullConfig=new FullConfig();
+	
+	public CustomerController() {
+		this.fullConfig=FullConfig.getIstance();
 	}
 
 	public FullConfig getFullConfig() {
@@ -50,7 +56,7 @@ public class Controller {
 	public ArrayList<Case> checkCase(CaseDao caseDao) throws JAXBException{
 		ArrayList<Case> compatibleCases = new ArrayList<Case>();
 		for(Case c:caseDao.readComponents()) {
-			if(c.getSize()==fullConfig.getMyMotherboard().getSize())
+			if(c.getSize()>=fullConfig.getMyMotherboard().getSize())
 				compatibleCases.add(c);
 		}
 		return compatibleCases;
@@ -76,6 +82,5 @@ public class Controller {
 		}
 		return compatiblePsus;
 	}
-	
 
 }

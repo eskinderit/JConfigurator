@@ -10,6 +10,17 @@ public class FullConfig {
 	private Ram myRam;
 	private int totalPower;
 	
+	private static FullConfig istance=null;		// Singleton
+	
+	private FullConfig() {}
+	
+	public static FullConfig getIstance() {
+		if(istance==null)
+			istance=new FullConfig();
+		return istance;
+	}
+	
+	
 	public Psu getMyPsu() {
 		return myPsu;
 	}
@@ -60,13 +71,12 @@ public class FullConfig {
 	public int getTotalPower() {
 		return this.totalPower;
 	}
+	
 	@Override
 	public String toString() {
-		return "FullConfig \n[Psu=" + myPsu + ",\nGpu=" + myGpu + ",\nMotherboard=" + myMotherboard + "\nCpu="
-				+ myCpu + "\nCase1=" + myCase1 + "\nStorage=" + myStorage + ",\nRam=" + myRam + ",\ntotalPower="
-				+ totalPower + "]";
+		return "FullConfig \n[" +myPsu + ",\n" + myGpu + ",\n" + myMotherboard + "\n"
+				+ myCpu + "\n" + myCase1 + "\n" + myStorage + ",\n" + myRam + "]";
 	}
-	
 	
 	
 }

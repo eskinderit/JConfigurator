@@ -43,5 +43,8 @@ public class CpuDao extends ComponentDao<Cpu, CpuDao>{
 		return this._addComponents ("src/dataSource/xmlSource/Cpu.Xml",toAddList, CpuDao.class);
 	}
 	
+	public Cpu getComponent (int i) {
+		return cpuList.get(i);
+	}
 	
 }

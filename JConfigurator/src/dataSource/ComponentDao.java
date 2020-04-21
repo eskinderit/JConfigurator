@@ -32,7 +32,8 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 	public void setComponentList(ArrayList<T1> componentList) {
 		this.componentList = componentList;
 	}
-
+	
+	
 
 	public abstract ArrayList<T1> readComponents() throws JAXBException;
 	
