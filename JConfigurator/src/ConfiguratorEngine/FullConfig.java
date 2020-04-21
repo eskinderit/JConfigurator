@@ -8,7 +8,7 @@ public class FullConfig {
 	private Case myCase1;
 	private Storage myStorage;
 	private Ram myRam;
-	
+	private int totalPower;
 	
 	public Psu getMyPsu() {
 		return myPsu;
@@ -53,6 +53,19 @@ public class FullConfig {
 		this.myRam = myRam;
 	}
 	
+	public void setTotalPower(int power) {
+		this.totalPower=power;
+	}
+	
+	public int getTotalPower() {
+		return this.totalPower;
+	}
+	@Override
+	public String toString() {
+		return "FullConfig \n[Psu=" + myPsu + ",\nGpu=" + myGpu + ",\nMotherboard=" + myMotherboard + "\nCpu="
+				+ myCpu + "\nCase1=" + myCase1 + "\nStorage=" + myStorage + ",\nRam=" + myRam + ",\ntotalPower="
+				+ totalPower + "]";
+	}
 	
 	
 	
