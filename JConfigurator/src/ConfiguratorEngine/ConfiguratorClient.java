@@ -25,7 +25,7 @@ public class ConfiguratorClient {
 		for(Cpu c:cpuList.readComponents())
 			System.out.println(c);
 		
-		@SuppressWarnings("resource")
+
 		Scanner input=new Scanner(System.in);
 		int c;
 		String s;

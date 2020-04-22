@@ -16,27 +16,31 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 	
 	@Override
 	public ArrayList<Case> getComponentList() {
-		return caseList;
+		return this.caseList;
 	}
 
 	@Override
 	public ArrayList<Case> readComponents() throws JAXBException{
-		return this._readComponents ("src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+		this.caseList = this._readComponents ("src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+		return this.caseList;
 	}
 	
 	@Override
-	public ArrayList<Case> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+	public ArrayList<Case> deleteComponents(ArrayList<Case> toDeleteList) throws JAXBException{
+		this.caseList = this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+		return this.caseList;
 	}
 	
 	@Override
 	public ArrayList<Case> addComponents(ArrayList<Case> toAddList) throws JAXBException{
-		return this._addComponents ("src/dataSource/xmlSource/Case.Xml",toAddList, CaseDao.class);
+		this.caseList = this._addComponents ("src/dataSource/xmlSource/Case.Xml",toAddList, CaseDao.class);
+		return this.caseList;
 	}
 	
 	@Override
 	public ArrayList<Case> setDefaultComponents() throws JAXBException {
-		return this._setDefaultComponents("src/dataSource/xmlSource/CaseDefault.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+		this.caseList = this._setDefaultComponents("src/dataSource/xmlSource/CaseDefault.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+		return this.caseList;
 	}
 
 

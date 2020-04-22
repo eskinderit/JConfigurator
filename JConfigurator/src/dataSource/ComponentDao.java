@@ -2,7 +2,7 @@ package dataSource;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -37,7 +37,7 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 
 	public abstract ArrayList<T1> readComponents() throws JAXBException;
 	
-	public abstract ArrayList<T1> deleteComponents(int toDeleteList[]) throws JAXBException;
+	public abstract ArrayList<T1> deleteComponents(ArrayList<T1> toDeleteList) throws JAXBException;
 	
 	public abstract ArrayList<T1> addComponents(ArrayList<T1> toAddList) throws JAXBException;
 	
@@ -54,23 +54,20 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 		
 	}
 	
-	 protected  ArrayList<T1> _removeComponents(int toDelete[], String myFile, Class<T2> class2Bound) throws JAXBException {
+	 protected  ArrayList<T1> _removeComponents(ArrayList<T1> toDeleteList, String myFile, Class<T2> class2Bound) throws JAXBException {
 		  
-		  Arrays.sort(toDelete);
+
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
 		  Unmarshaller unm = ctx.createUnmarshaller(); 
 		  File fout =new File(myFile);
 		  T2 componentDao = class2Bound.cast(unm.unmarshal(fout)); 
 		  
-		  for(int i=0; i<toDelete.length; i++) {
-			  for (int j=0; j<componentDao.getComponentList().size(); j++)
-			  if (toDelete[i]==j) {
-				  componentDao.getComponentList().remove(j);
-				  for (int k=i; k<toDelete.length;k++)
-					  toDelete[k]=toDelete[k]-1;
-			  }
-		  }
+		 
+		  ArrayList<T1> componentDaoList = componentDao.getComponentList();
+		  componentDaoList.removeAll(toDeleteList);
+		  componentDao.setComponentList(componentDaoList);
+		  
 
 		  
 		  Marshaller m = ctx.createMarshaller();
@@ -88,7 +85,10 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 		  T2 componentDao = class2Bound.cast(unm.unmarshal(fout));
 		  
 		  
-		  componentDao.getComponentList().addAll(componentListToAdd);
+		  ArrayList<T1> componentDaoList = componentDao.getComponentList();
+		  componentDaoList.addAll(componentListToAdd);
+		  componentDao.setComponentList(componentDaoList);
+		  
 		  
 		  
 		  Marshaller m = ctx.createMarshaller();

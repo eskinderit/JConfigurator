@@ -15,27 +15,31 @@ public class MotherboardDao extends ComponentDao<Motherboard, MotherboardDao>{
 	
 	@Override
 	public ArrayList<Motherboard> getComponentList() {
-		return motherboardList;
+		return this.motherboardList;
 	}
 
 	@Override
 	public ArrayList<Motherboard> readComponents() throws JAXBException{
-		return this._readComponents ("src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+		this.motherboardList = this._readComponents ("src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+		return this.motherboardList;
 	}
 	
 	@Override
-	public ArrayList<Motherboard> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+	public ArrayList<Motherboard> deleteComponents(ArrayList<Motherboard> toDeleteList) throws JAXBException{
+		this.motherboardList = this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+		return this.motherboardList;
 	}
 	
 	@Override
 	public ArrayList<Motherboard> addComponents(ArrayList<Motherboard> toAddList) throws JAXBException{
-		return this._addComponents ("src/dataSource/xmlSource/Motherboard.Xml",toAddList, MotherboardDao.class);
+		this.motherboardList = this._addComponents ("src/dataSource/xmlSource/Motherboard.Xml",toAddList, MotherboardDao.class);
+		return this.motherboardList;
 	}
 	
 	@Override
 	public ArrayList<Motherboard> setDefaultComponents() throws JAXBException {
-		return this._setDefaultComponents("src/dataSource/xmlSource/MotherboardDefault.Xml","src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+		this.motherboardList = _setDefaultComponents("src/dataSource/xmlSource/MotherboardDefault.Xml","src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+		return this.motherboardList;
 	}
 
 

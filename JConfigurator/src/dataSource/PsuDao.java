@@ -19,27 +19,31 @@ public class PsuDao extends ComponentDao<Psu, PsuDao>{
 	
 	@Override
 	public ArrayList<Psu> getComponentList() {
-		return psuList;
+		return this.psuList;
 	}
 
 	@Override
 	public ArrayList<Psu> readComponents() throws JAXBException{
-		return this._readComponents ("src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+		this.psuList = this._readComponents ("src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+		return this.psuList;
 	}
 	
 	@Override
-	public ArrayList<Psu> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+	public ArrayList<Psu> deleteComponents(ArrayList<Psu> toDeleteList) throws JAXBException{
+		this.psuList = this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+		return this.psuList;
 	}
 	
 	@Override
 	public ArrayList<Psu> addComponents(ArrayList<Psu> toAddList) throws JAXBException{
-		return this._addComponents ("src/dataSource/xmlSource/Psu.Xml",toAddList, PsuDao.class);
+		this.psuList = this._addComponents ("src/dataSource/xmlSource/Psu.Xml",toAddList, PsuDao.class);
+		return this.psuList;
 	}
 	
 	@Override
 	public ArrayList<Psu> setDefaultComponents() throws JAXBException {
-		return this._setDefaultComponents("src/dataSource/xmlSource/PsuDefault.Xml","src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+		this.psuList = this._setDefaultComponents("src/dataSource/xmlSource/PsuDefault.Xml","src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+		return this.psuList;
 	}
 
 

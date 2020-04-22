@@ -34,11 +34,12 @@ public class Client {
 
 		//Test Remove
 
-		GpuDao gpuDao3 = new GpuDao(); 
-		System.out.println("\n Lista modificata (remove): \n"); int a[] = new int[2];
-		a[0]=10; a[1]=1; ArrayList<Gpu> newList1 = gpuDao3.deleteComponents(a);
-		newList1.forEach(System.out::println);
-
+		/*
+		 * GpuDao gpuDao3 = new GpuDao();
+		 * System.out.println("\n Lista modificata (remove): \n"); int a[] = new int[2];
+		 * a[0]=10; a[1]=1; ArrayList<Gpu> newList1 = gpuDao3.deleteComponents(a);
+		 * newList1.forEach(System.out::println);
+		 */
 		//Test Read
 		GpuDao gpuDao4 = new GpuDao();
 		ArrayList<Gpu> actualList = gpuDao4.readComponents();
@@ -66,14 +67,12 @@ public class Client {
 				newList2.forEach(System.out::println);
 
 				//Test Remove
-
-				System.out.println("\n Lista modificata (remove): \n"); 
-				int b[] = new int[2];
-				b[0]=5; 
-				b[1]=1; 
-				MotherboardDao moboDao3 = new MotherboardDao();
-				ArrayList<Motherboard> newList3 = moboDao3.deleteComponents(b); newList3.forEach(System.out::println);
-
+				/*
+				 * System.out.println("\n Lista modificata (remove): \n"); int b[] = new int[2];
+				 * b[0]=5; b[1]=1; MotherboardDao moboDao3 = new MotherboardDao();
+				 * ArrayList<Motherboard> newList3 = moboDao3.deleteComponents(b);
+				 * newList3.forEach(System.out::println);
+				 */
 				//Test Read
 
 

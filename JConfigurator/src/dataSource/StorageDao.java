@@ -9,34 +9,37 @@ import ConfiguratorEngine.Storage;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StorageDao extends ComponentDao<Storage, StorageDao>{
+	
 	@XmlElement(name="Storage")
 	private ArrayList<Storage> storageList;
 	
-
-	
 	@Override
 	public ArrayList<Storage> getComponentList() {
-		return storageList;
+		return this.storageList;
 	}
 
 	@Override
 	public ArrayList<Storage> readComponents() throws JAXBException{
-		return this._readComponents ("src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+		this.storageList = this._readComponents ("src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+		return this.storageList;
 	}
 	
 	@Override
-	public ArrayList<Storage> deleteComponents(int toDeleteList[]) throws JAXBException{
-		return this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+	public ArrayList<Storage> deleteComponents(ArrayList<Storage> toDeleteList) throws JAXBException{
+		this.storageList = this._removeComponents (toDeleteList,"src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+		return this.storageList;
 	}
 	
 	@Override
 	public ArrayList<Storage> addComponents(ArrayList<Storage> toAddList) throws JAXBException{
-		return this._addComponents ("src/dataSource/xmlSource/Storage.Xml",toAddList, StorageDao.class);
+		this.storageList = this._addComponents ("src/dataSource/xmlSource/Storage.Xml",toAddList, StorageDao.class);
+		return this.storageList;
 	}
 	
 	@Override
 	public ArrayList<Storage> setDefaultComponents() throws JAXBException {
-		return this._setDefaultComponents("src/dataSource/xmlSource/StorageDefault.Xml","src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+		this.storageList = this._setDefaultComponents("src/dataSource/xmlSource/StorageDefault.Xml","src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+		return this.storageList;
 	}
 
 

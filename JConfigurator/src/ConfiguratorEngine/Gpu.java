@@ -31,6 +31,32 @@ public void setMemory(int memory) {
   @Override public String toString() { return "Gpu [name=" + this.getName() +
   ", price=" + this.getPrice() + ", power=" + this.getPower() +
   ", memory="+this.getMemory()+"]"; }
+
+
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = super.hashCode();
+	result = prime * result + memory;
+	return result;
+}
+
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (!super.equals(obj))
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Gpu other = (Gpu) obj;
+	if (memory != other.memory)
+		return false;
+	return true;
+}
+  
+  
   
 
 
