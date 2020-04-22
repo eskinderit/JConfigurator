@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ramDao>
+    <Ram>
+        <name>Kingston HyperX Fury DDR3 (2x4)</name>
+        <price>67</price>
+        <power>10</power>
+        <dimension>8</dimension>
+        <ramType>DDR3</ramType>
+    </Ram>
+    <Ram>
+        <name>Kingston HyperX Fury DDR4 (2x4)</name>
+        <price>67</price>
+        <power>10</power>
+        <dimension>8</dimension>
+        <ramType>DDR3</ramType>
+    </Ram>
+    <Ram>
+        <name>Corsair Dominator Platinum DDR4 (4x8)</name>
+        <price>318</price>
+        <power>10</power>
+        <dimension>32</dimension>
+        <ramType>DDR4</ramType>
+    </Ram>
+    <Ram>
+        <name>Corsair Vengeance Pro DDR3 (2x8)</name>
+        <price>125</price>
+        <power>10</power>
+        <dimension>16</dimension>
+        <ramType>DDR3</ramType>
+    </Ram>
+    <Ram>
+        <name>Ballistix Sport LT DDR4 (2x8)</name>
+        <price>133</price>
+        <power>10</power>
+        <dimension>16</dimension>
+        <ramType>DDR4</ramType>
+    </Ram>
+    <Ram>
+        <name>Corsair DDR4 4GB</name>
+        <price>35</price>
+        <power>10</power>
+        <dimension>4</dimension>
+        <ramType>DDR4</ramType>
+    </Ram>
+    <Ram>
+        <name>Kingston HyperX Fury DDR4 (2x8)</name>
+        <price>142</price>
+        <power>10</power>
+        <dimension>16</dimension>
+        <ramType>DDR4</ramType>
+    </Ram>
+</ramDao>
