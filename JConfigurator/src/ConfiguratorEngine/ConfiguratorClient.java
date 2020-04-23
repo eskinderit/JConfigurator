@@ -26,7 +26,7 @@ public class ConfiguratorClient {
 			System.out.println(c);
 		
 
-		Scanner input=new Scanner(System.in);
+		Scanner input=new Scanner(System.in);	//	Fixed line 178
 		int c;
 		String s;
 		
@@ -174,6 +174,8 @@ public class ConfiguratorClient {
 		controller.getFullConfig().setMyPsu(psu);
 		
 		System.out.println(controller.getFullConfig());
+		
+		input.close();		//	Fixed
 		
 	}
 
