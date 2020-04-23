@@ -4,8 +4,6 @@ package dataSource;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
-
-
 import ConfiguratorEngine.Psu;
 
 
@@ -46,5 +44,10 @@ public class PsuDao extends ComponentDao<Psu, PsuDao>{
 		return this.psuList;
 	}
 
+	@Override
+	public ArrayList<Psu> setEmptyComponents() throws JAXBException {
+		this.psuList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyPsu.Xml","src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
+		return this.psuList;
+	}
 
 }

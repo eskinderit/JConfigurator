@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.*;
 
 import javax.xml.bind.*;
-
 import ConfiguratorEngine.Ram;
 
 
@@ -43,6 +42,13 @@ public class RamDao extends ComponentDao<Ram, RamDao>{
 		this.ramList = this._setDefaultComponents("src/dataSource/xmlSource/RamDefault.Xml","src/dataSource/xmlSource/Ram.Xml", RamDao.class);
 		return this.ramList;
 	}
+	
+	@Override
+	public ArrayList<Ram> setEmptyComponents() throws JAXBException {
+		this.ramList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyRam.Xml","src/dataSource/xmlSource/Ram.Xml", RamDao.class);
+		return this.ramList;
+	}
+	
 
 	
 }

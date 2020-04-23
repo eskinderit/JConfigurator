@@ -42,6 +42,10 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 		this.caseList = this._setDefaultComponents("src/dataSource/xmlSource/CaseDefault.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
 		return this.caseList;
 	}
-
+	@Override
+	public ArrayList<Case> setEmptyComponents() throws JAXBException {
+		this.caseList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyCase.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
+		return this.caseList;
+	}
 
 }

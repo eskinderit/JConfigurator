@@ -51,6 +51,13 @@ public class CpuDao extends ComponentDao<Cpu, CpuDao>{
 	
 	}
 	
+	
+	@Override
+	public ArrayList<Cpu> setEmptyComponents() throws JAXBException {
+		this.cpuList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyCpu.Xml","src/dataSource/xmlSource/Cpu.Xml", CpuDao.class);
+		return this.cpuList;
+	}
+	
 	public Cpu getComponent (int i) {
 		return cpuList.get(i);
 	}

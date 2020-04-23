@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.*;
 
+import ConfiguratorEngine.Ram;
 import ConfiguratorEngine.Storage;
 
 @XmlRootElement
@@ -41,6 +42,12 @@ public class StorageDao extends ComponentDao<Storage, StorageDao>{
 		this.storageList = this._setDefaultComponents("src/dataSource/xmlSource/StorageDefault.Xml","src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
 		return this.storageList;
 	}
+	@Override
+	public ArrayList<Storage> setEmptyComponents() throws JAXBException {
+		this.storageList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyStorage.Xml","src/dataSource/xmlSource/Storage.Xml", StorageDao.class);
+		return this.storageList;
+	}
+	
 
 
 }

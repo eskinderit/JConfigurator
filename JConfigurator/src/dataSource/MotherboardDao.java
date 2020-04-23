@@ -41,6 +41,12 @@ public class MotherboardDao extends ComponentDao<Motherboard, MotherboardDao>{
 		this.motherboardList = _setDefaultComponents("src/dataSource/xmlSource/MotherboardDefault.Xml","src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
 		return this.motherboardList;
 	}
+	
+	@Override
+	public ArrayList<Motherboard> setEmptyComponents() throws JAXBException {
+		this.motherboardList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyMotherboard.Xml","src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
+		return this.motherboardList;
+	}
 
 
 }

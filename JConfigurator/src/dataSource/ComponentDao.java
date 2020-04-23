@@ -42,6 +42,8 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 	public abstract ArrayList<T1> addComponents(ArrayList<T1> toAddList) throws JAXBException;
 	
 	public abstract ArrayList<T1> setDefaultComponents() throws JAXBException;
+	
+	public abstract ArrayList<T1> setEmptyComponents() throws JAXBException;
 
 	 protected  ArrayList<T1> _readComponents(String myFile, Class<T2> class2Bound) throws JAXBException {
 		  

@@ -8,8 +8,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import dataSource.CaseDao;
 import ConfiguratorEngine.Case;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+
 
 class CaseDaoTest {
 	
@@ -51,7 +50,7 @@ class CaseDaoTest {
 
 	}
 	
-	//TODO i test vano bene, ma visogna far si che le liste xxxDao facciano riferimento a xxx.xml azzerati. bisogna porvvedere a fornire una funzione che ripulisca tutto in ogni caso
+	
 	
 	@Test
 	void testSet() throws JAXBException{
@@ -72,6 +71,18 @@ class CaseDaoTest {
 
 		assertEquals(localCaseDao.getComponentList(), caseDao.getComponentList(), "Case Set Default Components");
 
+	}
+	
+	@Test
+	void testEmpty() throws JAXBException{
+		
+		CaseDao myDao = new CaseDao();
+		caseDao.setEmptyComponents();
+		
+		
+		assertEquals(myDao.getComponentList(), caseDao.getComponentList());
+		
+		
 	}
 	
 	

@@ -44,6 +44,10 @@ public class GpuDao extends ComponentDao<Gpu, GpuDao>{
 		return this.gpuList;
 	}
 	
-	
+	@Override
+	public ArrayList<Gpu> setEmptyComponents() throws JAXBException {
+		this.gpuList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyGpu.Xml","src/dataSource/xmlSource/Gpu.Xml", GpuDao.class);
+		return this.gpuList;
+	}
 	
 }
