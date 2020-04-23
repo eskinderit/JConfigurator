@@ -12,6 +12,19 @@ public class MotherboardDao extends ComponentDao<Motherboard, MotherboardDao>{
 	 
 	@XmlElement(name="Motherboard")
 	private ArrayList<Motherboard> motherboardList;
+
+	public MotherboardDao() {
+		super();
+		this.motherboardList = new ArrayList<Motherboard>();
+	}
+	
+	
+	@Override
+	public void setComponentList(ArrayList<Motherboard> componentList) {
+		this.componentList = componentList;
+		this.motherboardList = componentList; 
+	}
+		
 	
 	@Override
 	public ArrayList<Motherboard> getComponentList() {

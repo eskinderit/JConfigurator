@@ -15,8 +15,9 @@ class CaseDaoTest {
 	CaseDao caseDao;
 
 	@BeforeEach
-	void init() {
+	void init() throws JAXBException{
 		caseDao = new CaseDao();
+		caseDao.setEmptyComponents();
 	}
 	
 	@Test
@@ -86,9 +87,32 @@ class CaseDaoTest {
 	}
 	
 	
+	@Test
+	void testEmptyAndAdd() throws JAXBException{
+		
+		CaseDao myDao = new CaseDao();
+		
+		
+		Case c1 = new Case("Prova",1,2,3);
+		ArrayList<Case> toAddList = new ArrayList<>();
+		
+		toAddList.add(c1);
+		
+		caseDao.setEmptyComponents();
+		caseDao.addComponents(toAddList);
+		
+		myDao.setComponentList(toAddList);
+
+
+		assertEquals(myDao.getComponentList(), caseDao.getComponentList());
+		
+		
+	}
+	
+	
 	@AfterEach
 	void clearAll() throws JAXBException {
-		caseDao.setDefaultComponents();
+		caseDao.setEmptyComponents();
 	}
 
 

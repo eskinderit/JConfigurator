@@ -4,6 +4,7 @@ package dataSource;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
+
 import ConfiguratorEngine.Psu;
 
 
@@ -14,6 +15,18 @@ public class PsuDao extends ComponentDao<Psu, PsuDao>{
 	@XmlElement(name="Psu")
 	private ArrayList<Psu> psuList;
 
+	public PsuDao() {
+		super();
+		this.psuList = new ArrayList<Psu>();
+	}
+	
+	
+	@Override
+	public void setComponentList(ArrayList<Psu> componentList) {
+		this.componentList = componentList;
+		this.psuList = componentList; 
+	}
+	
 	
 	@Override
 	public ArrayList<Psu> getComponentList() {

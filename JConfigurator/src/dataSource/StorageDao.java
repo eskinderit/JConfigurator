@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.*;
 
-import ConfiguratorEngine.Ram;
 import ConfiguratorEngine.Storage;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StorageDao extends ComponentDao<Storage, StorageDao>{
 	
+	public StorageDao() {
+		super();
+		this.storageList = new ArrayList<Storage>();
+	}
+
 	@XmlElement(name="Storage")
 	private ArrayList<Storage> storageList;
 	
@@ -19,6 +23,13 @@ public class StorageDao extends ComponentDao<Storage, StorageDao>{
 		return this.storageList;
 	}
 
+	@Override
+	public void setComponentList(ArrayList<Storage> componentList) {
+		this.componentList = componentList;
+		this.storageList = componentList; 
+	}
+	
+	
 	@Override
 	public ArrayList<Storage> readComponents() throws JAXBException{
 		this.storageList = this._readComponents ("src/dataSource/xmlSource/Storage.Xml", StorageDao.class);

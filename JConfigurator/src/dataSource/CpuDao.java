@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import ConfiguratorEngine.Cpu;
 
 
@@ -18,6 +17,17 @@ public class CpuDao extends ComponentDao<Cpu, CpuDao>{
 	@XmlElement(name="Cpu")
 	private ArrayList <Cpu> cpuList;
 	
+	public CpuDao() {
+		super();
+		this.cpuList = new ArrayList<Cpu>();
+	}
+
+	
+	@Override
+	public void setComponentList(ArrayList<Cpu> componentList) {
+		this.componentList = componentList;
+		this.cpuList = componentList; 
+	}
 	
 	@Override
 	public ArrayList<Cpu> getComponentList() {

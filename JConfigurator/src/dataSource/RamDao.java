@@ -13,6 +13,19 @@ public class RamDao extends ComponentDao<Ram, RamDao>{
 	
 	@XmlElement(name="Ram")
 	ArrayList<Ram> ramList;
+
+	public RamDao() {
+		super();
+		this.ramList = new ArrayList<Ram>();
+	}
+	
+	
+	@Override
+	public void setComponentList(ArrayList<Ram> componentList) {
+		this.componentList = componentList;
+		this.ramList = componentList; 
+	}
+		
 	
 	@Override
 	public ArrayList<Ram> getComponentList() {

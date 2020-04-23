@@ -15,7 +15,19 @@ public class GpuDao extends ComponentDao<Gpu, GpuDao>{
     @XmlElement(name="Gpu")
 	ArrayList<Gpu> gpuList;
 
+	public GpuDao() {
+		super();
+		this.gpuList = new ArrayList<Gpu>();
+	}
 
+    
+	@Override
+	public void setComponentList(ArrayList<Gpu> componentList) {
+		this.componentList = componentList;
+		this.gpuList = componentList; 
+	}
+	
+    
 	@Override
 	public ArrayList<Gpu> getComponentList() {
 		return this.gpuList;

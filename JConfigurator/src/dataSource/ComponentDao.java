@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
 import ConfiguratorEngine.Component;
 
 import javax.xml.bind.annotation.*;
@@ -57,7 +58,7 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 	}
 	
 	 protected  ArrayList<T1> _removeComponents(ArrayList<T1> toDeleteList, String myFile, Class<T2> class2Bound) throws JAXBException {
-		  
+		  //TODO fix this in case of empty list or component to remove not in list
 
 		  
 		  JAXBContext ctx = JAXBContext.newInstance(class2Bound); 
@@ -87,12 +88,12 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 		  T2 componentDao = class2Bound.cast(unm.unmarshal(fout));
 		  
 		  
-		  ArrayList<T1> componentDaoList = componentDao.getComponentList();
-		  componentDaoList.addAll(componentListToAdd);
-		  componentDao.setComponentList(componentDaoList);
-		  
-		  
-		  
+		  if (componentDao.getComponentList() != null)
+			  componentDao.getComponentList().addAll(componentListToAdd);
+		  else 
+			  componentDao.setComponentList(componentListToAdd);
+
+		   
 		  Marshaller m = ctx.createMarshaller();
 		  m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
 		  m.marshal(componentDao,fout);

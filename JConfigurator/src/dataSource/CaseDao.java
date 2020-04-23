@@ -12,12 +12,23 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 
 	@XmlElement(name="Case")
 	private ArrayList<Case> caseList;
-
 	
+	public CaseDao() {
+		super();
+		this.caseList = new ArrayList<Case>();
+	}
+
 	@Override
 	public ArrayList<Case> getComponentList() {
 		return this.caseList;
 	}
+	
+	@Override
+	public void setComponentList(ArrayList<Case> componentList) {
+		this.componentList = componentList;
+		this.caseList = componentList; 
+	}
+	
 
 	@Override
 	public ArrayList<Case> readComponents() throws JAXBException{
@@ -42,6 +53,8 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 		this.caseList = this._setDefaultComponents("src/dataSource/xmlSource/CaseDefault.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
 		return this.caseList;
 	}
+
+	
 	@Override
 	public ArrayList<Case> setEmptyComponents() throws JAXBException {
 		this.caseList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyCase.Xml","src/dataSource/xmlSource/Case.Xml", CaseDao.class);
