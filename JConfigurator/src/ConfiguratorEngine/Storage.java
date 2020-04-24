@@ -10,6 +10,13 @@ public class Storage extends Component{
 	public Storage() {
 		super();
 	}
+	
+	public Storage(String name, int price, int power, int capacity, boolean ssd) {
+			super(name, price, power);
+			this.capacity=capacity;
+			this.ssd=ssd;
+	}
+	
 	public int getCapacity() {
 		return capacity;
 	}
