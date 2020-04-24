@@ -19,12 +19,12 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 	}
 
 	@Override
-	public ArrayList<Case> getComponentList() {
+	protected ArrayList<Case> getComponentList() {
 		return this.caseList;
 	}
 	
 	@Override
-	public void setComponentList(ArrayList<Case> componentList) {
+	protected void setComponentList(ArrayList<Case> componentList) {
 		this.componentList = componentList;
 		this.caseList = componentList; 
 	}

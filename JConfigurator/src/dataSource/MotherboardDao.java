@@ -20,14 +20,14 @@ public class MotherboardDao extends ComponentDao<Motherboard, MotherboardDao>{
 	
 	
 	@Override
-	public void setComponentList(ArrayList<Motherboard> componentList) {
+	protected void setComponentList(ArrayList<Motherboard> componentList) {
 		this.componentList = componentList;
 		this.motherboardList = componentList; 
 	}
 		
 	
 	@Override
-	public ArrayList<Motherboard> getComponentList() {
+	protected ArrayList<Motherboard> getComponentList() {
 		return this.motherboardList;
 	}
 

@@ -29,7 +29,7 @@ public class PsuDao extends ComponentDao<Psu, PsuDao>{
 	
 	
 	@Override
-	public ArrayList<Psu> getComponentList() {
+	protected ArrayList<Psu> getComponentList() {
 		return this.psuList;
 	}
 

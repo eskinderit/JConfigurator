@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 import org.junit.jupiter.api.Test;
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import dataSource.CaseDao;
 import ConfiguratorEngine.Case;
@@ -56,21 +55,21 @@ class CaseDaoTest {
 	@Test
 	void testSet() throws JAXBException{
 		
-		CaseDao localCaseDao = new CaseDao();
-
-		
-		ArrayList<Case> componentToBeCleaned = new ArrayList<>();
-		Case case1 = new Case("Prova", 1, 2, 3);
-		componentToBeCleaned.add(case1);
-		
-		caseDao.addComponents(componentToBeCleaned);
-		localCaseDao.setDefaultComponents();
-		
-		Assert.assertNotEquals(localCaseDao.getComponentList(), caseDao.getComponentList());
-		
 		caseDao.setDefaultComponents();
+		
+		CaseDao localCaseDao = new CaseDao();
+		
+		
+		ArrayList<Case> newCaseList = new ArrayList<>();
+		Case c1 = new Case("Prova1",1,2,3);
+		newCaseList.add(c1);
+	
+		
+		assertEquals(localCaseDao.readComponents(), caseDao.readComponents());
+		
+		localCaseDao.setDefaultComponents();
 
-		assertEquals(localCaseDao.getComponentList(), caseDao.getComponentList(), "Case Set Default Components");
+		assertEquals(localCaseDao.readComponents(), caseDao.readComponents(), "Case Set Default Components");
 
 	}
 	
@@ -78,10 +77,10 @@ class CaseDaoTest {
 	void testEmpty() throws JAXBException{
 		
 		CaseDao myDao = new CaseDao();
-		caseDao.setEmptyComponents();
+		myDao.setEmptyComponents();
 		
 		
-		assertEquals(myDao.getComponentList(), caseDao.getComponentList());
+		assertEquals(myDao.readComponents(), caseDao.readComponents());
 		
 		
 	}
@@ -101,10 +100,7 @@ class CaseDaoTest {
 		caseDao.setEmptyComponents();
 		caseDao.addComponents(toAddList);
 		
-		myDao.setComponentList(toAddList);
-
-
-		assertEquals(myDao.getComponentList(), caseDao.getComponentList());
+		assertEquals(myDao.readComponents(), caseDao.readComponents());
 		
 		
 	}

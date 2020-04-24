@@ -19,12 +19,12 @@ public class StorageDao extends ComponentDao<Storage, StorageDao>{
 	private ArrayList<Storage> storageList;
 	
 	@Override
-	public ArrayList<Storage> getComponentList() {
+	protected ArrayList<Storage> getComponentList() {
 		return this.storageList;
 	}
 
 	@Override
-	public void setComponentList(ArrayList<Storage> componentList) {
+	protected void setComponentList(ArrayList<Storage> componentList) {
 		this.componentList = componentList;
 		this.storageList = componentList; 
 	}

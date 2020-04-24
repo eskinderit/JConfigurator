@@ -22,14 +22,14 @@ public class GpuDao extends ComponentDao<Gpu, GpuDao>{
 
     
 	@Override
-	public void setComponentList(ArrayList<Gpu> componentList) {
+	protected void setComponentList(ArrayList<Gpu> componentList) {
 		this.componentList = componentList;
 		this.gpuList = componentList; 
 	}
 	
     
 	@Override
-	public ArrayList<Gpu> getComponentList() {
+	protected ArrayList<Gpu> getComponentList() {
 		return this.gpuList;
 	}
 

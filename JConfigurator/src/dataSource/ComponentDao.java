@@ -26,11 +26,11 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 
 
 
-	public ArrayList<T1> getComponentList() {
+	protected ArrayList<T1> getComponentList() {
 		return componentList;
 	}
 
-	public void setComponentList(ArrayList<T1> componentList) {
+	protected void setComponentList(ArrayList<T1> componentList) {
 		this.componentList = componentList;
 	}
 	
@@ -88,8 +88,11 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 		  T2 componentDao = class2Bound.cast(unm.unmarshal(fout));
 		  
 		  
-		  if (componentDao.getComponentList() != null)
-			  componentDao.getComponentList().addAll(componentListToAdd);
+		  if (componentDao.getComponentList() != null) {
+			  ArrayList <T1> newComponentList = componentDao.getComponentList();
+			  newComponentList.addAll(componentListToAdd);
+			  componentDao.setComponentList(newComponentList);
+		  }
 		  else 
 			  componentDao.setComponentList(componentListToAdd);
 

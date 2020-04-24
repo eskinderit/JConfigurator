@@ -21,14 +21,14 @@ public class RamDao extends ComponentDao<Ram, RamDao>{
 	
 	
 	@Override
-	public void setComponentList(ArrayList<Ram> componentList) {
+	protected void setComponentList(ArrayList<Ram> componentList) {
 		this.componentList = componentList;
 		this.ramList = componentList; 
 	}
 		
 	
 	@Override
-	public ArrayList<Ram> getComponentList() {
+	protected ArrayList<Ram> getComponentList() {
 		return this.ramList;
 	}
 

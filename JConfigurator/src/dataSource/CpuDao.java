@@ -24,13 +24,13 @@ public class CpuDao extends ComponentDao<Cpu, CpuDao>{
 
 	
 	@Override
-	public void setComponentList(ArrayList<Cpu> componentList) {
+	protected void setComponentList(ArrayList<Cpu> componentList) {
 		this.componentList = componentList;
 		this.cpuList = componentList; 
 	}
 	
 	@Override
-	public ArrayList<Cpu> getComponentList() {
+	protected ArrayList<Cpu> getComponentList() {
 		return this.cpuList;
 	}
 
