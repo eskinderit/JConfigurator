@@ -12,6 +12,13 @@ public class Ram extends Component {
 	public Ram() {
 		super();
 	}
+	
+	public Ram(String name, int price, int power, String ramType, int dimension) {
+		super(name, price, power);
+		this.ramType=ramType;
+		this.dimension=dimension;
+	}
+	
 	public String getRamType() {
 		return ramType;
 	}
