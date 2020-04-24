@@ -175,6 +175,8 @@ public class ConfiguratorClient {
 		
 		System.out.println(controller.getFullConfig());
 		
+		input.close();
+		
 	}
 
 }
