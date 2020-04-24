@@ -58,7 +58,7 @@ public class RamDaoTest {
 		ArrayList<Ram> localramList = new ArrayList<Ram>();
 		ramDao.setEmptyComponents();
 		
-		assertEquals(localramList, ramDao.getComponentList(), "Empty Ram List");
+		assertEquals(localramList, ramDao.readComponents(), "Empty Ram List");
 	}
 	
 	

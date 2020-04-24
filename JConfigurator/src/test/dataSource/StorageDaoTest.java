@@ -60,7 +60,7 @@ public class StorageDaoTest {
 		ArrayList<Storage> localstorageList = new ArrayList<Storage>();
 		storageDao.setEmptyComponents();
 		
-		assertEquals(localstorageList, storageDao.getComponentList(), "Empty Storage List");
+		assertEquals(localstorageList, storageDao.readComponents(), "Empty Storage List");
 	}
 
 	@AfterEach

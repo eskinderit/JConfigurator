@@ -58,7 +58,7 @@ public class CpuDaoTest {
 		ArrayList<Cpu> localCpuList = new ArrayList<Cpu>();
 		cpuDao.setEmptyComponents();
 		
-		assertEquals(localCpuList, cpuDao.getComponentList(), "Empty Cpu List");
+		assertEquals(localCpuList, cpuDao.readComponents(), "Empty Cpu List");
 	}
 	
 	
