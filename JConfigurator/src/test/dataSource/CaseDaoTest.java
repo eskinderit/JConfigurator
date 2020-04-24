@@ -1,116 +1,70 @@
 package test.dataSource;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.*;
-import dataSource.CaseDao;
+
 import ConfiguratorEngine.Case;
 
+import org.junit.jupiter.api.*;
+import dataSource.CaseDao;
 
-class CaseDaoTest {
-	
+public class CaseDaoTest {
 	CaseDao caseDao;
-
+	ArrayList<Case> caseList;
+	Case case1;
+	Case case2;
+	
 	@BeforeEach
-	void init() throws JAXBException{
-		caseDao = new CaseDao();
-		caseDao.setEmptyComponents();
+	void init() {
+		caseDao=new CaseDao();
+		caseList=new ArrayList<Case>();
+		case1 = new Case("case1", 10, 10, 10);
+		case2 = new Case("case2", 10, 10, 10);
+		caseList.add(case1);
+		caseList.add(case2);
 	}
 	
 	@Test
-	void testSingleAdd() throws JAXBException{
+	void testAddcaseList() throws JAXBException {
+		ArrayList<Case> localcaseList=caseDao.readComponents();
 		
-		Case demoCase= new Case("Prova",23,20,3);
-		ArrayList<Case> caseList = new ArrayList<>();
-		ArrayList<Case> caseListLocal = caseDao.readComponents();
-		caseListLocal.add(demoCase);
-		caseList.add(demoCase);
-		ArrayList<Case> readedCaseList = caseDao.addComponents(caseList);
-
-		assertEquals(caseListLocal, readedCaseList, "Case Single Insert");	
-	}
-	
-	
-	@Test
-	void testSingleRemove() throws JAXBException{
+		caseDao.addComponents(caseList);
+		localcaseList.addAll(caseList);
 		
-
-		ArrayList<Case> caseListLocal = caseDao.readComponents();
-		Case c1 = new Case("Corsair Spec 01 (ATX)", 56, 10, 3);
-
-		caseListLocal.remove(c1);
-		
-		ArrayList<Case> casesToDelete = new ArrayList<Case>();
-		casesToDelete.add(c1);
-		ArrayList<Case> readedCaseList= caseDao.deleteComponents(casesToDelete);
-
-		assertEquals(caseListLocal, readedCaseList, "Case Single Remove");	
-
-	}
-	
-	
-	
-	@Test
-	void testSet() throws JAXBException{
-		
-		caseDao.setDefaultComponents();
-		
-		CaseDao localCaseDao = new CaseDao();
-		
-		
-		ArrayList<Case> newCaseList = new ArrayList<>();
-		Case c1 = new Case("Prova1",1,2,3);
-		newCaseList.add(c1);
-	
-		
-		assertEquals(localCaseDao.readComponents(), caseDao.readComponents());
-		
-		localCaseDao.setDefaultComponents();
-
-		assertEquals(localCaseDao.readComponents(), caseDao.readComponents(), "Case Set Default Components");
-
-	}
-	
-	@Test
-	void testEmpty() throws JAXBException{
-		
-		CaseDao myDao = new CaseDao();
-		myDao.setEmptyComponents();
-		
-		
-		assertEquals(myDao.readComponents(), caseDao.readComponents());
-		
+		assertEquals(localcaseList, caseDao.readComponents(), "Add a case list");
 		
 	}
 	
+	@Test
+	void testRemovecaseList() throws JAXBException {
+		ArrayList<Case> localcaseList = caseDao.readComponents();
+		
+		localcaseList.removeAll(caseList);
+		caseDao.deleteComponents(caseList);
+		
+		assertEquals(localcaseList, caseDao.readComponents(), "Remove a case list");
+		
+	}
 	
 	@Test
-	void testEmptyAndAdd() throws JAXBException{
-		
-		CaseDao myDao = new CaseDao();
-		
-		
-		Case c1 = new Case("Prova",1,2,3);
-		ArrayList<Case> toAddList = new ArrayList<>();
-		
-		toAddList.add(c1);
+	void testSetEmptyComponents() throws JAXBException {
+		ArrayList<Case> localcaseList = new ArrayList<Case>();
 		
 		caseDao.setEmptyComponents();
-		caseDao.addComponents(toAddList);
-		
-		assertEquals(myDao.readComponents(), caseDao.readComponents());
-		
-		
+		assertEquals(localcaseList, caseDao.readComponents(), "Set an empty case List");
 	}
 	
+	@Test
+	void testAddOnEmptyFile() throws JAXBException {
+		caseDao.setEmptyComponents();
+		caseDao.addComponents(caseList);
+		
+		assertEquals(caseDao.readComponents(), caseList, "Add elements on an empty file");
+	}
 	
 	@AfterEach
 	void clearAll() throws JAXBException {
-		caseDao.setEmptyComponents();
+		caseDao.setDefaultComponents();
 	}
-
-
-
 }
