@@ -33,7 +33,19 @@ public class PsuDaoTest {
 		localpsuList.addAll(psuList);
 		
 		assertEquals(localpsuList, psuDao.readComponents(), "Add a psu list");
+	}
+	
+	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Psu> localpsuList=psuDao.readComponents();
 		
+		localpsuList.addAll(psuList);
+		psuDao.addComponents(psuList);
+		psuDao.addComponents(psuList);
+		assertEquals(localpsuList, psuDao.readComponents(), "Can only add the same psuList once");
+		psuDao.addComponents(psuList);
+		localpsuList.addAll(psuList);
+		assertNotEquals(localpsuList, psuDao.readComponents(), "Can only add the same psuList once");
 	}
 	
 	@Test

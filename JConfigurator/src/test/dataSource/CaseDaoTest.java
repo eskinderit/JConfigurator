@@ -33,7 +33,19 @@ public class CaseDaoTest {
 		localcaseList.addAll(caseList);
 		
 		assertEquals(localcaseList, caseDao.readComponents(), "Add a case list");
+	}
+	
+	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Case> localcaseList=caseDao.readComponents();
 		
+		localcaseList.addAll(caseList);
+		caseDao.addComponents(caseList);
+		caseDao.addComponents(caseList);
+		assertEquals(localcaseList, caseDao.readComponents(), "Can only add the same caseList once");
+		caseDao.addComponents(caseList);
+		localcaseList.addAll(caseList);
+		assertNotEquals(localcaseList, caseDao.readComponents(), "Can only add the same caseList once");
 	}
 	
 	@Test

@@ -33,7 +33,19 @@ public class StorageDaoTest {
 		storageDao.addComponents(storageList);
 		
 		assertEquals(localStorageList, storageDao.readComponents(), "Add a storage list");
+	}
+	
+	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Storage> localstorageList=storageDao.readComponents();
 		
+		localstorageList.addAll(storageList);
+		storageDao.addComponents(storageList);
+		storageDao.addComponents(storageList);
+		assertEquals(localstorageList, storageDao.readComponents(), "Can only add the same storageList once");
+		storageDao.addComponents(storageList);
+		localstorageList.addAll(storageList);
+		assertNotEquals(localstorageList, storageDao.readComponents(), "Can only add the same storageList once");
 	}
 
 	@Test

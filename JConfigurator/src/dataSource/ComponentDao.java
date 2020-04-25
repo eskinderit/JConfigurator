@@ -90,7 +90,18 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 		  
 		  if (componentDao.getComponentList() != null) {
 			  ArrayList <T1> newComponentList = componentDao.getComponentList();
-			  newComponentList.addAll(componentListToAdd);
+			  
+			  // Scorre le liste per vedere se un elemento che vogliamo aggiungere è già presente
+			  
+			  for(T1 component:componentListToAdd) {
+				  int i=0;
+				  for(T1 element:componentDao.getComponentList()) {
+					  if(component.equals(element)) 
+						 i=1;
+				  }
+				  if(i==0) 
+					  newComponentList.add(component);		// Aggiunge SOLO se NON è stato incontrato nessun elemento uguale a component
+			  }
 			  componentDao.setComponentList(newComponentList);
 		  }
 		  else 

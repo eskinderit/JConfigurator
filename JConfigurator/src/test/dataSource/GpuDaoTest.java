@@ -33,7 +33,19 @@ public class GpuDaoTest {
 		localgpuList.addAll(gpuList);
 		
 		assertEquals(localgpuList, gpuDao.readComponents(), "Add a gpu list");
+	}
+	
+	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Gpu> localgpuList=gpuDao.readComponents();
 		
+		localgpuList.addAll(gpuList);
+		gpuDao.addComponents(gpuList);
+		gpuDao.addComponents(gpuList);
+		assertEquals(localgpuList, gpuDao.readComponents(), "Can only add the same gpuList once");
+		gpuDao.addComponents(gpuList);
+		localgpuList.addAll(gpuList);
+		assertNotEquals(localgpuList, gpuDao.readComponents(), "Can only add the same gpuList once");
 	}
 	
 	@Test

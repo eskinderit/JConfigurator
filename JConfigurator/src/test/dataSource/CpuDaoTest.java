@@ -37,6 +37,19 @@ public class CpuDaoTest {
 	}
 	
 	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Cpu> localCpuList=cpuDao.readComponents();
+		
+		localCpuList.addAll(cpuList);
+		cpuDao.addComponents(cpuList);
+		cpuDao.addComponents(cpuList);
+		assertEquals(localCpuList, cpuDao.readComponents(), "Can only add the same cpuList once");
+		cpuDao.addComponents(cpuList);
+		localCpuList.addAll(cpuList);
+		assertNotEquals(localCpuList, cpuDao.readComponents(), "Can only add the same cpuList once");
+	}
+	
+	@Test
 	void testRemoveCpuList() throws JAXBException {
 		ArrayList<Cpu> localCpuList = cpuDao.readComponents();
 		

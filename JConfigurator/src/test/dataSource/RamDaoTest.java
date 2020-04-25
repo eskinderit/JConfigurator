@@ -34,7 +34,19 @@ public class RamDaoTest {
 		ramDao.addComponents(ramList);
 		
 		assertEquals(localRamList, ramDao.readComponents(), "Add a Ram List");
+	}
 	
+	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Ram> localramList=ramDao.readComponents();
+		
+		localramList.addAll(ramList);
+		ramDao.addComponents(ramList);
+		ramDao.addComponents(ramList);
+		assertEquals(localramList, ramDao.readComponents(), "Can only add the same ramList once");
+		ramDao.addComponents(ramList);
+		localramList.addAll(ramList);
+		assertNotEquals(localramList, ramDao.readComponents(), "Can only add the same ramList once");
 	}
 	
 	@Test

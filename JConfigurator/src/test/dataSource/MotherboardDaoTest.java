@@ -33,7 +33,19 @@ public class MotherboardDaoTest {
 		localmotherboardList.addAll(motherboardList);
 		
 		assertEquals(localmotherboardList, motherboardDao.readComponents(), "Add a motherboard list");
+	}
+	
+	@Test
+	void testAddSameElements() throws JAXBException {
+		ArrayList<Motherboard> localmotherboardList=motherboardDao.readComponents();
 		
+		localmotherboardList.addAll(motherboardList);
+		motherboardDao.addComponents(motherboardList);
+		motherboardDao.addComponents(motherboardList);
+		assertEquals(localmotherboardList, motherboardDao.readComponents(), "Can only add the same motherboardList once");
+		motherboardDao.addComponents(motherboardList);
+		localmotherboardList.addAll(motherboardList);
+		assertNotEquals(localmotherboardList, motherboardDao.readComponents(), "Can only add the same motherboardList once");
 	}
 	
 	@Test
