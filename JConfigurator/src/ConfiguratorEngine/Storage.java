@@ -10,6 +10,13 @@ public class Storage extends Component{
 	public Storage() {
 		super();
 	}
+	
+	public Storage(String name, int price, int power, int capacity, boolean ssd) {
+		super(name, price, power);
+		this.capacity=capacity;
+		this.ssd=ssd;
+	}
+	
 	public int getCapacity() {
 		return capacity;
 	}
@@ -27,6 +34,30 @@ public class Storage extends Component{
 		return "Storage [name=" + name + ", price=" + price + ", power=" + power + ", capacity=" + capacity + ", ssd="
 				+ ssd + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + capacity;
+		result = prime * result + (ssd ? 1231 : 1237);
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Storage other = (Storage) obj;
+		if (capacity != other.capacity)
+			return false;
+		if (ssd != other.ssd)
+			return false;
+		return true;
+	}
+	
 	
 	
 }

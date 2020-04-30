@@ -22,10 +22,9 @@ public class ConfiguratorClient {
 		CpuDao cpuList = new CpuDao();
 		cpuList.setDefaultComponents();
 		
-		for(Cpu c:cpuList.readComponents())
-			System.out.println(c);
+		cpuList.readComponents().forEach(System.out::println);
 		
-		@SuppressWarnings("resource")
+
 		Scanner input=new Scanner(System.in);
 		int c;
 		String s;
@@ -66,7 +65,7 @@ public class ConfiguratorClient {
 		
 		//	Check
 		
-		ml=controller.checkMotherboard(motherboardList);
+		ml=controller.getCompatibleMotherboard(motherboardList);
 		
 		for(Motherboard m:ml)
 			System.out.println(m);
@@ -90,7 +89,7 @@ public class ConfiguratorClient {
 		
 		//	Check
 		
-		rl=controller.checkRam(ramList);
+		rl=controller.getCompatibleRam(ramList);
 		
 		for(Ram r:rl)
 			System.out.println(r);
@@ -114,7 +113,7 @@ public class ConfiguratorClient {
 		
 		//	Check
 		
-		cl=controller.checkCase(caseList);
+		cl=controller.getCompatibleCase(caseList);
 		
 		for(Case cs:cl)
 			System.out.println(cs);
@@ -157,7 +156,7 @@ public class ConfiguratorClient {
 		
 		//	Check	
 		
-		pl=controller.checkPsu(psuList);
+		pl=controller.getCompatiblePsu(psuList);
 		
 		for(Psu p:pl)
 			System.out.println(p);
@@ -174,6 +173,8 @@ public class ConfiguratorClient {
 		controller.getFullConfig().setMyPsu(psu);
 		
 		System.out.println(controller.getFullConfig());
+		
+		input.close();
 		
 	}
 

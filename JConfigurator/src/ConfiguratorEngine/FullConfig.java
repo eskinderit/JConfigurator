@@ -8,16 +8,25 @@ public class FullConfig {
 	private Case myCase1;
 	private Storage myStorage;
 	private Ram myRam;
-	private int totalPower;
+	private static int psuOverhead = 50;
+
 	
-	private static FullConfig istance=null;		// Singleton
+	public int getPsuOverhead() {
+		return psuOverhead;
+	}
+
+	public void setPsuOverhead(int psuOverhead) {
+		FullConfig.psuOverhead = psuOverhead;
+	}
+
+	private static FullConfig instance=null;		// Singleton
 	
 	private FullConfig() {}
 	
 	public static FullConfig getIstance() {
-		if(istance==null)
-			istance=new FullConfig();
-		return istance;
+		if(instance==null)
+			instance=new FullConfig();
+		return instance;
 	}
 	
 	
@@ -64,12 +73,29 @@ public class FullConfig {
 		this.myRam = myRam;
 	}
 	
-	public void setTotalPower(int power) {
-		this.totalPower=power;
+
+	public int getTotalEstimatedPower() {
+		int allPower=0;
+		allPower+=this.getMyCpu().getPower();
+		allPower+=this.getMyGpu().getPower();
+		allPower+=this.getMyMotherboard().getPower();
+		allPower+=this.getMyRam().getPower();
+		allPower+=this.getMyCase1().getPower();
+		allPower+=this.getMyStorage().getPower();
+
+		return allPower;
 	}
 	
-	public int getTotalPower() {
-		return this.totalPower;
+	public int getTotalPrice() {
+		int allPrice=0;
+		allPrice+=this.getMyCpu().getPrice();
+		allPrice+=this.getMyGpu().getPrice();
+		allPrice+=this.getMyMotherboard().getPrice();
+		allPrice+=this.getMyRam().getPrice();
+		allPrice+=this.getMyCase1().getPrice();
+		allPrice+=this.getMyStorage().getPrice();
+		allPrice+=this.getMyPsu().getPrice();
+		return allPrice;
 	}
 	
 	@Override
@@ -77,6 +103,40 @@ public class FullConfig {
 		return "FullConfig \n[" +myPsu + ",\n" + myGpu + ",\n" + myMotherboard + "\n"
 				+ myCpu + "\n" + myCase1 + "\n" + myStorage + ",\n" + myRam + "]";
 	}
+	
+
+
+	
+	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu ) {
+		if(psu.getPower()-f1.getTotalEstimatedPower()>50)
+			return true;
+		else
+			return false;
+	}
+	
+	static public boolean checkMotherboardCase(Motherboard m1, Case c1) {
+		if( c1.getSize()>=m1.getSize())
+			return true;
+		else
+			return false;
+	}
+	
+	static public boolean checkMotherboardRam(Motherboard m1, Ram r1) {
+		if(r1.getRamType().contentEquals(m1.getRamType()))
+				return true;
+		else
+			return false;
+	}
+	
+	static public boolean checkMotherboardCpu(Cpu c1, Motherboard m1) {
+		if(m1.getSocket().contentEquals(c1.getSocket()))
+				return true;
+		else
+			return false;
+	}
+	
+	
+	
 	
 	
 }

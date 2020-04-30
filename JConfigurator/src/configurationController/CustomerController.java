@@ -4,19 +4,24 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Psu;
-import ConfiguratorEngine.Ram;
-import dataSource.CaseDao;
-import dataSource.MotherboardDao;
-import dataSource.PsuDao;
-import dataSource.RamDao;
+import ConfiguratorEngine.*;
+import dataSource.*;
+
 
 public class CustomerController {
 	private FullConfig fullConfig;
+	private ComputerShop computerShop;
+
 	
+//TODO change constructors to possibly include computershop
+	
+	public ComputerShop getComputerShop() {
+		return computerShop;
+	}
+
+	public void setComputerShop(ComputerShop computerShop) {
+		this.computerShop = computerShop;
+	}
 
 	public CustomerController(FullConfig fullConfig) {
 		super();
@@ -25,6 +30,7 @@ public class CustomerController {
 	
 	public CustomerController() {
 		this.fullConfig=FullConfig.getIstance();
+		this.computerShop = new ComputerShop();
 	}
 
 	public FullConfig getFullConfig() {
@@ -35,52 +41,56 @@ public class CustomerController {
 		this.fullConfig = fullConfig;
 	}
 	
-	public ArrayList<Motherboard> checkMotherboard(MotherboardDao motherboardDao) throws JAXBException{
+	public ArrayList<Motherboard> getCompatibleMotherboard(MotherboardDao motherboardDao) throws JAXBException{
 		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
 		for(Motherboard m:motherboardDao.readComponents()) {
-			if(m.getSocket().contentEquals(fullConfig.getMyCpu().getSocket()))
+			if(FullConfig.checkMotherboardCpu(this.fullConfig.getMyCpu(),m))
 				compatibleMotherboards.add(m);
 		}
 		return compatibleMotherboards;
 	}
 	
-	public ArrayList<Ram> checkRam(RamDao ramDao) throws JAXBException{
+	public ArrayList<Ram> getCompatibleRam(RamDao ramDao) throws JAXBException{
 		ArrayList<Ram> compatibleRams = new ArrayList<Ram>();
 		for(Ram r:ramDao.readComponents()) {
-			if(r.getRamType().contentEquals(fullConfig.getMyMotherboard().getRamType()))
+			if(FullConfig.checkMotherboardRam(this.fullConfig.getMyMotherboard(),r))
 				compatibleRams.add(r);
 		}
 		return compatibleRams;
 	}
 	
-	public ArrayList<Case> checkCase(CaseDao caseDao) throws JAXBException{
+	public ArrayList<Case> getCompatibleCase(CaseDao caseDao) throws JAXBException{
 		ArrayList<Case> compatibleCases = new ArrayList<Case>();
 		for(Case c:caseDao.readComponents()) {
-			if(c.getSize()>=fullConfig.getMyMotherboard().getSize())
+			if(FullConfig.checkMotherboardCase(this.fullConfig.getMyMotherboard(),c))
 				compatibleCases.add(c);
 		}
 		return compatibleCases;
 	}
 	
-	public int totalPower() {
-		int allPower=0;
-		allPower+=fullConfig.getMyCpu().getPower();
-		allPower+=fullConfig.getMyGpu().getPower();
-		allPower+=fullConfig.getMyMotherboard().getPower();
-		allPower+=fullConfig.getMyRam().getPower();
-		allPower+=fullConfig.getMyCase1().getPower();
-		allPower+=fullConfig.getMyStorage().getPower();
-		fullConfig.setTotalPower(allPower);
-		return allPower;
+	public int getTotalPrice() {
+		int componentPrice = this.fullConfig.getTotalPrice();
+		
+		int totalPrice = componentPrice + componentPrice*((this.computerShop.getPercentageCommissionCost())/100)
+				+ this.computerShop.getFixedCommissionCost();
+		
+		return totalPrice;
+		
 	}
 	
-	public ArrayList<Psu> checkPsu(PsuDao psuDao) throws JAXBException{
+	public int getTotalPowerOverstimation() {
+		return this.fullConfig.getTotalEstimatedPower()+this.fullConfig.getPsuOverhead();
+	}
+	
+
+	public ArrayList<Psu> getCompatiblePsu(PsuDao psuDao) throws JAXBException{
 		ArrayList<Psu> compatiblePsus = new ArrayList<Psu>();
 		for(Psu p:psuDao.readComponents()) {
-			if(p.getPower()-fullConfig.getTotalPower()>50)
+			if(FullConfig.checkTotalWattagePsu(this.fullConfig,p))
 				compatiblePsus.add(p);
 		}
 		return compatiblePsus;
 	}
+	
 
 }

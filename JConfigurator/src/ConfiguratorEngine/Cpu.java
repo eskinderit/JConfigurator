@@ -37,6 +37,34 @@ public class Cpu extends Component{
 		return "Cpu [name=" + name + ", price=" + price + ", power=" + power + ", socket=" + socket + ", oc=" + oc
 				+ "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (oc ? 1231 : 1237);
+		result = prime * result + ((socket == null) ? 0 : socket.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cpu other = (Cpu) obj;
+		if (oc != other.oc)
+			return false;
+		if (socket == null) {
+			if (other.socket != null)
+				return false;
+		} else if (!socket.equals(other.socket))
+			return false;
+		return true;
+	}
 	
 	
 	
