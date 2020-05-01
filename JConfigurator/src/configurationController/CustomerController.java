@@ -69,12 +69,7 @@ public class CustomerController {
 	}
 	
 	public int getTotalPrice() {
-		int componentPrice = this.fullConfig.getTotalPrice();
-		
-		int totalPrice = componentPrice + componentPrice*((this.computerShop.getPercentageCommissionCost())/100)
-				+ this.computerShop.getFixedCommissionCost();
-		
-		return totalPrice;
+		return this.fullConfig.getTotalPrice();
 		
 	}
 	

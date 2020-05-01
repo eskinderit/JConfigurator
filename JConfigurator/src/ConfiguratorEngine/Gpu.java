@@ -5,10 +5,22 @@ import javax.xml.bind.annotation.*;
 public class Gpu extends Component {
 
 private int memory;
+private int power;
 
 public Gpu(String name, int price, int power, int memory) {
-super(name, price, power);
+super(name, price);
 this.memory = memory;
+this.power=power;
+}
+
+
+public int getPower() {
+	return power;
+}
+
+
+public void setPower(int power) {
+	this.power = power;
 }
 
 

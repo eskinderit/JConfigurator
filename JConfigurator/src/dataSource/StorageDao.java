@@ -3,8 +3,6 @@ import java.util.ArrayList;
 
 import javax.xml.bind.*;
 import javax.xml.bind.annotation.*;
-
-import ConfiguratorEngine.Cpu;
 import ConfiguratorEngine.Storage;
 
 @XmlRootElement

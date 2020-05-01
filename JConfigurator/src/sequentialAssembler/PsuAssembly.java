@@ -1,6 +1,9 @@
 package sequentialAssembler;
 
 import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.Psu;
+import dataSource.PsuDao;
+
 
 public class PsuAssembly extends ComponentAssembly{
 	ComponentAssembly getPrevoiusPassage() {
@@ -13,8 +16,9 @@ public class PsuAssembly extends ComponentAssembly{
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) {
-		// TODO Auto-generated method stub
-		
+		PsuDao psuDao = new PsuDao(); 
+		Psu componentToSet = psuDao.getComponent(index);
+		f1.setMyPsu(componentToSet);
 	}
 
 }

@@ -1,6 +1,8 @@
 package sequentialAssembler;
 
 import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.Ram;
+import dataSource.RamDao;
 
 public class RamAssembly extends ComponentAssembly{
 	
@@ -14,8 +16,9 @@ public class RamAssembly extends ComponentAssembly{
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) {
-		// TODO Auto-generated method stub
-		
+		RamDao ramDao = new RamDao(); 
+		Ram componentToSet = ramDao.getComponent(index);
+		f1.setMyRam(componentToSet);
 	}
 
 }

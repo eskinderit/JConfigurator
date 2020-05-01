@@ -6,19 +6,29 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Cpu extends Component{
 	private String socket;
 	private boolean oc;
+	private int power;
 	
-	
+	public Cpu(String name, int price, int power, String socket, boolean oc) {
+		super(name, price);
+		this.socket = socket;
+		this.oc = oc;
+		this.power = power;
+	}
 	
 	public Cpu() {
 		super();
 	}
 
-	public Cpu(String name, int price, int power, String socket, boolean oc) {
-		super(name, price, power);
-		this.socket = socket;
-		this.oc = oc;
+	public int getPower() {
+		return power;
 	}
-	
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
+
+
 	public String getSocket() {
 		return socket;
 	}

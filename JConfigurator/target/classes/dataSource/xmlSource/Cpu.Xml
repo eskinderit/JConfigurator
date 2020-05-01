@@ -3,57 +3,57 @@
     <Cpu>
         <name>Intel Pentium G4520 (lga 1151)</name>
         <price>95</price>
-        <power>10</power>
         <oc>true</oc>
+        <power>10</power>
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
         <name>Intel Core i5 7400 (lga 1151)</name>
         <price>178</price>
-        <power>10</power>
         <oc>false</oc>
+        <power>10</power>
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
         <name>AMD Ryzen 5 1400 (AM4)</name>
         <price>176</price>
-        <power>10</power>
         <oc>true</oc>
+        <power>10</power>
         <socket>AM4</socket>
     </Cpu>
     <Cpu>
         <name>Intel i5 7600K (lga 1151)</name>
         <price>222</price>
-        <power>10</power>
         <oc>true</oc>
+        <power>10</power>
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
         <name>Intel i5 7600 (lga 1151)</name>
         <price>211</price>
-        <power>10</power>
         <oc>false</oc>
+        <power>10</power>
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
         <name>Intel i7 7700 (lga 1151)</name>
         <price>313</price>
-        <power>10</power>
         <oc>false</oc>
+        <power>10</power>
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
         <name>AMD Ryzen 7 1800x (AM4)</name>
         <price>425</price>
-        <power>10</power>
         <oc>true</oc>
+        <power>10</power>
         <socket>AM4</socket>
     </Cpu>
     <Cpu>
         <name>Intel i7 6950x (lga 2011)</name>
         <price>1571</price>
-        <power>10</power>
         <oc>true</oc>
+        <power>10</power>
         <socket>LGA2011</socket>
     </Cpu>
 </cpuDao>

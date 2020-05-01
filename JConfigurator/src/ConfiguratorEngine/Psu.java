@@ -4,13 +4,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Psu extends Component {
+	
+	private int power;
+	
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
 
 	public Psu() {
 		super();
 	}
 
 	public Psu(String name, int price, int power) {
-		super(name, price, power);
+		super(name, price);
+		this.power=power;
 	}
 
 	@Override

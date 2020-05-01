@@ -1,117 +1,67 @@
 package ConfiguratorEngine;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class ComputerShop {
-	private String name;
+@XmlRootElement
+public class ComputerShop extends Component{
+
 	private String address;
-	private int FixedCommissionCost;
-	private int percentageCommissionCost;
-
-
+	private int priceOverTotalInPct;
+	
+	
 	public ComputerShop() {
-		this.name="";
-	    this.address="";
-	    this.FixedCommissionCost=0;
-	    this.percentageCommissionCost=0;
-	}
-
-
-	public ComputerShop(String name, String address, int fixedCommissionCost, int percentageCommissionCost) {
 		super();
-		this.name = name;
+	}
+	public ComputerShop(String name, int price, String address, int priceOverTotalInPct) {
+		super(name, price);
 		this.address = address;
-		FixedCommissionCost = fixedCommissionCost;
-		this.percentageCommissionCost = percentageCommissionCost;
+		this.priceOverTotalInPct = priceOverTotalInPct;
 	}
-
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
 	public String getAddress() {
 		return address;
 	}
-
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-	public int getFixedCommissionCost() {
-		return FixedCommissionCost;
+	public int getPriceOverTotalInPct() {
+		return priceOverTotalInPct;
 	}
-
-
-	public void setFixedCommissionCost(int fixedCommissionCost) {
-		FixedCommissionCost = fixedCommissionCost;
+	public void setPriceOverTotalInPct(int priceOverTotalInPct) {
+		this.priceOverTotalInPct = priceOverTotalInPct;
 	}
-
-
-	public int getPercentageCommissionCost() {
-		return percentageCommissionCost;
-	}
-
-
-	public void setPercentageCommissionCost(int percentageCommissionCost) {
-		this.percentageCommissionCost = percentageCommissionCost;
-	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + FixedCommissionCost;
+		int result = super.hashCode();
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + percentageCommissionCost;
+		result = prime * result + priceOverTotalInPct;
 		return result;
 	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		ComputerShop other = (ComputerShop) obj;
-		if (FixedCommissionCost != other.FixedCommissionCost)
-			return false;
 		if (address == null) {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (percentageCommissionCost != other.percentageCommissionCost)
+		if (priceOverTotalInPct != other.priceOverTotalInPct)
 			return false;
 		return true;
 	}
-
-
 	@Override
 	public String toString() {
-		return "ComputerShop [name=" + name + ", address=" + address + ", FixedCommissionCost=" + FixedCommissionCost
-				+ ", percentageCommissionCost=" + percentageCommissionCost + "]";
+		return "ComputerShop [name=" + name + ", price=" + price + ", address=" + address + ", priceOverTotalInPct="
+				+ priceOverTotalInPct + "]";
 	}
-	
-	
 
 	
 	
+
 
 }

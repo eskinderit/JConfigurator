@@ -85,10 +85,10 @@ class FullConfigTest {
 		Psu psu2 = new Psu("China Corporate", 20, 150);
 		Psu psu3 = new Psu("Antec", 18, 184);
 		
-		
-		assertTrue(FullConfig.checkTotalWattagePsu(fullConfig,psu1));
-		assertFalse(FullConfig.checkTotalWattagePsu(fullConfig,psu2));
-		assertFalse(FullConfig.checkTotalWattagePsu(fullConfig,psu3));
+		System.out.println(fullConfig.getTotalEstimatedPower());
+		assertTrue(FullConfig.checkTotalWattagePsu(fullConfig,psu1), "Correctly sized Psu Check");
+		assertFalse(FullConfig.checkTotalWattagePsu(fullConfig,psu2),"undersized Psu Check");
+		assertFalse(FullConfig.checkTotalWattagePsu(fullConfig,psu3),"undersized Psu Check");
 		
 	}
 	

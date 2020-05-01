@@ -5,14 +5,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Case extends Component {
 	private int size;
+	private int power;
 	
 	public Case(String name, int price, int power,int size) {
-		super(name,price,power);
+		super(name,price);
 		this.size = size;
+		this.power=power;
 	}
 	
 	public Case() {
 		super();
+	}
+	
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
 	}
 
 	public int getSize() {
@@ -21,12 +31,6 @@ public class Case extends Component {
 
 	public void setSize(int size) {
 		this.size = size;
-	}
-
-	@Override
-	public String toString() {
-		return "Case [name=" + getName() + ", price=" + getPrice() + ", power=" + getPower() +  
-				  ", size=" + getSize()+"]";
 	}
 
 	@Override
@@ -51,6 +55,10 @@ public class Case extends Component {
 		return true;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Case [name=" + getName() + ", price=" + getPrice() + ", power=" + getPower() +  
+				  ", size=" + getSize()+"]";
+	}
 	
 }

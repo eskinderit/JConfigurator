@@ -9,26 +9,22 @@ public abstract class Component {
 	protected String name;
 	@XmlElement(name="price")
 	protected int price;
-	@XmlElement(name="power")
-	protected int power;
+
 
 
 public Component() {
 	super();
 }
 
-public Component(String name, int price, int power) {
+public Component(String name, int price) {
 	super();
 	this.name = name;
 	this.price = price;
-	this.power = power;
+
 }
 
 
 
-public int getPower() {
-	return power;
-}
 
 public String getName() {
 	return name;
@@ -43,7 +39,6 @@ public int hashCode() {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((name == null) ? 0 : name.hashCode());
-	result = prime * result + power;
 	result = prime * result + price;
 	return result;
 }
@@ -62,8 +57,7 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!name.equals(other.name))
 		return false;
-	if (power != other.power)
-		return false;
+
 	if (price != other.price)
 		return false;
 	return true;

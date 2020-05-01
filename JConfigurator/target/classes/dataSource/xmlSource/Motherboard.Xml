@@ -3,9 +3,9 @@
     <Motherboard>
         <name>MSI Basem (lga 1151 DDR3)</name>
         <price>66</price>
-        <power>10</power>
         <chipset>H110</chipset>
         <oc>false</oc>
+        <power>10</power>
         <ramType>DDR3</ramType>
         <size>3</size>
         <socket>LGA1151</socket>
@@ -13,9 +13,9 @@
     <Motherboard>
         <name>Asus prime h270 plus (lga1151 DDR4)</name>
         <price>108</price>
-        <power>10</power>
         <chipset>H270</chipset>
         <oc>false</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>LGA1151</socket>
@@ -23,9 +23,9 @@
     <Motherboard>
         <name>MSI b350m (AM4 DDR4)</name>
         <price>89</price>
-        <power>10</power>
         <chipset>b350m</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>AM4</socket>
@@ -33,9 +33,9 @@
     <Motherboard>
         <name>Asus TUF z270 (lga 1151 DDR4)</name>
         <price>161</price>
-        <power>10</power>
         <chipset>Z270</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>LGA1151</socket>
@@ -43,9 +43,9 @@
     <Motherboard>
         <name>Gigabyte ga-z270 (lga 1151 DDR4)</name>
         <price>132</price>
-        <power>10</power>
         <chipset>Z270</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>LGA1151</socket>
@@ -53,9 +53,9 @@
     <Motherboard>
         <name>Gigabyte ga-ab359m-g3 (AM4 DDR4)</name>
         <price>96</price>
-        <power>10</power>
         <chipset>ab359m</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>AM4</socket>
@@ -63,9 +63,9 @@
     <Motherboard>
         <name>Asus Crosshair VI Hero (AM4 DDR4)</name>
         <price>254</price>
-        <power>10</power>
         <chipset>X370</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>AM4</socket>
@@ -73,9 +73,9 @@
     <Motherboard>
         <name>Asus TUF X299 (AM4 DDR4)</name>
         <price>270</price>
-        <power>10</power>
         <chipset>X299</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>LGA2066</socket>
@@ -83,9 +83,9 @@
     <Motherboard>
         <name>Asus Rampage V Extreme (lga 2011 DDR4)</name>
         <price>400</price>
-        <power>10</power>
         <chipset>X99</chipset>
         <oc>true</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>3</size>
         <socket>LGA2011</socket>
@@ -93,9 +93,9 @@
     <Motherboard>
         <name>ASUS H110I-PLUS (LGA1151 DDR4)</name>
         <price>73</price>
-        <power>10</power>
         <chipset>H110</chipset>
         <oc>false</oc>
+        <power>10</power>
         <ramType>DDR4</ramType>
         <size>1</size>
         <socket>LGA1151</socket>

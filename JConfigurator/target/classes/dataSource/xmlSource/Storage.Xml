@@ -3,36 +3,36 @@
     <Storage>
         <name>WD Blue 1TB (HDD)</name>
         <price>49</price>
-        <power>10</power>
         <capacity>1000</capacity>
+        <power>10</power>
         <ssd>false</ssd>
     </Storage>
     <Storage>
         <name>Samsung 850 evo 500GB (SSD)</name>
         <price>153</price>
-        <power>10</power>
         <capacity>500</capacity>
+        <power>10</power>
         <ssd>true</ssd>
     </Storage>
     <Storage>
         <name>Samsung 850 evo 250GB (SSD)</name>
         <price>153</price>
-        <power>10</power>
         <capacity>250</capacity>
+        <power>10</power>
         <ssd>true</ssd>
     </Storage>
     <Storage>
         <name>WD Black 2TB (HDD)</name>
         <price>130</price>
-        <power>10</power>
         <capacity>2000</capacity>
+        <power>10</power>
         <ssd>false</ssd>
     </Storage>
     <Storage>
         <name>WD Black 1TB (HDD)</name>
         <price>79</price>
-        <power>10</power>
         <capacity>1000</capacity>
+        <power>10</power>
         <ssd>false</ssd>
     </Storage>
 </storageDao>

@@ -1,6 +1,9 @@
 package sequentialAssembler;
 
 import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.Motherboard;
+import dataSource.MotherboardDao;
+
 
 public class MotherboardAssembly extends ComponentAssembly{
 
@@ -15,7 +18,9 @@ public class MotherboardAssembly extends ComponentAssembly{
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) {
-		// TODO Auto-generated method stub
+		MotherboardDao motherboardDao = new MotherboardDao(); 
+		Motherboard componentToSet = motherboardDao.getComponent(index);
+		f1.setMyMotherboard(componentToSet);
 		
 	}
 

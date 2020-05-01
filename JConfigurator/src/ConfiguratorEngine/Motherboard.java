@@ -10,15 +10,25 @@ public class Motherboard extends Component {
 	private String ramType;
 	private boolean oc;
 	private int size;
+	private int power;
 	
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
 	public Motherboard(String name, int price, int power, String socket, String chipset, String ramType, boolean oc, int size) {
-		super(name, price, power);
+		super(name, price);
 		this.socket=socket;
 		this.chipset=chipset;
 		this.socket=socket;
 		this.ramType=ramType;
 		this.oc=oc;
 		this.size=size;
+		this.power=power;
 	}
 
 	@SuppressWarnings("unused")

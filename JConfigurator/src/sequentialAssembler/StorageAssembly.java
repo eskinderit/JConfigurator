@@ -1,6 +1,8 @@
 package sequentialAssembler;
 
 import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.Storage;
+import dataSource.StorageDao;
 
 public class StorageAssembly extends ComponentAssembly{
 	ComponentAssembly getPrevoiusPassage() {
@@ -13,8 +15,9 @@ public class StorageAssembly extends ComponentAssembly{
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) {
-		// TODO Auto-generated method stub
-		
+		StorageDao storageDao = new StorageDao(); 
+		Storage componentToSet = storageDao.getComponent(index);
+		f1.setMyStorage(componentToSet);
 	}
 
 }

@@ -1,6 +1,9 @@
 package sequentialAssembler;
 
+import ConfiguratorEngine.Case;
 import ConfiguratorEngine.FullConfig;
+import dataSource.CaseDao;
+
 
 public class CaseAssembly extends ComponentAssembly{
 
@@ -14,7 +17,9 @@ public class CaseAssembly extends ComponentAssembly{
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) {
-		// TODO Auto-generated method stub
+		CaseDao caseDao = new CaseDao(); 
+		Case componentToSet = caseDao.getComponent(index);
+		f1.setMyCase1(componentToSet);
 		
 	}
 

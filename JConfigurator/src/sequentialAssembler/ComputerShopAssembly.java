@@ -14,8 +14,7 @@ public class ComputerShopAssembly extends ComponentAssembly{
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) {
-		// TODO Auto-generated method stub
-		
+		//TODO implement the ComputerShopDao
 	}
 
 

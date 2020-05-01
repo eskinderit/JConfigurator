@@ -4,18 +4,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Storage extends Component{
+	
 	private int capacity;
 	private boolean ssd;
+	private int power;
 	
+
 	public Storage() {
 		super();
 	}
 	
 	public Storage(String name, int price, int power, int capacity, boolean ssd) {
-		super(name, price, power);
+		super(name, price);
 		this.capacity=capacity;
 		this.ssd=ssd;
+		this.power=power;
 	}
+	
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
 	
 	public int getCapacity() {
 		return capacity;

@@ -6,17 +6,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Ram extends Component {
 	private String ramType;
 	private int dimension;
+	private int power;	
 	
 	
-	
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
 	public Ram() {
 		super();
 	}
 	
 	public Ram(String name, int price, int power, String ramType, int dimension) {
-		super(name, price, power);
+		super(name, price);
 		this.ramType=ramType;
 		this.dimension=dimension;
+		this.power=power;
 	}
 	
 	public String getRamType() {
