@@ -1,24 +1,33 @@
 package sequentialAssembler;
 
+import javax.xml.bind.JAXBException;
+
 import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Ram;
+import dataSource.ComponentDao;
 import dataSource.RamDao;
 
 public class RamAssembly extends ComponentAssembly{
-	
-	ComponentAssembly getPrevoiusPassage() {
+
+	@Override
+	public	ComponentAssembly getPreviousPassage() {
 		return new MotherboardAssembly();
 	}
-	
-	ComponentAssembly getNextPassage() {
+
+	@Override
+	public	ComponentAssembly getNextPassage() {
 		return new CaseAssembly();
 	}
 
 	@Override
-	protected void passageBehavior(FullConfig f1, int index) {
+	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 		RamDao ramDao = new RamDao(); 
 		Ram componentToSet = ramDao.getComponent(index);
 		f1.setMyRam(componentToSet);
 	}
 
+	@Override
+	public ComponentDao<?,?> getComponentDao() {
+		return new RamDao();
+	}
 }

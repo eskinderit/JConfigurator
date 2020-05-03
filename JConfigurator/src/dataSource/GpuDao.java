@@ -62,8 +62,4 @@ public class GpuDao extends ComponentDao<Gpu, GpuDao>{
 		return this.gpuList;
 	}
 	
-	public Gpu getComponent (int i) {
-		return gpuList.get(i);
-	}
-	
 }

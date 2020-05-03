@@ -1,9 +1,11 @@
 package ConfiguratorEngine;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
+@XmlType(propOrder={"name", "price", "power","chipset","oc","ramType","size","socket"})
 public class Motherboard extends Component {
 	private String socket;
 	private String chipset;

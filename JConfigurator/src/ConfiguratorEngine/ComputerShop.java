@@ -1,7 +1,9 @@
 package ConfiguratorEngine;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder={"name","price","address","priceOverTotalInPct"})
 public class ComputerShop extends Component{
 
 	private String address;

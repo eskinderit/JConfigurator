@@ -8,6 +8,7 @@ public class FullConfig {
 	private Case myCase1;
 	private Storage myStorage;
 	private Ram myRam;
+	private ComputerShop myComputerShop;
 	private static int psuOverhead = 50;
 
 	
@@ -98,15 +99,25 @@ public class FullConfig {
 		return allPrice;
 	}
 	
+	public ComputerShop getMyComputerShop() {
+		return myComputerShop;
+	}
+
+	public void setMyComputerShop(ComputerShop myComputerShop) {
+		this.myComputerShop = myComputerShop;
+	}
+
+
+
+
+	
 	@Override
 	public String toString() {
-		return "FullConfig \n[" +myPsu + ",\n" + myGpu + ",\n" + myMotherboard + "\n"
-				+ myCpu + "\n" + myCase1 + "\n" + myStorage + ",\n" + myRam + "]";
+		return "FullConfig : \n myCpu=" + myCpu + "\n myGpu=" + myGpu + "\n myMotherboard=" + myMotherboard + "\n myRam="
+				+ myRam + "\n myCase1=" + myCase1 + "\n myStorage=" + myStorage + "\n myPsu=" + myPsu + "\n myComputerShop="
+				+ myComputerShop;
 	}
-	
 
-
-	
 	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu ) {
 		if(psu.getPower()-f1.getTotalEstimatedPower()>50)
 			return true;

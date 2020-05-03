@@ -1,8 +1,10 @@
 package ConfiguratorEngine;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder={"name","price","power","size"})
 public class Case extends Component {
 	private int size;
 	private int power;

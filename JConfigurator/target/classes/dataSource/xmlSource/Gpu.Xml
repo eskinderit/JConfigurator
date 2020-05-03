@@ -1,57 +1,135 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <gpuDao>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>ASUS GTX 1050 2GB</name>
+        <price>130</price>
+        <power>85</power>
+        <memory>2</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Gigabyte GTX 1060 6GB</name>
+        <price>290</price>
+        <power>135</power>
+        <memory>6</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Gibabyte GTX 1070 8GB</name>
+        <price>530</price>
+        <power>190</power>
+        <memory>8</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Gibabyte GTX 1080 8GB</name>
+        <price>655</price>
+        <power>120</power>
+        <memory>8</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Palit Titan Z 12GB</name>
+        <price>1170</price>
+        <power>490</power>
+        <memory>12</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>MSI GTX950 2GB</name>
+        <price>139</price>
+        <power>130</power>
+        <memory>2</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>KFA2 GTX1080 8GB</name>
+        <price>730</price>
+        <power>180</power>
+        <memory>8</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Gibabyte Aorus GTX 1080ti 11GB</name>
+        <price>896</price>
+        <power>230</power>
+        <memory>11</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Gigabyte GTX 980ti</name>
+        <price>373</price>
+        <power>258</power>
+        <memory>6</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Prova Inserimento 1</name>
+        <price>3</price>
+        <power>4</power>
+        <memory>5</memory>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="gpu">
+        <name>Prova Inserimento 2</name>
+        <price>0</price>
+        <power>1</power>
+        <memory>2</memory>
+    </componentList>
     <Gpu>
         <name>ASUS GTX 1050 2GB</name>
         <price>130</price>
-        <memory>2</memory>
         <power>85</power>
+        <memory>2</memory>
     </Gpu>
     <Gpu>
         <name>Gigabyte GTX 1060 6GB</name>
         <price>290</price>
-        <memory>6</memory>
         <power>135</power>
+        <memory>6</memory>
     </Gpu>
     <Gpu>
         <name>Gibabyte GTX 1070 8GB</name>
         <price>530</price>
-        <memory>8</memory>
         <power>190</power>
+        <memory>8</memory>
     </Gpu>
     <Gpu>
         <name>Gibabyte GTX 1080 8GB</name>
         <price>655</price>
-        <memory>8</memory>
         <power>120</power>
+        <memory>8</memory>
     </Gpu>
     <Gpu>
         <name>Palit Titan Z 12GB</name>
         <price>1170</price>
-        <memory>12</memory>
         <power>490</power>
+        <memory>12</memory>
     </Gpu>
     <Gpu>
         <name>MSI GTX950 2GB</name>
         <price>139</price>
-        <memory>2</memory>
         <power>130</power>
+        <memory>2</memory>
     </Gpu>
     <Gpu>
         <name>KFA2 GTX1080 8GB</name>
         <price>730</price>
-        <memory>8</memory>
         <power>180</power>
+        <memory>8</memory>
     </Gpu>
     <Gpu>
         <name>Gibabyte Aorus GTX 1080ti 11GB</name>
         <price>896</price>
-        <memory>11</memory>
         <power>230</power>
+        <memory>11</memory>
     </Gpu>
     <Gpu>
         <name>Gigabyte GTX 980ti</name>
         <price>373</price>
-        <memory>6</memory>
         <power>258</power>
+        <memory>6</memory>
+    </Gpu>
+    <Gpu>
+        <name>Prova Inserimento 1</name>
+        <price>3</price>
+        <power>4</power>
+        <memory>5</memory>
+    </Gpu>
+    <Gpu>
+        <name>Prova Inserimento 2</name>
+        <price>0</price>
+        <power>1</power>
+        <memory>2</memory>
     </Gpu>
 </gpuDao>

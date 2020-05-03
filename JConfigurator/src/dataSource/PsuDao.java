@@ -62,8 +62,5 @@ public class PsuDao extends ComponentDao<Psu, PsuDao>{
 		this.psuList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyPsu.Xml","src/dataSource/xmlSource/Psu.Xml", PsuDao.class);
 		return this.psuList;
 	}
-	public Psu getComponent (int i) {
-		return psuList.get(i);
-	}
-
+	
 }

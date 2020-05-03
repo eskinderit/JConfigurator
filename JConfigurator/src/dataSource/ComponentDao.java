@@ -126,4 +126,9 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 		
 		return componentDao.getComponentList();
 	}
+	 
+	public T1 getComponent (int i) throws JAXBException {
+		return readComponents().get(i);
+	};
+	
 }

@@ -1,8 +1,10 @@
 package ConfiguratorEngine;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder={"name", "price", "power","dimension","ramType"})
 public class Ram extends Component {
 	private String ramType;
 	private int dimension;

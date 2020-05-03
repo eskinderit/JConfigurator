@@ -58,9 +58,4 @@ public class StorageDao extends ComponentDao<Storage, StorageDao>{
 		return this.storageList;
 	}
 	
-	public Storage getComponent (int i) {
-		return storageList.get(i);
-	}
-
-
 }

@@ -63,8 +63,4 @@ public class RamDao extends ComponentDao<Ram, RamDao>{
 		return this.ramList;
 	}
 	
-	public Ram getComponent (int i) {
-		return ramList.get(i);
-	}
-	
 }

@@ -2,15 +2,17 @@ package ConfiguratorEngine;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement
+@XmlType(propOrder={"name", "price","power","memory"})
 public class Gpu extends Component {
 
-private int memory;
 private int power;
+private int memory;
+
 
 public Gpu(String name, int price, int power, int memory) {
 super(name, price);
-this.memory = memory;
 this.power=power;
+this.memory = memory;
 }
 
 

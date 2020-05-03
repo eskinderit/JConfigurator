@@ -1,21 +1,34 @@
 package sequentialAssembler;
 
+
+import javax.xml.bind.JAXBException;
+
+import ConfiguratorEngine.ComputerShop;
 import ConfiguratorEngine.FullConfig;
+import dataSource.ComponentDao;
+import dataSource.ComputerShopDao;
+
 
 public class ComputerShopAssembly extends ComponentAssembly{
 	
-	ComponentAssembly getPrevoiusPassage() {
-		return new CpuAssembly();
+	@Override
+	public ComponentAssembly getPreviousPassage() {
+		return new PsuAssembly();
 	}
-	
-	ComponentAssembly getNextPassage() {
+	@Override
+	public ComponentAssembly getNextPassage() {
 		return null;
 	}
 
 	@Override
-	protected void passageBehavior(FullConfig f1, int index) {
-		//TODO implement the ComputerShopDao
+	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
+		ComputerShopDao computerShopDao = new ComputerShopDao(); 
+		ComputerShop componentToSet = computerShopDao.getComponent(index);
+		f1.setMyComputerShop(componentToSet);
 	}
 
-
+	@Override
+	public ComponentDao<?,?> getComponentDao() {
+		return new ComputerShopDao();
+	}
 }

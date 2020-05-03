@@ -61,8 +61,5 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 		return this.caseList;
 	}
 	
-	public Case getComponent (int i) {
-		return caseList.get(i);
-	}
 
 }

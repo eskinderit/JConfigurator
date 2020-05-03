@@ -1,8 +1,10 @@
 package ConfiguratorEngine;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder={"name","price","power"})
 public class Psu extends Component {
 	
 	private int power;

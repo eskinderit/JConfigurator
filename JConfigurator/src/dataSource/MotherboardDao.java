@@ -60,8 +60,5 @@ public class MotherboardDao extends ComponentDao<Motherboard, MotherboardDao>{
 		this.motherboardList = this._setDefaultComponents("src/dataSource/xmlSource/EmptyMotherboard.Xml","src/dataSource/xmlSource/Motherboard.Xml", MotherboardDao.class);
 		return this.motherboardList;
 	}
-	public Motherboard getComponent (int i) {
-		return motherboardList.get(i);
-	}
-
+	
 }

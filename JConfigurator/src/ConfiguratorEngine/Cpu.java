@@ -1,12 +1,15 @@
 package ConfiguratorEngine;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlType(propOrder={"name", "price", "power","oc","socket"})
 public class Cpu extends Component{
+	private int power;
 	private String socket;
 	private boolean oc;
-	private int power;
+
 	
 	public Cpu(String name, int price, int power, String socket, boolean oc) {
 		super(name, price);
