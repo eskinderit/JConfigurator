@@ -1,11 +1,15 @@
 package sequentialAssembler;
 
+import java.util.ArrayList;
+
 import javax.xml.bind.JAXBException;
 import org.apache.commons.lang3.StringUtils;
+
+import ConfiguratorEngine.Component;
 import ConfiguratorEngine.FullConfig;
 import dataSource.ComponentDao;
 
-public abstract class ComponentAssembly implements ComponentCheck{
+public abstract class ComponentAssembly {
 	protected boolean retry;
 	protected boolean goback;
 
@@ -28,6 +32,8 @@ public abstract class ComponentAssembly implements ComponentCheck{
 	protected abstract void passageBehavior(FullConfig f1, int index) throws JAXBException;
 
 	abstract public ComponentDao<?,?> getComponentDao();
+	
+	abstract public  <T extends Component> ArrayList<T> getCompatibleComponents(FullConfig f1) throws JAXBException;
 
 	public void InputBasedBehavior(ComponentAssembly assemblyStep, FullConfig f1, String s) throws JAXBException  {
 
