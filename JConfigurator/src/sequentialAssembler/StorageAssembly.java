@@ -1,19 +1,20 @@
 package sequentialAssembler;
 
-import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
 
+import javax.xml.bind.JAXBException;
 import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Storage;
 import dataSource.ComponentDao;
 import dataSource.StorageDao;
 
-public class StorageAssembly extends ComponentAssembly{
+public class StorageAssembly extends ComponentAssembly {
 	@Override
-public	ComponentAssembly getPreviousPassage() {
+	public	ComponentAssembly getPreviousPassage() {
 		return new CaseAssembly();
 	}
 	@Override
-public	ComponentAssembly getNextPassage() {
+	public	ComponentAssembly getNextPassage() {
 		return new PsuAssembly();
 	}
 
@@ -27,5 +28,12 @@ public	ComponentAssembly getNextPassage() {
 	@Override
 	public ComponentDao<?,?> getComponentDao() {
 		return new StorageDao();
+	}
+	@Override
+	public ArrayList<Storage> getCompatibleComponents(FullConfig f1) throws JAXBException {
+
+		StorageDao storageDao = new StorageDao();
+		return storageDao.readComponents();
+
 	}	
 }

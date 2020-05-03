@@ -1,6 +1,8 @@
 package sequentialAssembler;
 
 
+import java.util.ArrayList;
+
 import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.ComputerShop;
@@ -30,5 +32,13 @@ public class ComputerShopAssembly extends ComponentAssembly{
 	@Override
 	public ComponentDao<?,?> getComponentDao() {
 		return new ComputerShopDao();
+	}
+	
+	@Override
+	public ArrayList<ComputerShop> getCompatibleComponents(FullConfig f1) throws JAXBException {
+		
+		ComputerShopDao computerShopDao = new ComputerShopDao();
+		return computerShopDao.readComponents();
+
 	}
 }

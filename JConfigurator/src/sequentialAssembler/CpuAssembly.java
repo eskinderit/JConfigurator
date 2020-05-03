@@ -1,13 +1,14 @@
 package sequentialAssembler;
 
-import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
 
+import javax.xml.bind.JAXBException;
 import ConfiguratorEngine.Cpu;
 import ConfiguratorEngine.FullConfig;
 import dataSource.ComponentDao;
 import dataSource.CpuDao;
 
-public class CpuAssembly extends ComponentAssembly{
+public class CpuAssembly extends ComponentAssembly {
 
 @Override
 public ComponentAssembly getPreviousPassage() {
@@ -28,6 +29,17 @@ protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 @Override
 public ComponentDao<?,?> getComponentDao() {
 	return new CpuDao();
+}
+@Override
+public ArrayList<Cpu> getCompatibleComponents(FullConfig f1) throws JAXBException {
+	if(f1.getMyMotherboard() != null)
+		return CompatibilityCheckAlgs.getCompatibleCpusByMotherboard(f1);
+	else
+	{
+		CpuDao cpuDao = new CpuDao();
+		return cpuDao.readComponents();
+	}
+	
 }
 
 }

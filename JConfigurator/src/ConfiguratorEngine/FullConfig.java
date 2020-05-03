@@ -108,9 +108,6 @@ public class FullConfig {
 	}
 
 
-
-
-	
 	@Override
 	public String toString() {
 		return "FullConfig : \n myCpu=" + myCpu + "\n myGpu=" + myGpu + "\n myMotherboard=" + myMotherboard + "\n myRam="
@@ -118,36 +115,6 @@ public class FullConfig {
 				+ myComputerShop;
 	}
 
-	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu ) {
-		if(psu.getPower()-f1.getTotalEstimatedPower()>50)
-			return true;
-		else
-			return false;
-	}
-	
-	static public boolean checkMotherboardCase(Motherboard m1, Case c1) {
-		if( c1.getSize()>=m1.getSize())
-			return true;
-		else
-			return false;
-	}
-	
-	static public boolean checkMotherboardRam(Motherboard m1, Ram r1) {
-		if(r1.getRamType().contentEquals(m1.getRamType()))
-				return true;
-		else
-			return false;
-	}
-	
-	static public boolean checkMotherboardCpu(Cpu c1, Motherboard m1) {
-		if(m1.getSocket().contentEquals(c1.getSocket()))
-				return true;
-		else
-			return false;
-	}
-	
-	
-	
-	
+
 	
 }

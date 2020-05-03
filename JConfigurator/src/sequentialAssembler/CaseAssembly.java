@@ -1,5 +1,7 @@
 package sequentialAssembler;
 
+import java.util.ArrayList;
+
 import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.Case;
@@ -8,7 +10,8 @@ import dataSource.CaseDao;
 import dataSource.ComponentDao;
 
 
-public class CaseAssembly extends ComponentAssembly{
+
+public class CaseAssembly extends ComponentAssembly {
 
 	@Override
 public	ComponentAssembly getPreviousPassage() {
@@ -30,6 +33,16 @@ public	ComponentAssembly getNextPassage() {
 	@Override
 	public ComponentDao<?,?> getComponentDao() {
 		return new CaseDao();
+	}
+	@Override
+	public ArrayList<Case> getCompatibleComponents(FullConfig f1) throws JAXBException {
+		if(f1.getMyMotherboard() != null)
+			return CompatibilityCheckAlgs.getCompatibleCasesByMotherboard(f1);
+		else
+		{
+			CaseDao caseDao = new CaseDao();
+			return caseDao.readComponents();
+		}
 	}
 	
 }

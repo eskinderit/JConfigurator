@@ -13,6 +13,7 @@ public class TerminalDemoGUI {
 	public static void main(String[] args) throws JAXBException {
 		
 		ComponentAssembly assemblyStep = new CpuAssembly();
+		
 		FullConfig f1 = FullConfig.getIstance();
 	
 		System.out.println("##################### CONFIGURATION STARTED #####################");
@@ -20,26 +21,19 @@ public class TerminalDemoGUI {
 		Scanner input=new Scanner(System.in);
 		String s;
 		while (assemblyStep != null) {
-			
-			
-			//lettura input
-
-
-
 		
-		if (assemblyStep.getComponentDao()!=null)
-		{
-			System.out.println("##### Scrivi il numero del componente + invio oppure 'back' se vuoi retrocedere al passo precedente #####\n");
+			if (assemblyStep.getComponentDao()!=null){
+				System.out.println("##### Scrivi il numero del componente + invio oppure 'back' se vuoi retrocedere al passo precedente #####\n");
 			
-			int index=0;
-			for(Component i : assemblyStep.getComponentDao().readComponents() ){
-			    System.out.println(String.valueOf(index++)+": "+i);
-			}
+				int index=0;
+				for(Component i : assemblyStep.getCompatibleComponents(f1)){
+					System.out.println(String.valueOf(index++)+": "+i);
+				}
 
-		}	
+			}	
 			//selezione componente indicato
 		    s=input.nextLine();
-			assemblyStep.InputBasedBehavior(assemblyStep.getComponentDao(), f1, s);
+			assemblyStep.InputBasedBehavior(assemblyStep, f1, s);
 	
 			System.out.println(s);
 			if ((assemblyStep.isRetry() == false) && (assemblyStep.isGoback() == false))

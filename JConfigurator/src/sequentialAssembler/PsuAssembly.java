@@ -1,14 +1,15 @@
 package sequentialAssembler;
 
-import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
 
+import javax.xml.bind.JAXBException;
 import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Psu;
 import dataSource.ComponentDao;
 import dataSource.PsuDao;
 
 
-public class PsuAssembly extends ComponentAssembly{
+public class PsuAssembly extends ComponentAssembly {
 	@Override
 public	ComponentAssembly getPreviousPassage() {
 		return new StorageAssembly();
@@ -30,5 +31,19 @@ public	ComponentAssembly getPreviousPassage() {
 	public ComponentDao<?,?> getComponentDao() {
 		return new PsuDao();
 	}
+
+	@Override
+	public ArrayList<Psu> getCompatibleComponents(FullConfig f1) throws JAXBException {
+		
+		if((f1.getMyCpu() != null) && (f1.getMyGpu() != null) && (f1.getMyMotherboard()!=null) && (f1.getMyRam() != null) && (f1.getMyCase1() != null) && (f1.getMyStorage()!=null))
+		{
+				return CompatibilityCheckAlgs.getCompatiblePsu(f1);
+		}
+		else
+			return null;
+
+	}
+	
+	
 
 }

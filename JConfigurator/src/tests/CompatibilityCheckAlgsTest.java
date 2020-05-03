@@ -12,8 +12,9 @@ import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Psu;
 import ConfiguratorEngine.Ram;
 import ConfiguratorEngine.Storage;
+import sequentialAssembler.CompatibilityCheckAlgs;
 
-class FullConfigTest {
+class CompatibilityCheckAlgsTest {
 	
 	@Test
 	void testCheckMotherboardRam() {
@@ -22,8 +23,8 @@ class FullConfigTest {
 		Ram ram1 = new Ram("Kingston HyperX Fury DDR3 (2x4)", 67, 10, "DDR3", 8);
 		Ram ram2 = new Ram("Kingston HyperX Fury DDR4 (2x4)", 67, 10, "DDR4", 8);
 		
-		assertTrue(FullConfig.checkMotherboardRam(motherboard, ram1));
-		assertFalse(FullConfig.checkMotherboardRam(motherboard, ram2));
+		assertTrue(CompatibilityCheckAlgs.checkMotherboardRam(motherboard, ram1));
+		assertFalse(CompatibilityCheckAlgs.checkMotherboardRam(motherboard, ram2));
 	
 		
 	}
@@ -37,9 +38,9 @@ class FullConfigTest {
 		Case case1 = new Case("Kingston HyperX Fury DDR3 (2x4)", 67, 10, 3);
 		Case case2 = new Case("Kingston HyperX Fury DDR3 (2x4)", 67, 10, 2);
 		
-		assertTrue(FullConfig.checkMotherboardCase(motherboard1, case1));
-		assertFalse(FullConfig.checkMotherboardCase(motherboard2, case2));
-		assertTrue(FullConfig.checkMotherboardCase(motherboard3, case2));
+		assertTrue(CompatibilityCheckAlgs.checkMotherboardCase(motherboard1, case1));
+		assertFalse(CompatibilityCheckAlgs.checkMotherboardCase(motherboard2, case2));
+		assertTrue(CompatibilityCheckAlgs.checkMotherboardCase(motherboard3, case2));
 		
 	}
 	
@@ -52,10 +53,10 @@ class FullConfigTest {
 		Cpu cpu2 = new Cpu("AMD Ryzen 5 1400 (AM4)", 176, 10, "AM4", true);
 
 		
-		assertTrue(FullConfig.checkMotherboardCpu(cpu1, motherboard1));
-		assertTrue(FullConfig.checkMotherboardCpu(cpu2, motherboard2));
-		assertFalse(FullConfig.checkMotherboardCpu(cpu2, motherboard1));
-		assertFalse(FullConfig.checkMotherboardCpu(cpu1, motherboard2));
+		assertTrue(CompatibilityCheckAlgs.checkMotherboardCpu(cpu1, motherboard1));
+		assertTrue(CompatibilityCheckAlgs.checkMotherboardCpu(cpu2, motherboard2));
+		assertFalse(CompatibilityCheckAlgs.checkMotherboardCpu(cpu2, motherboard1));
+		assertFalse(CompatibilityCheckAlgs.checkMotherboardCpu(cpu1, motherboard2));
 	
 	}
 	
@@ -86,12 +87,43 @@ class FullConfigTest {
 		Psu psu3 = new Psu("Antec", 18, 184);
 		
 		System.out.println(fullConfig.getTotalEstimatedPower());
-		assertTrue(FullConfig.checkTotalWattagePsu(fullConfig,psu1), "Correctly sized Psu Check");
-		assertFalse(FullConfig.checkTotalWattagePsu(fullConfig,psu2),"undersized Psu Check");
-		assertFalse(FullConfig.checkTotalWattagePsu(fullConfig,psu3),"undersized Psu Check");
+		assertTrue(CompatibilityCheckAlgs.checkTotalWattagePsu(fullConfig,psu1), "Correctly sized Psu Check");
+		assertFalse(CompatibilityCheckAlgs.checkTotalWattagePsu(fullConfig,psu2),"undersized Psu Check");
+		assertFalse(CompatibilityCheckAlgs.checkTotalWattagePsu(fullConfig,psu3),"undersized Psu Check");
 		
 	}
 	
+
+	@Test 
+	void testCustomerControllerConstructor() {
+		
+		Cpu cpu = new Cpu("Intel i5 7600 (lga 1151)", 211, 10, "LGA1151", false);
+		Gpu gpu = new Gpu("ASUS GTX 1050 2GB", 130, 85, 2);
+		Motherboard motherboard = new Motherboard("MSI Basem (lga 1151 DDR3)", 66, 10, "LGA1151", "H110", "DDR3", false, 3);
+		Ram ram = new Ram("Kingston HyperX Fury DDR3 (2x4)", 67, 10, "DDR3", 8);
+		Case case0 = new Case("Corsair Spec 01 (ATX)", 56, 10, 3);
+		Storage storage = new Storage("WD Blue 1TB (HDD)", 49, 10, 1000, false);
+		Psu psu = new Psu("XFX XTR 550W", 85, 550);
+		
+		FullConfig fc = FullConfig.getIstance();
+		
+		fc.setMyCpu(cpu);
+		fc.setMyGpu(gpu);
+		fc.setMyMotherboard(motherboard);
+		fc.setMyRam(ram);
+		fc.setMyCase1(case0);
+		fc.setMyStorage(storage);
+		fc.setMyPsu(psu);
+		
+		assertEquals(CompatibilityCheckAlgs.getTotalPrice(fc),664);
+		assertEquals(CompatibilityCheckAlgs.getTotalPowerOverstimation(fc),185);
+		
+		System.out.print(fc);
+		System.out.print("\n"+CompatibilityCheckAlgs.getTotalPowerOverstimation(fc));
+		System.out.print("\n"+CompatibilityCheckAlgs.getTotalPrice(fc) + " €");
+		
+	}
 	
+
 	
 }
