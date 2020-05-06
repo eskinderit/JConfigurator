@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import ConfiguratorEngine.Case;
 import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.FullConfigBuilder;
 import ConfiguratorEngine.Gpu;
 import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Psu;
@@ -63,7 +63,7 @@ class CompatibilityCheckAlgsTest {
 	@Test
 	void testCheckPsu() {
 		
-		FullConfig fullConfig = FullConfig.getIstance();
+		FullConfigBuilder fullConfig = FullConfigBuilder.getIstance();
 		
 		Cpu cpu = new Cpu("Intel i5 7600 (lga 1151)", 211, 10, "LGA1151", false);
 		Gpu gpu = new Gpu("ASUS GTX 1050 2GB", 130, 85, 2);
@@ -73,12 +73,12 @@ class CompatibilityCheckAlgsTest {
 		Storage storage = new Storage("WD Blue 1TB (HDD)", 49, 10, 1000, false);
 
 		
-		fullConfig.setMyCpu(cpu);
-		fullConfig.setMyGpu(gpu);
-		fullConfig.setMyMotherboard(motherboard);
-		fullConfig.setMyRam(ram);
-		fullConfig.setMyCase1(case0);
-		fullConfig.setMyStorage(storage);
+		fullConfig.cpu(cpu);
+		fullConfig.gpu(gpu);
+		fullConfig.motherboard(motherboard);
+		fullConfig.ram(ram);
+		fullConfig.case1(case0);
+		fullConfig.storage(storage);
 		
 		
 	
@@ -105,15 +105,15 @@ class CompatibilityCheckAlgsTest {
 		Storage storage = new Storage("WD Blue 1TB (HDD)", 49, 10, 1000, false);
 		Psu psu = new Psu("XFX XTR 550W", 85, 550);
 		
-		FullConfig fc = FullConfig.getIstance();
+		FullConfigBuilder fc = FullConfigBuilder.getIstance();
 		
-		fc.setMyCpu(cpu);
-		fc.setMyGpu(gpu);
-		fc.setMyMotherboard(motherboard);
-		fc.setMyRam(ram);
-		fc.setMyCase1(case0);
-		fc.setMyStorage(storage);
-		fc.setMyPsu(psu);
+		fc.cpu(cpu);
+		fc.gpu(gpu);
+		fc.motherboard(motherboard);
+		fc.ram(ram);
+		fc.case1(case0);
+		fc.storage(storage);
+		fc.psu(psu);
 		
 		assertEquals(CompatibilityCheckAlgs.getTotalPrice(fc),664);
 		assertEquals(CompatibilityCheckAlgs.getTotalPowerOverstimation(fc),185);

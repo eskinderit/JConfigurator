@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.ComputerShop;
-import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.FullConfigBuilder;
 import dataSource.ComponentDao;
 import dataSource.ComputerShopDao;
 
@@ -23,7 +23,7 @@ public class ComputerShopAssembly extends ComponentAssembly{
 	}
 
 	@Override
-	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
 		ComputerShopDao computerShopDao = new ComputerShopDao(); 
 		ComputerShop componentToSet = computerShopDao.getComponent(index);
 		f1.setMyComputerShop(componentToSet);
@@ -35,7 +35,7 @@ public class ComputerShopAssembly extends ComponentAssembly{
 	}
 	
 	@Override
-	public ArrayList<ComputerShop> getCompatibleComponents(FullConfig f1) throws JAXBException {
+	public ArrayList<ComputerShop> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
 		
 		ComputerShopDao computerShopDao = new ComputerShopDao();
 		return computerShopDao.readComponents();

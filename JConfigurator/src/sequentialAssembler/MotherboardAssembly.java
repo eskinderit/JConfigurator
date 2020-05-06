@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.FullConfigBuilder;
 import ConfiguratorEngine.Motherboard;
 import dataSource.ComponentDao;
 import dataSource.MotherboardDao;
@@ -23,10 +23,10 @@ public	ComponentAssembly getNextPassage() {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
 		MotherboardDao motherboardDao = new MotherboardDao(); 
 		Motherboard componentToSet = motherboardDao.getComponent(index);
-		f1.setMyMotherboard(componentToSet);
+		f1.motherboard(componentToSet);
 		
 	}
 
@@ -36,7 +36,7 @@ public	ComponentAssembly getNextPassage() {
 	}
 
 	@Override
-	public ArrayList<Motherboard> getCompatibleComponents(FullConfig f1) throws JAXBException {
+	public ArrayList<Motherboard> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
 
 		MotherboardDao motherboardDao = new MotherboardDao();
 		ArrayList<Motherboard> motherboardList = motherboardDao.readComponents();

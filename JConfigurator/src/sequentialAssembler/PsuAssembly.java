@@ -3,7 +3,7 @@ package sequentialAssembler;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
-import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.FullConfigBuilder;
 import ConfiguratorEngine.Psu;
 import dataSource.ComponentDao;
 import dataSource.PsuDao;
@@ -21,10 +21,10 @@ public	ComponentAssembly getPreviousPassage() {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
 		PsuDao psuDao = new PsuDao(); 
 		Psu componentToSet = psuDao.getComponent(index);
-		f1.setMyPsu(componentToSet);
+		f1.psu(componentToSet);
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public	ComponentAssembly getPreviousPassage() {
 	}
 
 	@Override
-	public ArrayList<Psu> getCompatibleComponents(FullConfig f1) throws JAXBException {
+	public ArrayList<Psu> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
 		
 		if((f1.getMyCpu() != null) && (f1.getMyGpu() != null) && (f1.getMyMotherboard()!=null) && (f1.getMyRam() != null) && (f1.getMyCase1() != null) && (f1.getMyStorage()!=null))
 		{

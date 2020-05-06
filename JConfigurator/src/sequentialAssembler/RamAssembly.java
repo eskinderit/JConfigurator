@@ -3,7 +3,7 @@ package sequentialAssembler;
 
 import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
-import ConfiguratorEngine.FullConfig;
+import ConfiguratorEngine.FullConfigBuilder;
 import ConfiguratorEngine.Ram;
 import dataSource.ComponentDao;
 import dataSource.RamDao;
@@ -21,10 +21,10 @@ public class RamAssembly extends ComponentAssembly {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
 		RamDao ramDao = new RamDao(); 
 		Ram componentToSet = ramDao.getComponent(index);
-		f1.setMyRam(componentToSet);
+		f1.ram(componentToSet);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class RamAssembly extends ComponentAssembly {
 	}
 
 	@Override
-	public ArrayList<Ram> getCompatibleComponents(FullConfig f1) throws JAXBException {
+	public ArrayList<Ram> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
 		if(f1.getMyMotherboard() != null)
 			return CompatibilityCheckAlgs.getCompatibleRamsByMotherboard(f1);
 		else
