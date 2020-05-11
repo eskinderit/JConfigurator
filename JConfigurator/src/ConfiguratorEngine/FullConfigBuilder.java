@@ -31,35 +31,32 @@ public class FullConfigBuilder {
 	}
 	
 	
-	public FullConfigBuilder psu(Psu myPsu) {
+	public void psu(Psu myPsu) {
 		this.myPsu=myPsu;
-		return this;
 	}
 	
-	public FullConfigBuilder gpu(Gpu myGpu) {
+	public void gpu(Gpu myGpu) {
 		this.myGpu = myGpu;
-		return this;
 	}
 	
-	public FullConfigBuilder motherboard(Motherboard myMotherboard) {
+	public void motherboard(Motherboard myMotherboard) {
 		this.myMotherboard = myMotherboard;
-		return this;
 	}
-	public FullConfigBuilder cpu(Cpu myCpu) {
+	
+	public void cpu(Cpu myCpu) {
 		this.myCpu = myCpu;
-		return this;
 	}
-	public FullConfigBuilder case1(Case myCase1) {
+	
+	public void case1(Case myCase1) {
 		this.myCase1 = myCase1;
-		return this;
 	}
-	public FullConfigBuilder storage(Storage myStorage) {
+	
+	public void storage(Storage myStorage) {
 		this.myStorage = myStorage;
-		return this;
 	}
-	public FullConfigBuilder ram(Ram myRam) {
+	
+	public void ram(Ram myRam) {
 		this.myRam = myRam;
-		return this;
 	}
 	
 	public boolean isComplete() {
