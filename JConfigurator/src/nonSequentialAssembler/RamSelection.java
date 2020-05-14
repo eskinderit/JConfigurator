@@ -14,8 +14,9 @@ public class RamSelection implements ComponentSelection{
 	private int size;
 	
 	
-	public RamSelection() {
+	public RamSelection() throws JAXBException {
 		ramList = new RamDao();
+		size = ramList.readComponents().size();
 	}
 
 	@Override

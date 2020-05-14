@@ -13,8 +13,9 @@ public class CaseSelection implements ComponentSelection{
 	private CaseDao caseList;
 	private int size;
 	
-	public CaseSelection() {
+	public CaseSelection() throws JAXBException {
 		caseList = new CaseDao();
+		size = caseList.readComponents().size();
 	}
 	
 	

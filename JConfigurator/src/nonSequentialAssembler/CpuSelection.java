@@ -14,8 +14,9 @@ public class CpuSelection implements ComponentSelection{
 	private int size;
 
 
-	public CpuSelection() {
+	public CpuSelection() throws JAXBException {
 		cpuList = new CpuDao();
+		size = cpuList.readComponents().size();
 	}
 
 

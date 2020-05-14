@@ -1,16 +1,22 @@
 package GUIDemo;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.Component;
+import ConfiguratorEngine.Cpu;
 import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.Gpu;
+import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Psu;
+import dataSource.GpuDao;
 import nonSequentialAssembler.CorrectComponentsSelection;
-import nonSequentialAssembler.PsuSelection;
+import nonSequentialAssembler.CpuSelection;
+import nonSequentialAssembler.GpuSelection;
 
 public class NonSequentialGUIDemo {
 
@@ -19,7 +25,7 @@ public class NonSequentialGUIDemo {
 		String s;
 		int index;
 		FullConfigBuilder fullConfigBuilder = new FullConfigBuilder();
-		CorrectComponentsSelection selectCorrectComponents = new CorrectComponentsSelection();
+		CorrectComponentsSelection selectCorrectComponents = new CorrectComponentsSelection();	
 		
 		do {
 			do {
@@ -59,6 +65,12 @@ public class NonSequentialGUIDemo {
 		FullConfig f = fullConfigBuilder.buildFullConfig();
 		System.out.println("Complete configuration: ");
 		System.out.println(f);
+		
+		System.out.println("\n\nTotal power: " + f.getTotalPower());
+		
+		
+		
+		input.close();
 	}
 
 	

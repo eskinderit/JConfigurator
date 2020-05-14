@@ -12,8 +12,9 @@ public class GpuSelection implements ComponentSelection{
 	private GpuDao gpuList;
 	private int size;
 	
-	public GpuSelection() {
+	public GpuSelection() throws JAXBException {
 		gpuList = new GpuDao();
+		size = gpuList.readComponents().size();
 	}
 	@Override
 	public ArrayList<Gpu> getCompatibleComponents(FullConfigBuilder f) throws JAXBException {

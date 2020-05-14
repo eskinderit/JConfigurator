@@ -13,8 +13,9 @@ public class MotherboardSelection implements ComponentSelection{
 	private MotherboardDao motherboardList;
 	private int size;
 
-	public MotherboardSelection() {
+	public MotherboardSelection() throws JAXBException {
 		motherboardList = new MotherboardDao();
+		size = motherboardList.readComponents().size();
 	}
 
 
