@@ -26,7 +26,7 @@ public class SelectStorage extends SelectComponent{
 
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
-		f.storage(storage.readComponents().get(n));
+		f.setStorage(storage.readComponents().get(n));
 	}
 
 

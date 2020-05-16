@@ -27,7 +27,7 @@ public class SelectMotherboard extends SelectComponent {
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
 		Motherboard m = motherboardDao.readComponents().get(n);
-		f.motherboard(m);
+		f.setMotherboard(m);
 		
 	}
 

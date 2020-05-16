@@ -23,10 +23,10 @@ public	ComponentAssembly getNextPassage() {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {
 		CaseDao caseDao = new CaseDao(); 
 		Case componentToSet = caseDao.getComponent(index);
-		f1.case1(componentToSet);
+		f1.setCase(componentToSet);
 		
 	}
 
@@ -34,6 +34,7 @@ public	ComponentAssembly getNextPassage() {
 	public ComponentDao<?,?> getComponentDao() {
 		return new CaseDao();
 	}
+	
 	@Override
 	public ArrayList<Case> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
 		if(f1.getMyMotherboard() != null)

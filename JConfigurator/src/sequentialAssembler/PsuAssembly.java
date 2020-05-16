@@ -21,10 +21,10 @@ public	ComponentAssembly getPreviousPassage() {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {
 		PsuDao psuDao = new PsuDao(); 
 		Psu componentToSet = psuDao.getComponent(index);
-		f1.psu(componentToSet);
+		f1.setPsu(componentToSet);
 	}
 	
 	@Override

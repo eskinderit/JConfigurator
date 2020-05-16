@@ -23,10 +23,10 @@ public	ComponentAssembly getNextPassage() {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {
 		MotherboardDao motherboardDao = new MotherboardDao(); 
 		Motherboard componentToSet = motherboardDao.getComponent(index);
-		f1.motherboard(componentToSet);
+		f1.setMotherboard(componentToSet);
 		
 	}
 

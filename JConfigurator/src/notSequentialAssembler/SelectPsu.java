@@ -30,7 +30,7 @@ private PsuDao psu;
 
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
-		f.psu(psu.readComponents().get(n));
+		f.setPsu(psu.readComponents().get(n));
 	}
 
 	

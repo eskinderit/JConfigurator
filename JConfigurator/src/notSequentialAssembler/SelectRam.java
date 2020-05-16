@@ -27,7 +27,7 @@ public class SelectRam extends SelectComponent{
 
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
-		f.ram(ram.readComponents().get(n));
+		f.setRam(ram.readComponents().get(n));
 	}
 
 

@@ -26,7 +26,7 @@ public class SelectGpu extends SelectComponent{
 
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
-		f.gpu(gpuList.readComponents().get(n));
+		f.setGpu(gpuList.readComponents().get(n));
 	}
 
 	@Override

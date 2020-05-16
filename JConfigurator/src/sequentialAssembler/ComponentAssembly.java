@@ -29,7 +29,7 @@ public abstract class ComponentAssembly {
 	public abstract  ComponentAssembly getPreviousPassage();
 	public abstract ComponentAssembly getNextPassage();
 
-	protected abstract void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException;
+	protected abstract void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException;
 
 	abstract public ComponentDao<?,?> getComponentDao();
 	
@@ -40,12 +40,12 @@ public abstract class ComponentAssembly {
 		if(StringUtils.isNumeric(s)) {
 			int selectedIndex = Integer.parseInt(s);
 			int listSize;
-
+			
 			listSize = assemblyStep.getCompatibleComponents(f1).size();
 
 			if (selectedIndex < listSize && selectedIndex>=0)
 			{
-				this.passageBehavior(f1, selectedIndex);
+				this.setComponentByIndex(f1, selectedIndex);
 				retry=false;
 			}
 

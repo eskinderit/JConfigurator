@@ -23,6 +23,7 @@ public class CaseDaoTest {
 		case2 = new Case("case2", 10, 10, 10);
 		caseList.add(case1);
 		caseList.add(case2);
+		
 	}
 	
 	@Test

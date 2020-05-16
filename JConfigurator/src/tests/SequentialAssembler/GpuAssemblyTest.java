@@ -1,0 +1,72 @@
+package tests.SequentialAssembler;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import javax.xml.bind.JAXBException;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
+import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.Gpu;
+import dataSource.GpuDao;
+import sequentialAssembler.ComponentAssembly;
+import sequentialAssembler.GpuAssembly;
+
+class GpuAssemblyTest {
+	
+	ComponentAssembly gpuAssembly;
+	GpuDao gpuDao;
+	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+
+	
+	@BeforeEach
+	@AfterEach
+	void init() throws JAXBException {
+		gpuAssembly = new GpuAssembly();
+		gpuDao = new GpuDao();
+		gpuDao.setEmptyComponents();
+		f1.setCpu(null);
+		f1.setGpu(null);
+		f1.setMotherboard(null);
+		f1.setCase(null);
+		f1.setRam(null);
+		f1.setStorage(null);
+	}
+	
+	
+	@Test
+	void getComponentsByIndex() throws JAXBException {
+		Gpu gpu0 = new Gpu("Prova0", 2, 3, 1);
+		Gpu gpu1 = new Gpu("Prova1", 15, 26, 2);
+		Gpu gpu2 = new Gpu("Prova2", 2, 3, 3);
+		Gpu gpu3 = new Gpu("Prova3", 15, 26, 4);
+		
+		ArrayList<Gpu> gpuList = new ArrayList<>();
+		gpuList.add(gpu0);
+		gpuList.add(gpu1);
+		gpuList.add(gpu2);
+		gpuList.add(gpu3);
+		
+		gpuDao.addComponents(gpuList);
+
+		gpuAssembly.InputBasedBehavior(gpuAssembly, f1 , "0");
+		assertEquals(f1.getMyGpu(), gpu0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
+		assertNotEquals(f1.getMyGpu(), gpu1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
+		
+	}
+
+	
+	@AfterAll
+	static void  clean() throws JAXBException 
+	{
+		GpuDao gpuDao1 = new GpuDao();
+		gpuDao1.setDefaultComponents();
+	}
+	
+}

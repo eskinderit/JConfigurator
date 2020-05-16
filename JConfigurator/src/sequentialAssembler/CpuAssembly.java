@@ -21,10 +21,10 @@ public ComponentAssembly getNextPassage() {
 
 
 @Override
-protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {	
+protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {	
 	CpuDao cpuDao = new CpuDao(); 
 	Cpu componentToSet = cpuDao.getComponent(index);
-	f1.cpu(componentToSet);
+	f1.setCpu(componentToSet);
 	}
 @Override
 public ComponentDao<?,?> getComponentDao() {

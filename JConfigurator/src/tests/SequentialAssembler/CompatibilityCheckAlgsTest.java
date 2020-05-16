@@ -1,4 +1,4 @@
-package tests;
+package tests.SequentialAssembler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,12 +73,12 @@ class CompatibilityCheckAlgsTest {
 		Storage storage = new Storage("WD Blue 1TB (HDD)", 49, 10, 1000, false);
 
 		
-		fullConfig.cpu(cpu);
-		fullConfig.gpu(gpu);
-		fullConfig.motherboard(motherboard);
-		fullConfig.ram(ram);
-		fullConfig.case1(case0);
-		fullConfig.storage(storage);
+		fullConfig.setCpu(cpu);
+		fullConfig.setGpu(gpu);
+		fullConfig.setMotherboard(motherboard);
+		fullConfig.setRam(ram);
+		fullConfig.setCase(case0);
+		fullConfig.setStorage(storage);
 		
 		
 	
@@ -107,13 +107,13 @@ class CompatibilityCheckAlgsTest {
 		
 		FullConfigBuilder fc = FullConfigBuilder.getIstance();
 		
-		fc.cpu(cpu);
-		fc.gpu(gpu);
-		fc.motherboard(motherboard);
-		fc.ram(ram);
-		fc.case1(case0);
-		fc.storage(storage);
-		fc.psu(psu);
+		fc.setCpu(cpu);
+		fc.setGpu(gpu);
+		fc.setMotherboard(motherboard);
+		fc.setRam(ram);
+		fc.setCase(case0);
+		fc.setStorage(storage);
+		fc.setPsu(psu);
 		
 		assertEquals(CompatibilityCheckAlgs.getTotalPrice(fc),664);
 		assertEquals(CompatibilityCheckAlgs.getTotalPowerOverstimation(fc),185);

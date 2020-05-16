@@ -19,10 +19,10 @@ public class StorageAssembly extends ComponentAssembly {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {
 		StorageDao storageDao = new StorageDao(); 
 		Storage componentToSet = storageDao.getComponent(index);
-		f1.storage(componentToSet);
+		f1.setStorage(componentToSet);
 	}
 
 	@Override

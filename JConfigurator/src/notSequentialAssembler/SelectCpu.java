@@ -27,7 +27,7 @@ public class SelectCpu extends SelectComponent {
 
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
-		f.cpu(cpu.readComponents().get(n));
+		f.setCpu(cpu.readComponents().get(n));
 	}
 
 

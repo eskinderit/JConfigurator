@@ -23,10 +23,13 @@ public class ComputerShopAssembly extends ComponentAssembly{
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {
+
 		ComputerShopDao computerShopDao = new ComputerShopDao(); 
 		ComputerShop componentToSet = computerShopDao.getComponent(index);
-		f1.setMyComputerShop(componentToSet);
+
+		f1.setComputerShop(componentToSet);
+
 	}
 
 	@Override

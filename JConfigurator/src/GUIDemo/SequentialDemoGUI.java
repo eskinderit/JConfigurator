@@ -8,7 +8,7 @@ import ConfiguratorEngine.Component;
 import ConfiguratorEngine.FullConfigBuilder;
 import sequentialAssembler.*;
 
-public class TerminalDemoGUI {
+public class SequentialDemoGUI {
 
 	public static void main(String[] args) throws JAXBException {
 		

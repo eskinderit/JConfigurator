@@ -22,10 +22,10 @@ public ComponentAssembly getNextPassage() {
 	}
 	
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void setComponentByIndex(FullConfigBuilder f1, int index) throws JAXBException {
 		GpuDao gpuDao = new GpuDao(); 
 		Gpu componentToSet = gpuDao.getComponent(index);
-		f1.gpu(componentToSet);
+		f1.setGpu(componentToSet);
 	}
 	
 	@Override

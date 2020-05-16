@@ -29,7 +29,7 @@ private CaseDao caseDao;
 	@Override
 	public void selectComp(int n, FullConfigBuilder f) throws JAXBException {
 		Case c = caseDao.readComponents().get(n);
-		f.case1(c);
+		f.setCase(c);
 	}
 
 	@Override

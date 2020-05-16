@@ -26,13 +26,9 @@ public abstract class ComponentDao <T1 extends Component, T2 extends ComponentDa
 
 
 
-	protected ArrayList<T1> getComponentList() {
-		return componentList;
-	}
+	abstract protected ArrayList<T1> getComponentList();
 
-	protected void setComponentList(ArrayList<T1> componentList) {
-		this.componentList = componentList;
-	}
+	abstract protected void setComponentList(ArrayList<T1> componentList);
 	
 	
 

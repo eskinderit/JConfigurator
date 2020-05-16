@@ -12,6 +12,8 @@ public class FullConfigBuilder {
 	private static int psuOverhead = 50;
 
 	private boolean complete=false;
+	
+	
 	public int getPsuOverhead() {
 		return psuOverhead;
 	}
@@ -22,7 +24,7 @@ public class FullConfigBuilder {
 
 	private static FullConfigBuilder instance=null;		// Singleton
 	
-	public FullConfigBuilder() {}
+	private FullConfigBuilder() {}
 	
 	public static FullConfigBuilder getIstance() {
 		if(instance==null)
@@ -31,33 +33,33 @@ public class FullConfigBuilder {
 	}
 	
 	
-	public FullConfigBuilder psu(Psu myPsu) {
+	public FullConfigBuilder setPsu(Psu myPsu) {
 		this.myPsu=myPsu;
 		return this;
 	}
 	
-	public FullConfigBuilder gpu(Gpu myGpu) {
+	public FullConfigBuilder setGpu(Gpu myGpu) {
 		this.myGpu = myGpu;
 		return this;
 	}
 	
-	public FullConfigBuilder motherboard(Motherboard myMotherboard) {
+	public FullConfigBuilder setMotherboard(Motherboard myMotherboard) {
 		this.myMotherboard = myMotherboard;
 		return this;
 	}
-	public FullConfigBuilder cpu(Cpu myCpu) {
+	public FullConfigBuilder setCpu(Cpu myCpu) {
 		this.myCpu = myCpu;
 		return this;
 	}
-	public FullConfigBuilder case1(Case myCase1) {
+	public FullConfigBuilder setCase(Case myCase1) {
 		this.myCase1 = myCase1;
 		return this;
 	}
-	public FullConfigBuilder storage(Storage myStorage) {
+	public FullConfigBuilder setStorage(Storage myStorage) {
 		this.myStorage = myStorage;
 		return this;
 	}
-	public FullConfigBuilder ram(Ram myRam) {
+	public FullConfigBuilder setRam(Ram myRam) {
 		this.myRam = myRam;
 		return this;
 	}
@@ -67,6 +69,11 @@ public class FullConfigBuilder {
 			complete=true;
 		}
 		return complete;
+	}
+	
+	public FullConfigBuilder setComputerShop(ComputerShop myComputerShop) {
+		this.myComputerShop = myComputerShop;
+		return this;
 	}
 
 	public Psu getMyPsu() {

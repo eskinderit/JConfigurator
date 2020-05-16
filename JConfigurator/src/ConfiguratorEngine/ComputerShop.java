@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder={"name","price","address"})
 public class ComputerShop extends Component{
 
-	protected String address;
+	private String address;
 	
 	
 	public ComputerShop() {
