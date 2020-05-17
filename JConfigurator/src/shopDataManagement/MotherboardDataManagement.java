@@ -7,6 +7,7 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Motherboard;
 import dataSource.MotherboardDao;
 
@@ -29,35 +30,21 @@ public class MotherboardDataManagement extends ComponentDataManagement{
 		MotherboardDao motherboardDao = new MotherboardDao();
 		String input;
 		
-		String name;
-		int price;
-		int power;
+		String name = null;
+		int price = 0;
+		int power = 0;
 		String socket;
 		String chipset;
 		String ramType;
-		boolean oc;
 		int size;
 		
 		Scanner parameter = new Scanner(System.in);
 		
-		System.out.println("Nome: ");
-		name = parameter.nextLine();
-		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		
-		price = Integer.parseInt(input);
-		
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		
-		power = Integer.parseInt(input);	
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 			
+		
 		System.out.println("Socket: ");
 		socket = parameter.nextLine();
 		
@@ -87,8 +74,15 @@ public class MotherboardDataManagement extends ComponentDataManagement{
 			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, false, size);
 		
 		motherboards.add(motherboard);
-		
+		parameter.close();
 		return motherboardDao.addComponents(motherboards);
+	}
+
+
+	@Override
+	public ArrayList<Motherboard> resetComp() throws JAXBException {
+		MotherboardDao motherboardDao = new MotherboardDao();
+		return motherboardDao.setDefaultComponents();
 	}
 
 }

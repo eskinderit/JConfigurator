@@ -1,11 +1,14 @@
 package shopDataManagement;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ConfiguratorEngine.Component;
-import ConfiguratorEngine.Cpu;
+
 import dataSource.CaseDao;
 import dataSource.ComponentDao;
 import dataSource.CpuDao;
@@ -49,8 +52,37 @@ public abstract class ComponentDataManagement {
 		}
 	}
 	
+	protected String setName (Scanner parameter, String name) {
+
+		System.out.println("Nome: ");
+		name = parameter.nextLine();
+		return name;
+	}
+	
+	protected int setPrice (Scanner parameter, int price) {
+		String input;
+		do {
+			System.out.println("Prezzo: ");
+			input = parameter.nextLine();
+		}while(!StringUtils.isNumeric(input));
+		price = Integer.parseInt(input);
+		return price;
+	}
+	
+	protected int setPower(Scanner parameter, int power) {
+		String input;
+		do {
+			System.out.println("Potenza: ");
+			input = parameter.nextLine();
+		}while(!StringUtils.isNumeric(input));
+		power = Integer.parseInt(input);
+		return power;
+	}
+	
 	abstract public <T extends Component> ArrayList<T> deleteComp (int index) throws JAXBException;
 	
 	abstract public <T extends Component> ArrayList<T> addComp () throws JAXBException;
+	
+	abstract public <T extends Component> ArrayList<T> resetComp() throws JAXBException;
 	
 }

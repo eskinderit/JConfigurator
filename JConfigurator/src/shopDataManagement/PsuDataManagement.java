@@ -7,6 +7,7 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Psu;
 import dataSource.PsuDao;
 
@@ -25,37 +26,30 @@ public class PsuDataManagement extends ComponentDataManagement{
 
 	@Override
 	public ArrayList<Psu> addComp() throws JAXBException {
-		String input;
+
 		PsuDao psuDao = new PsuDao();
 		
-		String name;
-		int price; 
-		int power;
-		int size;
+		String name = null;
+		int price = 0; 
+		int power = 0;
 		
 		Scanner parameter = new Scanner(System.in);
-		System.out.println("Nome: ");
-		name = parameter.nextLine();
-		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
-		
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 		
 		Psu psu1 = new Psu(name, price, power);
 		
 		psus.add(psu1);
-		
+		parameter.close();
 		
 		return psuDao.addComponents(psus);
+	}
+
+	@Override
+	public ArrayList<Psu> resetComp() throws JAXBException {
+		PsuDao psuDao = new PsuDao();
+		return psuDao.setDefaultComponents();
 	}
 	
 

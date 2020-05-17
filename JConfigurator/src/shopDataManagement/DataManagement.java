@@ -40,7 +40,7 @@ public class DataManagement {
 			CpuDataManagement c = new CpuDataManagement();
 			c.addComp();
 		}
-		//else if(component.contains("b")){
+		
 		else if (component.contains("b")) {
 			GpuDataManagement g = new GpuDataManagement();
 			g.addComp();
@@ -67,6 +67,41 @@ public class DataManagement {
 		else {
 			PsuDataManagement p = new PsuDataManagement();
 			p.addComp();
+		}
+	}
+	
+	public void resetc (String component) throws JAXBException {
+		if(component.contains("a")) {
+			CpuDataManagement c = new CpuDataManagement();
+			c.resetComp();
+		}
+		
+		else if (component.contains("b")) {
+			GpuDataManagement g = new GpuDataManagement();
+			g.resetComp();
+		}
+		
+		else if (component.contains("c")){
+			MotherboardDataManagement m = new MotherboardDataManagement();
+			m.resetComp();
+		}
+		
+		else if(component.contains("d")){
+			CaseDataManagement c1 = new CaseDataManagement();
+			c1.resetComp();
+		}
+		else if(component.contains("e"))  {
+			RamDataManagement r = new RamDataManagement();
+			r.resetComp();
+		}
+		else if(component.contains("f")){
+			StorageDataManagement s = new StorageDataManagement();
+			s.resetComp();
+		}
+		
+		else {
+			PsuDataManagement p = new PsuDataManagement();
+			p.resetComp();
 		}
 	}
 }

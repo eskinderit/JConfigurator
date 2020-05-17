@@ -18,6 +18,10 @@ public class Cpu extends Component{
 		this.power = power;
 	}
 	
+	public Cpu(String name, int price, int power) {
+		super(name, price);
+		this.power=power;
+	}
 	
 	public Cpu() {
 		super();

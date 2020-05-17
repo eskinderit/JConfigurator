@@ -30,26 +30,16 @@ public class CaseDataManagement extends ComponentDataManagement{
 		String input;
 		CaseDao caseDao = new CaseDao();
 		
-		String name;
-		int price; 
-		int power;
+		String name = null;
+		int price = 0; 
+		int power = 0;
 		int size;
 		
 		Scanner parameter = new Scanner(System.in);
-		System.out.println("Nome: ");
-		name = parameter.nextLine();
 		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 		
 		do {
 			System.out.println("Dimensione: ");
@@ -61,8 +51,15 @@ public class CaseDataManagement extends ComponentDataManagement{
 		
 		cases.add(case1);
 		
-		
+		parameter.close();
 		return caseDao.addComponents(cases);
+	}
+
+
+	@Override
+	public ArrayList<Case> resetComp() throws JAXBException {
+		CaseDao caseDao = new CaseDao();
+		return caseDao.setDefaultComponents();
 	}
 
 }

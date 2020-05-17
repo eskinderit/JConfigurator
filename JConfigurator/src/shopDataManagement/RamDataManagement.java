@@ -27,27 +27,16 @@ public class RamDataManagement extends ComponentDataManagement{
 	public ArrayList<Ram> addComp() throws JAXBException {
 		RamDao ramDao = new RamDao();
 		String input;
-		String name;
-		int price; 
-		int power;
+		String name = null;
+		int price = 0; 
+		int power = 0;
 		int memory;
 		String ramType;
 		
 		Scanner parameter = new Scanner(System.in);
-		System.out.println("Nome: ");
-		name = parameter.nextLine();
-		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 		
 		do {
 			System.out.println("Memoria: ");
@@ -61,8 +50,14 @@ public class RamDataManagement extends ComponentDataManagement{
 		Ram ram = new Ram(name, price, power, ramType, memory);
 		
 		rams.add(ram);
-		
+		parameter.close();
 		return ramDao.addComponents(rams);
+	}
+
+	@Override
+	public ArrayList<Ram> resetComp() throws JAXBException {
+		RamDao ramDao = new RamDao();
+		return ramDao.setDefaultComponents();
 	}
 
 }

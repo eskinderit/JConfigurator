@@ -31,10 +31,9 @@
         <size>3</size>
     </componentList>
     <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>case1</name>
-        <price>10</price>
-        <power>10</power>
-        <size>10</size>
+        <price>0</price>
+        <power>0</power>
+        <size>16</size>
     </componentList>
     <Case>
         <name>Corsair Spec 01 (ATX)</name>
@@ -67,9 +66,8 @@
         <size>3</size>
     </Case>
     <Case>
-        <name>case1</name>
-        <price>10</price>
-        <power>10</power>
-        <size>10</size>
+        <price>0</price>
+        <power>0</power>
+        <size>16</size>
     </Case>
 </caseDao>

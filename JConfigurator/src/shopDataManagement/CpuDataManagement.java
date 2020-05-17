@@ -7,16 +7,17 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Cpu;
 
 import dataSource.CpuDao;
 
 public class CpuDataManagement extends ComponentDataManagement{
-	
+	ArrayList<Cpu> cpus = new ArrayList<Cpu>();
 	
 	@Override
 	public ArrayList<Cpu> deleteComp(int index) throws JAXBException {
-		ArrayList<Cpu> cpus = new ArrayList<Cpu>();
+		
 		CpuDao cpuDao = new CpuDao();
 		cpus.add(cpuDao.readComponents().get(index));
 		cpuDao.deleteComponents(cpus);
@@ -28,34 +29,19 @@ public class CpuDataManagement extends ComponentDataManagement{
 	@Override
 	public ArrayList<Cpu> addComp() throws JAXBException{
 		CpuDao cpuDao = new CpuDao();
-		ArrayList<Cpu> cpus = new ArrayList<Cpu>();
 		
 		
 		String input;
-		String name;
-		int price;
-		int power;
+		String name = null;
+		int price = 0;
+		int power = 0;
 		String socket;
 		boolean oc;
 		
 		Scanner parameter = new Scanner(System.in);
-		System.out.println("\n\nNome: ");
-		name = parameter.nextLine();
-		
-		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
-		
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 		
 		System.out.println("Socket: ");
 		socket = parameter.nextLine();
@@ -77,6 +63,13 @@ public class CpuDataManagement extends ComponentDataManagement{
 		parameter.close();
 		return cpuDao.addComponents(cpus);
 		
+	}
+
+
+	@Override
+	public ArrayList<Cpu> resetComp() throws JAXBException {
+		CpuDao cpuDao = new CpuDao();
+		return cpuDao.setDefaultComponents();
 	}
 }
 

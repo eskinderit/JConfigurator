@@ -1,35 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <psuDao>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="psu">
-        <name>XFX XTR 550W</name>
-        <price>85</price>
-        <power>550</power>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="psu">
-        <name>XFX P1 750W</name>
-        <price>116</price>
-        <power>750</power>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="psu">
-        <name>EVGA 430 W</name>
-        <price>48</price>
-        <power>430</power>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="psu">
-        <name>Antec VP400</name>
-        <price>38</price>
-        <power>400</power>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="psu">
-        <name>XFX 550TS</name>
-        <price>88</price>
-        <power>550</power>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="psu">
-        <name>EVGA SUPERNOVA</name>
-        <price>157</price>
-        <power>750</power>
-    </componentList>
     <Psu>
         <name>XFX XTR 550W</name>
         <price>85</price>
@@ -46,9 +16,19 @@
         <power>430</power>
     </Psu>
     <Psu>
+        <name>Corsair HX1200i</name>
+        <price>280</price>
+        <power>1200</power>
+    </Psu>
+    <Psu>
         <name>Antec VP400</name>
         <price>38</price>
         <power>400</power>
+    </Psu>
+    <Psu>
+        <name>Seasonic 520II-520</name>
+        <price>49</price>
+        <power>520</power>
     </Psu>
     <Psu>
         <name>XFX 550TS</name>

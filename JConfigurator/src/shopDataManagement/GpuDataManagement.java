@@ -27,26 +27,15 @@ public class GpuDataManagement extends ComponentDataManagement{
 	public ArrayList<Gpu> addComp() throws JAXBException {
 		GpuDao gpuDao = new GpuDao();
 		String input;
-		String name;
-		int price; 
-		int power;
+		String name = null;
+		int price = 0; 
+		int power = 0;
 		int memory;
 		
 		Scanner parameter = new Scanner(System.in);
-		System.out.println("Nome: ");
-		name = parameter.nextLine();
-		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 		
 		do {
 			System.out.println("Memoria: ");
@@ -59,6 +48,13 @@ public class GpuDataManagement extends ComponentDataManagement{
 		parameter.close();
 		
 		return gpuDao.addComponents(gpus);
+	}
+
+
+	@Override
+	public ArrayList<Gpu> resetComp() throws JAXBException {
+		GpuDao gpuDao = new GpuDao();
+		return gpuDao.setDefaultComponents();
 	}
 
 }

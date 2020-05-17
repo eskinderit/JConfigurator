@@ -29,27 +29,15 @@ public class StorageDataManagement extends ComponentDataManagement{
 		String input;
 		StorageDao storageDao = new StorageDao();
 		
-		String name;
-		int price; 
-		int power;
+		String name = null;
+		int price = 0; 
+		int power = 0;
 		int capacity;
-		Boolean ssd;
 		
 		Scanner parameter = new Scanner(System.in);
-		System.out.println("Nome: ");
-		name = parameter.nextLine();
-		
-		do {
-			System.out.println("Prezzo: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		
-		do {
-			System.out.println("Potenza: ");
-			input = parameter.nextLine();
-		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
+		name = this.setName(parameter, name);
+		price = this.setPrice(parameter, price);
+		power = this.setPower(parameter, power);
 		
 		do {
 			System.out.println("Capacity: ");
@@ -70,7 +58,14 @@ public class StorageDataManagement extends ComponentDataManagement{
 			storage = new Storage(name, price, power, capacity, false);
 		
 		storages.add(storage);
+		parameter.close();
 		return storageDao.addComponents(storages);
+	}
+
+	@Override
+	public ArrayList<Storage> resetComp() throws JAXBException {
+		StorageDao storageDao = new StorageDao();
+		return storageDao.setDefaultComponents();
 	}
 
 }

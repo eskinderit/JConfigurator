@@ -21,79 +21,86 @@ public class ShopDemoGui {
 
 		do {
 			System.out.println("Quale operazione vuoi effettuare?");
-			System.out.println("A) Aggiungere una componente   B) Rimuovere una componente");
+			System.out.println("A) Aggiungere una componente   B) Rimuovere una componente   C) Reset lista di default");
+
 
 			inputOp = operation.nextLine();
 
-		}while(!(inputOp.contains("a") || inputOp.contains("b")));
+		}while(!(inputOp.contains("a") || inputOp.contains("b") || inputOp.contains("c")));
 
-		
-		Scanner component = new Scanner(System.in);
+
+
 		String inputComp;
 		do {
 			if(inputOp.contains("a"))
 				System.out.println("Quale tipo di componente desideri aggiungere? ");
-			else
+			else if(inputOp.contains("b"))
 				System.out.println("Quale tipo di componente desideri rimuovere? ");
+			else 
+				System.out.println("Di quale lista di componenti vuoi fare il reset? ");
 			System.out.println("A) Cpu   B) Gpu   C) Motherboard   D) Case   E) Ram   F) Storage   G) Psu");
 
-			inputComp = component.nextLine();
+			inputComp = operation.nextLine();
 
 		}while(!(inputComp.contains("a") || inputComp.contains("b") || inputComp.contains("c") || inputComp.contains("d") || inputComp.contains("e") || inputComp.contains("f") || inputComp.contains("g")));
-		
-		
+
+		ComponentDao<?, ?> cdao;
+		cdao = ComponentDataManagement.ComponentData(inputComp);
+		DataManagement d = new DataManagement();
 
 		if(inputOp.contains("b")) {
-			Scanner remover = new Scanner(System.in);
+
 			String inputRem;
-			ComponentDao<?, ?> cdao;
+
 			int index;
 
 			do {
 				System.out.println("Seleziona la componente che vuoi rimuovere: ");
-				cdao = ComponentDataManagement.ComponentData(inputComp);
+
 				int ind = 0;
 				for(Component c:cdao.readComponents()) {
 					System.out.println(ind+") "+c);
 					ind++;
 				}
-				inputRem = remover.nextLine();
+				inputRem = operation.nextLine();
 				if(StringUtils.isNumeric(inputRem)) {
 					index = Integer.parseInt(inputRem);
 					if(index<0 || index > cdao.readComponents().size())
 						System.out.println("Input errato");
 					else {
-						DataManagement d = new DataManagement();
+
 						d.deletec(index, inputComp);
-						ind = 0;
-						for(Component c:cdao.readComponents()) {
-							System.out.println(ind+") "+c);
-							ind++;
-						}
+
 					}
 				}
 				else 
 					index=-1;
 
 			}while(!StringUtils.isNumeric(inputRem) || (index<0 || index>cdao.readComponents().size()));
+
 		}
 
 
 
-		else {
-			ComponentDao<?, ?> cdao;
-			cdao = ComponentDataManagement.ComponentData(inputComp);
-			DataManagement d = new DataManagement();
+		else if(inputOp.contains("a"))
 			d.addc(inputComp);
-			int ind = 0;
-			for(Component c:cdao.readComponents()) {
-				System.out.println(ind+") "+c);
-				ind++;
-			}
+
+		else
+			d.resetc(inputComp);
+
+
+		int ind = 0;
+		for(Component c:cdao.readComponents()) {
+			System.out.println(ind+") "+c);
+			ind++;
 		}
-		
+
+
+
+
 		operation.close();
-		component.close();
+
+
 
 	}
 }

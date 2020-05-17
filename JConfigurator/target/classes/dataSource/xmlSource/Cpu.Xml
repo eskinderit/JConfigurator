@@ -15,10 +15,24 @@
         <socket>LGA1151</socket>
     </componentList>
     <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cpu">
+        <name>AMD Ryzen 5 1400 (AM4)</name>
+        <price>176</price>
+        <power>10</power>
+        <oc>true</oc>
+        <socket>AM4</socket>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cpu">
         <name>Intel i5 7600K (lga 1151)</name>
         <price>222</price>
         <power>10</power>
         <oc>true</oc>
+        <socket>LGA1151</socket>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cpu">
+        <name>Intel i5 7600 (lga 1151)</name>
+        <price>211</price>
+        <power>10</power>
+        <oc>false</oc>
         <socket>LGA1151</socket>
     </componentList>
     <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cpu">
@@ -41,6 +55,13 @@
         <power>10</power>
         <oc>true</oc>
         <socket>LGA2011</socket>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cpu">
+        <name>cpu1</name>
+        <price>200</price>
+        <power>20</power>
+        <oc>false</oc>
+        <socket>socket</socket>
     </componentList>
     <Cpu>
         <name>Intel Pentium G4520 (lga 1151)</name>
@@ -57,10 +78,24 @@
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
+        <name>AMD Ryzen 5 1400 (AM4)</name>
+        <price>176</price>
+        <power>10</power>
+        <oc>true</oc>
+        <socket>AM4</socket>
+    </Cpu>
+    <Cpu>
         <name>Intel i5 7600K (lga 1151)</name>
         <price>222</price>
         <power>10</power>
         <oc>true</oc>
+        <socket>LGA1151</socket>
+    </Cpu>
+    <Cpu>
+        <name>Intel i5 7600 (lga 1151)</name>
+        <price>211</price>
+        <power>10</power>
+        <oc>false</oc>
         <socket>LGA1151</socket>
     </Cpu>
     <Cpu>
@@ -83,5 +118,12 @@
         <power>10</power>
         <oc>true</oc>
         <socket>LGA2011</socket>
+    </Cpu>
+    <Cpu>
+        <name>cpu1</name>
+        <price>200</price>
+        <power>20</power>
+        <oc>false</oc>
+        <socket>socket</socket>
     </Cpu>
 </cpuDao>

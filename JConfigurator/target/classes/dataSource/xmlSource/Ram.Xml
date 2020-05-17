@@ -49,20 +49,6 @@
         <dimension>16</dimension>
         <ramType>DDR4</ramType>
     </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ram">
-        <name>ram1</name>
-        <price>10</price>
-        <power>1</power>
-        <dimension>8</dimension>
-        <ramType>rfag</ramType>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ram">
-        <name>storage1</name>
-        <price>10</price>
-        <power>10</power>
-        <dimension>10</dimension>
-        <ramType>tiporpova</ramType>
-    </componentList>
     <Ram>
         <name>Kingston HyperX Fury DDR3 (2x4)</name>
         <price>67</price>
@@ -111,19 +97,5 @@
         <power>10</power>
         <dimension>16</dimension>
         <ramType>DDR4</ramType>
-    </Ram>
-    <Ram>
-        <name>ram1</name>
-        <price>10</price>
-        <power>1</power>
-        <dimension>8</dimension>
-        <ramType>rfag</ramType>
-    </Ram>
-    <Ram>
-        <name>storage1</name>
-        <price>10</price>
-        <power>10</power>
-        <dimension>10</dimension>
-        <ramType>tiporpova</ramType>
     </Ram>
 </ramDao>
