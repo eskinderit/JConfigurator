@@ -18,9 +18,11 @@ public class Cpu extends Component{
 		this.power = power;
 	}
 	
+	
 	public Cpu() {
 		super();
 	}
+	
 
 	public int getPower() {
 		return power;

@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <storageDao>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="storage">
+        <name>WD Blue 1TB (HDD)</name>
+        <price>49</price>
+        <power>10</power>
+        <capacity>1000</capacity>
+        <ssd>false</ssd>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="storage">
+        <name>Samsung 850 evo 500GB (SSD)</name>
+        <price>153</price>
+        <power>10</power>
+        <capacity>500</capacity>
+        <ssd>true</ssd>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="storage">
+        <name>Samsung 850 evo 250GB (SSD)</name>
+        <price>153</price>
+        <power>10</power>
+        <capacity>250</capacity>
+        <ssd>true</ssd>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="storage">
+        <name>WD Black 2TB (HDD)</name>
+        <price>130</price>
+        <power>10</power>
+        <capacity>2000</capacity>
+        <ssd>false</ssd>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="storage">
+        <name>WD Black 1TB (HDD)</name>
+        <price>79</price>
+        <power>10</power>
+        <capacity>1000</capacity>
+        <ssd>false</ssd>
+    </componentList>
+    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="storage">
+        <name>nome1</name>
+        <price>10</price>
+        <power>10</power>
+        <capacity>10</capacity>
+        <ssd>true</ssd>
+    </componentList>
     <Storage>
         <name>WD Blue 1TB (HDD)</name>
         <price>49</price>
@@ -34,5 +76,12 @@
         <power>10</power>
         <capacity>1000</capacity>
         <ssd>false</ssd>
+    </Storage>
+    <Storage>
+        <name>nome1</name>
+        <price>10</price>
+        <power>10</power>
+        <capacity>10</capacity>
+        <ssd>true</ssd>
     </Storage>
 </storageDao>

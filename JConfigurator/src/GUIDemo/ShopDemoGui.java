@@ -1,6 +1,5 @@
 package GUIDemo;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
@@ -28,6 +27,7 @@ public class ShopDemoGui {
 
 		}while(!(inputOp.contains("a") || inputOp.contains("b")));
 
+		
 		Scanner component = new Scanner(System.in);
 		String inputComp;
 		do {
@@ -40,42 +40,60 @@ public class ShopDemoGui {
 			inputComp = component.nextLine();
 
 		}while(!(inputComp.contains("a") || inputComp.contains("b") || inputComp.contains("c") || inputComp.contains("d") || inputComp.contains("e") || inputComp.contains("f") || inputComp.contains("g")));
-
+		
+		
 
 		if(inputOp.contains("b")) {
 			Scanner remover = new Scanner(System.in);
 			String inputRem;
 			ComponentDao<?, ?> cdao;
+			int index;
 
 			do {
 				System.out.println("Seleziona la componente che vuoi rimuovere: ");
 				cdao = ComponentDataManagement.ComponentData(inputComp);
-				int index = 0;
+				int ind = 0;
 				for(Component c:cdao.readComponents()) {
-					System.out.println(index+") "+c);
-					index++;
+					System.out.println(ind+") "+c);
+					ind++;
 				}
 				inputRem = remover.nextLine();
-
-			}while(!StringUtils.isNumeric(inputRem));
-
-			int index = Integer.parseInt(inputRem);
-			if(index<0 || index > cdao.readComponents().size())
-				System.out.println("Input errato");
-			else {
-				DataManagement d = new DataManagement();
-				d.deletec(index, inputComp);
-				index = 0;
-				for(Component c:cdao.readComponents()) {
-					System.out.println(index+") "+c);
-					index++;
+				if(StringUtils.isNumeric(inputRem)) {
+					index = Integer.parseInt(inputRem);
+					if(index<0 || index > cdao.readComponents().size())
+						System.out.println("Input errato");
+					else {
+						DataManagement d = new DataManagement();
+						d.deletec(index, inputComp);
+						ind = 0;
+						for(Component c:cdao.readComponents()) {
+							System.out.println(ind+") "+c);
+							ind++;
+						}
+					}
 				}
-			}
+				else 
+					index=-1;
 
-			remover.close();
-
+			}while(!StringUtils.isNumeric(inputRem) || (index<0 || index>cdao.readComponents().size()));
 		}
 
+
+
+		else {
+			ComponentDao<?, ?> cdao;
+			cdao = ComponentDataManagement.ComponentData(inputComp);
+			DataManagement d = new DataManagement();
+			d.addc(inputComp);
+			int ind = 0;
+			for(Component c:cdao.readComponents()) {
+				System.out.println(ind+") "+c);
+				ind++;
+			}
+		}
+		
+		operation.close();
+		component.close();
 
 	}
 }

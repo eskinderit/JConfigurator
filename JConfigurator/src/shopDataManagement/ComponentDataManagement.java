@@ -51,5 +51,6 @@ public abstract class ComponentDataManagement {
 	
 	abstract public <T extends Component> ArrayList<T> deleteComp (int index) throws JAXBException;
 	
+	abstract public <T extends Component> ArrayList<T> addComp () throws JAXBException;
 	
 }
