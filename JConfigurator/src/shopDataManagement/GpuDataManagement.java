@@ -7,11 +7,11 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ConfiguratorEngine.Component;
+
 import ConfiguratorEngine.Gpu;
 import dataSource.GpuDao;
 
-public class GpuDataManagement extends ComponentDataManagement{
+public class GpuDataManagement extends ComponentDataManagement<Gpu>{
 
 	private ArrayList<Gpu> gpus = new ArrayList<Gpu>();
 	

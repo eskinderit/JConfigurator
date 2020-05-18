@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
-
-import org.apache.commons.lang3.StringUtils;
-
-import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Psu;
 import dataSource.PsuDao;
 
 
-public class PsuDataManagement extends ComponentDataManagement{
+public class PsuDataManagement extends ComponentDataManagement<Psu>{
 
 	private ArrayList<Psu> psus= new ArrayList<Psu>();
 	

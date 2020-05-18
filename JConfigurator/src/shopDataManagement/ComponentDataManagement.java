@@ -18,7 +18,7 @@ import dataSource.PsuDao;
 import dataSource.RamDao;
 import dataSource.StorageDao;
 
-public abstract class ComponentDataManagement {
+public abstract class ComponentDataManagement<T extends Component> {
 	
 	public static ComponentDao<?, ?> ComponentData(String c) throws JAXBException {
 		
@@ -79,10 +79,10 @@ public abstract class ComponentDataManagement {
 		return power;
 	}
 	
-	abstract public <T extends Component> ArrayList<T> deleteComp (int index) throws JAXBException;
+	abstract public  ArrayList<T> deleteComp (int index) throws JAXBException;
 	
-	abstract public <T extends Component> ArrayList<T> addComp (Scanner parameter) throws JAXBException;
+	abstract public  ArrayList<T> addComp (Scanner parameter) throws JAXBException;
 	
-	abstract public <T extends Component> ArrayList<T> resetComp() throws JAXBException;
+	abstract public  ArrayList<T> resetComp() throws JAXBException;
 	
 }

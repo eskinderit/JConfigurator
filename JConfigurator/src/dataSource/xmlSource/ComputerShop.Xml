@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <computerShopDao>
-	<ComputerShop>
-		<name>Negozio Morgagni</name>
-		<price>45</price>
-		<address>Viale Morgagni</address>
-	</ComputerShop>
+    <ComputerShop>
+        <name>Negozio Morgagni</name>
+        <price>45</price>
+        <address>Viale Morgagni</address>
+    </ComputerShop>
 </computerShopDao>

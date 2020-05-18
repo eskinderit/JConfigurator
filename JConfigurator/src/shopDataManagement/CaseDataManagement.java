@@ -8,11 +8,10 @@ import javax.xml.bind.JAXBException;
 import org.apache.commons.lang3.StringUtils;
 
 import ConfiguratorEngine.Case;
-import ConfiguratorEngine.Component;
 import dataSource.CaseDao;
 
 
-public class CaseDataManagement extends ComponentDataManagement{
+public class CaseDataManagement extends ComponentDataManagement<Case>{
 
 	private ArrayList<Case> cases = new ArrayList<Case>();
 	

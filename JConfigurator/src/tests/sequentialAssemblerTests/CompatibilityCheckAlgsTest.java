@@ -1,4 +1,4 @@
-package tests;
+package tests.sequentialAssemblerTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -86,7 +86,7 @@ class CompatibilityCheckAlgsTest {
 		Psu psu2 = new Psu("China Corporate", 20, 150);
 		Psu psu3 = new Psu("Antec", 18, 184);
 		
-		System.out.println(fullConfig.getTotalEstimatedPower());
+
 		assertTrue(CompatibilityCheckAlgs.checkTotalWattagePsu(fullConfig,psu1), "Correctly sized Psu Check");
 		assertFalse(CompatibilityCheckAlgs.checkTotalWattagePsu(fullConfig,psu2),"undersized Psu Check");
 		assertFalse(CompatibilityCheckAlgs.checkTotalWattagePsu(fullConfig,psu3),"undersized Psu Check");
@@ -118,9 +118,6 @@ class CompatibilityCheckAlgsTest {
 		assertEquals(CompatibilityCheckAlgs.getTotalPrice(fc),664);
 		assertEquals(CompatibilityCheckAlgs.getTotalPowerOverstimation(fc),185);
 		
-		System.out.print(fc);
-		System.out.print("\n"+CompatibilityCheckAlgs.getTotalPowerOverstimation(fc));
-		System.out.print("\n"+CompatibilityCheckAlgs.getTotalPrice(fc) + " €");
 		
 	}
 	

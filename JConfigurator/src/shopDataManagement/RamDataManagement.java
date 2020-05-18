@@ -6,12 +6,10 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-
-import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Ram;
 import dataSource.RamDao;
 
-public class RamDataManagement extends ComponentDataManagement{
+public class RamDataManagement extends ComponentDataManagement<Ram>{
 	private ArrayList<Ram> rams = new ArrayList<Ram>();
 	
 	@Override

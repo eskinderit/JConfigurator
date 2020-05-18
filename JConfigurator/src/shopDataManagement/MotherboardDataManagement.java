@@ -6,12 +6,10 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-
-import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Motherboard;
 import dataSource.MotherboardDao;
 
-public class MotherboardDataManagement extends ComponentDataManagement{
+public class MotherboardDataManagement extends ComponentDataManagement<Motherboard>{
 
 	ArrayList<Motherboard> motherboards = new ArrayList<Motherboard>();
 	

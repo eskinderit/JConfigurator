@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
-
-import org.apache.commons.lang3.StringUtils;
-
-import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Cpu;
 
 import dataSource.CpuDao;
 
-public class CpuDataManagement extends ComponentDataManagement{
+public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 	ArrayList<Cpu> cpus = new ArrayList<Cpu>();
 	
 	@Override
@@ -36,7 +32,6 @@ public class CpuDataManagement extends ComponentDataManagement{
 		int price = 0;
 		int power = 0;
 		String socket;
-		boolean oc;
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);

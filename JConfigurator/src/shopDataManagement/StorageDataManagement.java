@@ -6,13 +6,10 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-
-import ConfiguratorEngine.Component;
 import ConfiguratorEngine.Storage;
-import dataSource.CaseDao;
 import dataSource.StorageDao;
 
-public class StorageDataManagement extends ComponentDataManagement{
+public class StorageDataManagement extends ComponentDataManagement<Storage>{
 
 	private ArrayList<Storage> storages = new ArrayList<Storage>();
 	

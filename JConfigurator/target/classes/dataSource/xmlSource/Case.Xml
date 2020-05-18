@@ -1,53 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <caseDao>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>Corsair Spec 01 (ATX)</name>
-        <price>56</price>
-        <power>10</power>
-        <size>3</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>Thermaltake Core V1 (MINI-ITX)</name>
-        <price>44</price>
-        <power>10</power>
-        <size>1</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>Corsair Carbide Air 540 (ATX)</name>
-        <price>149</price>
-        <power>10</power>
-        <size>3</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>NZXT s340 (ATX)</name>
-        <price>78</price>
-        <power>10</power>
-        <size>3</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>NZXT H440 (ATX)</name>
-        <price>170</price>
-        <power>10</power>
-        <size>3</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>Corsair Obsidian 750D (ATX)</name>
-        <price>156</price>
-        <power>10</power>
-        <size>3</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>case</name>
-        <price>32</price>
-        <power>32</power>
-        <size>32</size>
-    </componentList>
-    <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="case">
-        <name>case1</name>
-        <price>32</price>
-        <power>32</power>
-        <size>32</size>
-    </componentList>
     <Case>
         <name>Corsair Spec 01 (ATX)</name>
         <price>56</price>
@@ -83,17 +35,5 @@
         <price>156</price>
         <power>10</power>
         <size>3</size>
-    </Case>
-    <Case>
-        <name>case</name>
-        <price>32</price>
-        <power>32</power>
-        <size>32</size>
-    </Case>
-    <Case>
-        <name>case1</name>
-        <price>32</price>
-        <power>32</power>
-        <size>32</size>
     </Case>
 </caseDao>
