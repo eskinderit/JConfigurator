@@ -25,7 +25,7 @@ public class PsuDataManagement extends ComponentDataManagement{
 	}
 
 	@Override
-	public ArrayList<Psu> addComp() throws JAXBException {
+	public ArrayList<Psu> addComp(Scanner parameter) throws JAXBException {
 
 		PsuDao psuDao = new PsuDao();
 		
@@ -33,7 +33,6 @@ public class PsuDataManagement extends ComponentDataManagement{
 		int price = 0; 
 		int power = 0;
 		
-		Scanner parameter = new Scanner(System.in);
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
 		power = this.setPower(parameter, power);
@@ -41,7 +40,6 @@ public class PsuDataManagement extends ComponentDataManagement{
 		Psu psu1 = new Psu(name, price, power);
 		
 		psus.add(psu1);
-		parameter.close();
 		
 		return psuDao.addComponents(psus);
 	}

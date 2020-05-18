@@ -25,7 +25,7 @@ public class CaseDataManagement extends ComponentDataManagement{
 	}
 
 	@Override
-	public ArrayList<Case> addComp() throws JAXBException {
+	public ArrayList<Case> addComp(Scanner parameter) throws JAXBException {
 		
 		String input;
 		CaseDao caseDao = new CaseDao();
@@ -35,7 +35,7 @@ public class CaseDataManagement extends ComponentDataManagement{
 		int power = 0;
 		int size;
 		
-		Scanner parameter = new Scanner(System.in);
+		
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
@@ -51,7 +51,6 @@ public class CaseDataManagement extends ComponentDataManagement{
 		
 		cases.add(case1);
 		
-		parameter.close();
 		return caseDao.addComponents(cases);
 	}
 

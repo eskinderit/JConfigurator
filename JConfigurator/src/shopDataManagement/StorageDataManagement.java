@@ -25,7 +25,7 @@ public class StorageDataManagement extends ComponentDataManagement{
 	}
 
 	@Override
-	public ArrayList<Storage> addComp() throws JAXBException {
+	public ArrayList<Storage> addComp(Scanner parameter) throws JAXBException {
 		String input;
 		StorageDao storageDao = new StorageDao();
 		
@@ -34,7 +34,6 @@ public class StorageDataManagement extends ComponentDataManagement{
 		int power = 0;
 		int capacity;
 		
-		Scanner parameter = new Scanner(System.in);
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
 		power = this.setPower(parameter, power);
@@ -58,7 +57,6 @@ public class StorageDataManagement extends ComponentDataManagement{
 			storage = new Storage(name, price, power, capacity, false);
 		
 		storages.add(storage);
-		parameter.close();
 		return storageDao.addComponents(storages);
 	}
 

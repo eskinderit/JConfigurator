@@ -25,7 +25,7 @@ public class MotherboardDataManagement extends ComponentDataManagement{
 	}
 
 	@Override
-	public ArrayList<Motherboard> addComp() throws JAXBException {
+	public ArrayList<Motherboard> addComp(Scanner parameter) throws JAXBException {
 		
 		MotherboardDao motherboardDao = new MotherboardDao();
 		String input;
@@ -38,7 +38,6 @@ public class MotherboardDataManagement extends ComponentDataManagement{
 		String ramType;
 		int size;
 		
-		Scanner parameter = new Scanner(System.in);
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
@@ -74,7 +73,6 @@ public class MotherboardDataManagement extends ComponentDataManagement{
 			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, false, size);
 		
 		motherboards.add(motherboard);
-		parameter.close();
 		return motherboardDao.addComponents(motherboards);
 	}
 

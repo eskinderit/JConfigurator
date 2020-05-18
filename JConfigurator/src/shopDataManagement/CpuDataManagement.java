@@ -27,7 +27,7 @@ public class CpuDataManagement extends ComponentDataManagement{
 
 	
 	@Override
-	public ArrayList<Cpu> addComp() throws JAXBException{
+	public ArrayList<Cpu> addComp(Scanner parameter) throws JAXBException{
 		CpuDao cpuDao = new CpuDao();
 		
 		
@@ -38,7 +38,6 @@ public class CpuDataManagement extends ComponentDataManagement{
 		String socket;
 		boolean oc;
 		
-		Scanner parameter = new Scanner(System.in);
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
 		power = this.setPower(parameter, power);
@@ -60,7 +59,6 @@ public class CpuDataManagement extends ComponentDataManagement{
 			c = new Cpu(name, price, power, socket, false);
 
 		cpus.add(c);
-		parameter.close();
 		return cpuDao.addComponents(cpus);
 		
 	}

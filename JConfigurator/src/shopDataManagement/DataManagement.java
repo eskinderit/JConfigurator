@@ -1,5 +1,7 @@
 package shopDataManagement;
 
+import java.util.Scanner;
+
 import javax.xml.bind.JAXBException;
 
 public class DataManagement {
@@ -35,38 +37,38 @@ public class DataManagement {
 		}
 	}
 	
-	public void addc (String component) throws JAXBException {
+	public void addc (String component, Scanner parameter) throws JAXBException {
 		if(component.contains("a")) {
 			CpuDataManagement c = new CpuDataManagement();
-			c.addComp();
+			c.addComp(parameter);
 		}
 		
 		else if (component.contains("b")) {
 			GpuDataManagement g = new GpuDataManagement();
-			g.addComp();
+			g.addComp(parameter);
 		}
 		
 		else if (component.contains("c")){
 			MotherboardDataManagement m = new MotherboardDataManagement();
-			m.addComp();
+			m.addComp(parameter);
 		}
 		
 		else if(component.contains("d")){
 			CaseDataManagement c1 = new CaseDataManagement();
-			c1.addComp();
+			c1.addComp(parameter);
 		}
 		else if(component.contains("e"))  {
 			RamDataManagement r = new RamDataManagement();
-			r.addComp();
+			r.addComp(parameter);
 		}
 		else if(component.contains("f")){
 			StorageDataManagement s = new StorageDataManagement();
-			s.addComp();
+			s.addComp(parameter);
 		}
 		
 		else {
 			PsuDataManagement p = new PsuDataManagement();
-			p.addComp();
+			p.addComp(parameter);
 		}
 	}
 	

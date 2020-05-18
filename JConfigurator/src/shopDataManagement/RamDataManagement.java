@@ -24,7 +24,7 @@ public class RamDataManagement extends ComponentDataManagement{
 
 	
 	@Override
-	public ArrayList<Ram> addComp() throws JAXBException {
+	public ArrayList<Ram> addComp(Scanner parameter) throws JAXBException {
 		RamDao ramDao = new RamDao();
 		String input;
 		String name = null;
@@ -33,7 +33,6 @@ public class RamDataManagement extends ComponentDataManagement{
 		int memory;
 		String ramType;
 		
-		Scanner parameter = new Scanner(System.in);
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
 		power = this.setPower(parameter, power);
@@ -50,7 +49,6 @@ public class RamDataManagement extends ComponentDataManagement{
 		Ram ram = new Ram(name, price, power, ramType, memory);
 		
 		rams.add(ram);
-		parameter.close();
 		return ramDao.addComponents(rams);
 	}
 

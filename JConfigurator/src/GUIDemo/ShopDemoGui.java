@@ -14,15 +14,17 @@ import shopDataManagement.DataManagement;
 public class ShopDemoGui {
 
 	public static void main(String[] args) throws JAXBException {
-
-
+		Boolean relaunch;
 		Scanner operation = new Scanner(System.in);
+		do {
+		relaunch = false;
+
+		
 		String inputOp;
 
 		do {
 			System.out.println("Quale operazione vuoi effettuare?");
 			System.out.println("A) Aggiungere una componente   B) Rimuovere una componente   C) Reset lista di default");
-
 
 			inputOp = operation.nextLine();
 
@@ -70,7 +72,6 @@ public class ShopDemoGui {
 					else {
 
 						d.deletec(index, inputComp);
-
 					}
 				}
 				else 
@@ -83,7 +84,7 @@ public class ShopDemoGui {
 
 
 		else if(inputOp.contains("a"))
-			d.addc(inputComp);
+			d.addc(inputComp, operation);
 
 		else
 			d.resetc(inputComp);
@@ -94,13 +95,20 @@ public class ShopDemoGui {
 			System.out.println(ind+") "+c);
 			ind++;
 		}
+		
+		String launch;
+		do {
+		System.out.println("Desideri effettuare un'altra operazione? ");
+		System.out.println("A) Si   B) No");
+		launch = operation.nextLine();
+		}while(!(launch.contains("a") || launch.contains("b")));
+		
+		if(launch.contains("a"))
+			relaunch = true;
 
-
-
-
+		
+		}while(relaunch);
 		operation.close();
-
-
 
 	}
 }

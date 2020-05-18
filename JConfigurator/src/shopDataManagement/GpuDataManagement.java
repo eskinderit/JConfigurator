@@ -24,7 +24,7 @@ public class GpuDataManagement extends ComponentDataManagement{
 	}
 
 	@Override
-	public ArrayList<Gpu> addComp() throws JAXBException {
+	public ArrayList<Gpu> addComp(Scanner parameter) throws JAXBException {
 		GpuDao gpuDao = new GpuDao();
 		String input;
 		String name = null;
@@ -32,7 +32,6 @@ public class GpuDataManagement extends ComponentDataManagement{
 		int power = 0;
 		int memory;
 		
-		Scanner parameter = new Scanner(System.in);
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
 		power = this.setPower(parameter, power);
@@ -45,7 +44,6 @@ public class GpuDataManagement extends ComponentDataManagement{
 		Gpu g = new Gpu(name, price, power, memory);
 		
 		gpus.add(g);
-		parameter.close();
 		
 		return gpuDao.addComponents(gpus);
 	}

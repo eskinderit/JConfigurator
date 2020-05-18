@@ -58,9 +58,9 @@
     </componentList>
     <componentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="cpu">
         <name>cpu1</name>
-        <price>200</price>
-        <power>20</power>
-        <oc>false</oc>
+        <price>432</price>
+        <power>32</power>
+        <oc>true</oc>
         <socket>socket</socket>
     </componentList>
     <Cpu>
@@ -121,9 +121,9 @@
     </Cpu>
     <Cpu>
         <name>cpu1</name>
-        <price>200</price>
-        <power>20</power>
-        <oc>false</oc>
+        <price>432</price>
+        <power>32</power>
+        <oc>true</oc>
         <socket>socket</socket>
     </Cpu>
 </cpuDao>
