@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ConfiguratorEngine.Case;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Motherboard;
 import dataSource.CaseDao;
 import sequentialAssembler.CaseAssembly;
@@ -22,7 +22,7 @@ class CaseAssemblyTest {
 	
 	ComponentAssembly caseAssembly;
 	CaseDao caseDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -31,12 +31,7 @@ class CaseAssemblyTest {
 		caseAssembly = new CaseAssembly();
 		caseDao = new CaseDao();
 		caseDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 	
 	
@@ -56,7 +51,7 @@ class CaseAssemblyTest {
 		caseDao.addComponents(caseList);
 		Motherboard motherboard = new Motherboard("MotherboardProva", 43, 3, "LGA1150", "Z77", "DDR3", false, 2);
 
-		f1.motherboard(motherboard);
+		f1.setMotherboard(motherboard);
 		
 		ArrayList<Case> compatibleComponents = caseAssembly.getCompatibleComponents(f1);
 		
@@ -65,7 +60,6 @@ class CaseAssemblyTest {
 		assertTrue(compatibleComponents.contains(case2), "Comparing a motherboard with compatible (bigger size) case");
 		assertTrue(compatibleComponents.contains(case3), "Comparing a motherboard with compatible (bigger size) case");
 		
-		f1.motherboard(null);
 	}
 	
 	@Test
@@ -82,10 +76,9 @@ class CaseAssemblyTest {
 		caseList.add(case3);
 		
 		caseDao.addComponents(caseList);
-		FullConfigBuilder f1 = FullConfigBuilder.getInstance();
 		caseAssembly.InputBasedBehavior(caseAssembly, f1 , "0");
-		assertEquals(f1.getMyCase1(), case0, "Comparing the Case with right index");
-		assertNotEquals(f1.getMyCase1(), case1, "Choosing the Case with wrong index");
+		assertEquals(f1.getCase0(), case0, "Comparing the Case with right index");
+		assertNotEquals(f1.getCase0(), case1, "Choosing the Case with wrong index");
 		
 	}
 

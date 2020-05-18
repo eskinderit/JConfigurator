@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import ConfiguratorEngine.Case;
 import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Gpu;
 import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Psu;
@@ -28,7 +28,7 @@ class PsuAssemblyTest {
 	
 	ComponentAssembly psuAssembly;
 	PsuDao psuDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -37,12 +37,7 @@ class PsuAssemblyTest {
 		psuAssembly = new PsuAssembly();
 		psuDao = new PsuDao();
 		psuDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 	
 	
@@ -69,25 +64,18 @@ class PsuAssemblyTest {
 		Storage storage = new Storage("Storage prova", 55, 100, 500, true);
 		
 
-		f1.cpu(cpu);
-		f1.gpu(gpu);
-		f1.motherboard(motherboard);
-		f1.case1(case1);
-		f1.ram(ram);
-		f1.storage(storage);
+		f1.setCpu(cpu);
+		f1.setGpu(gpu);
+		f1.setMotherboard(motherboard);
+		f1.setCase0(case1);
+		f1.setRam(ram);
+		f1.setStorage(storage);
 		
 		ArrayList<Psu> compatibleComponents = psuAssembly.getCompatibleComponents(f1);
 		
 		assertFalse(compatibleComponents.contains(psu0), "Verifying the incompatibility of a ram with different ramType");
 		assertFalse(compatibleComponents.contains(psu1), "Verifying the compatibility of a ram with different ramType");
 		assertTrue(compatibleComponents.contains(psu2), "Verifying the compatibility of a ram with different ramType");
-		
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
 
 	}
 	
@@ -101,12 +89,12 @@ class PsuAssemblyTest {
 		Ram ram = new Ram("Ram prova", 55, 100, "DDR3", 8);
 		Storage storage = new Storage("Storage prova", 55, 100, 500, true);
 	
-		f1.cpu(cpu);
-		f1.gpu(gpu);
-		f1.motherboard(motherboard);
-		f1.case1(case1);
-		f1.ram(ram);
-		f1.storage(storage);
+		f1.setCpu(cpu);
+		f1.setGpu(gpu);
+		f1.setMotherboard(motherboard);
+		f1.setCase0(case1);
+		f1.setRam(ram);
+		f1.setStorage(storage);
 		
 		Psu psu0 = new Psu("Prova0", 50, 600);
 		Psu psu1 = new Psu("Prova1", 50, 650);
@@ -120,8 +108,8 @@ class PsuAssemblyTest {
 		psuDao.addComponents(psuList);
 		
 		psuAssembly.InputBasedBehavior(psuAssembly, f1 , "0");
-		assertEquals(f1.getMyPsu(), psu0, "Comparing the Case with right index");
-		assertNotEquals(f1.getMyPsu(), psu1, "Choosing the Case with wrong index");
+		assertEquals(f1.getPsu(), psu0, "Comparing the Case with right index");
+		assertNotEquals(f1.getPsu(), psu1, "Choosing the Case with wrong index");
 
 	}
 

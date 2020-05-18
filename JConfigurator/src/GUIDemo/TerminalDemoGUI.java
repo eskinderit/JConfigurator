@@ -5,7 +5,7 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.Component;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import sequentialAssembler.*;
 
 public class TerminalDemoGUI {
@@ -14,7 +14,7 @@ public class TerminalDemoGUI {
 		
 		ComponentAssembly assemblyStep = new CpuAssembly();
 		
-		FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+		FullConfig f1 = new FullConfig();
 	
 		System.out.println("##################### CONFIGURATION STARTED #####################");
 		
@@ -52,7 +52,7 @@ public class TerminalDemoGUI {
 			}
 		}
 		
-		f1.buildFullConfig();		//costruisce l'oggetto fullConfig
+		//costruisce l'oggetto fullConfig
 		
 	    System.out.println("###### La configurazione scelta e' la seguente: ######\n"+f1);
 		input.close();

@@ -6,7 +6,7 @@ import javax.xml.bind.JAXBException;
 import org.apache.commons.lang3.StringUtils;
 
 import ConfiguratorEngine.Component;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import dataSource.ComponentDao;
 
 public abstract class ComponentAssembly {
@@ -29,13 +29,13 @@ public abstract class ComponentAssembly {
 	public abstract  ComponentAssembly getPreviousPassage();
 	public abstract ComponentAssembly getNextPassage();
 
-	protected abstract void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException;
+	protected abstract void passageBehavior(FullConfig f1, int index) throws JAXBException;
 
 	abstract public ComponentDao<?,?> getComponentDao();
 	
-	abstract public  <T extends Component> ArrayList<T> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException;
+	abstract public  <T extends Component> ArrayList<T> getCompatibleComponents(FullConfig f1) throws JAXBException;
 
-	public void InputBasedBehavior(ComponentAssembly assemblyStep, FullConfigBuilder f1, String s) throws JAXBException  {
+	public void InputBasedBehavior(ComponentAssembly assemblyStep, FullConfig f1, String s) throws JAXBException  {
 
 		if(StringUtils.isNumeric(s)) {
 			int selectedIndex = Integer.parseInt(s);

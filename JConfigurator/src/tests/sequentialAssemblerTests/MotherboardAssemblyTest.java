@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import ConfiguratorEngine.Case;
 import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Ram;
 import dataSource.MotherboardDao;
@@ -24,24 +24,15 @@ class MotherboardAssemblyTest {
 
 	ComponentAssembly motherboardAssembly;
 	MotherboardDao motherboardDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
-
-
+	FullConfig f1;
+	
 	@BeforeEach
 	@AfterEach
 	void init() throws JAXBException {
 		motherboardAssembly = new MotherboardAssembly();
 		motherboardDao = new MotherboardDao();
 		motherboardDao.setEmptyComponents();
-		f1 = null;
-		f1 = FullConfigBuilder.getIstance();
-		
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 	
 	
@@ -63,14 +54,13 @@ class MotherboardAssemblyTest {
 		motherboardDao.addComponents(motherboardList);
 		Cpu cpu = new Cpu("CpuProva", 43, 3, "AM4", false);
 
-		f1.cpu(cpu);
+		f1.setCpu(cpu);
 
 		ArrayList<Motherboard> compatibleComponents = motherboardAssembly.getCompatibleComponents(f1);
 
 		assertFalse(compatibleComponents.contains(motherboard1), "Comparing incompatible Motherboard and Cpu: different sockets");
 		assertTrue(compatibleComponents.contains(motherboard3), "Comparing compatible Motherboard and Cpu: same sockets");
 		
-		f1.cpu(null);
 
 	}
 
@@ -90,14 +80,13 @@ class MotherboardAssemblyTest {
 		motherboardDao.addComponents(motherboardList);
 		Case case1 = new Case("Corsair Mini itx", 55, 10, 1);
 
-		f1.case1(case1);
+		f1.setCase0(case1);
 
 		ArrayList<Motherboard> compatibleComponents = motherboardAssembly.getCompatibleComponents(f1);
 
 		assertFalse(compatibleComponents.contains(motherboard1), "Comparing incompatible Motherboard and Case: Motherboard bigger in size");
 		assertFalse(compatibleComponents.contains(motherboard2), "Comparing incompatible Motherboard and Case: Motherboard bigger in size");
 		assertTrue(compatibleComponents.contains(motherboard3), "Comparing compatible Motherboard and Case: Motherboard has equal size to Case");
-		f1.case1(null);
 
 	}
 
@@ -115,15 +104,13 @@ class MotherboardAssemblyTest {
 		motherboardDao.addComponents(motherboardList);
 		Ram ram = new Ram("Ballistix Hyper",53,10, "DDR3",16);
 
-		f1.ram(ram);
+		f1.setRam(ram);
 
 		ArrayList<Motherboard> compatibleComponents = motherboardAssembly.getCompatibleComponents(f1);
 
 		assertFalse(compatibleComponents.contains(motherboard2), "Comparing incompatible Motherboard and Ram: different ramType");
 		assertTrue(compatibleComponents.contains(motherboard1), "Comparing compatible Motherboard and Ram: same ramType");
 		
-		f1.ram(null);
-
 	}
 
 	@Test
@@ -142,8 +129,8 @@ class MotherboardAssemblyTest {
 		motherboardDao.addComponents(motherboardList);
 
 		motherboardAssembly.InputBasedBehavior(motherboardAssembly, f1 , "0");
-		assertEquals(f1.getMyMotherboard(), motherboard0, "Comparing the Case with right index");
-		assertNotEquals(f1.getMyMotherboard(),  motherboard1, "Choosing the Case with wrong index");
+		assertEquals(f1.getMotherboard(), motherboard0, "Comparing the Case with right index");
+		assertNotEquals(f1.getMotherboard(),  motherboard1, "Choosing the Case with wrong index");
 
 	}
 

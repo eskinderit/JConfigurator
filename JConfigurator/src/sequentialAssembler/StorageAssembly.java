@@ -3,7 +3,7 @@ package sequentialAssembler;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Storage;
 import dataSource.ComponentDao;
 import dataSource.StorageDao;
@@ -19,10 +19,10 @@ public class StorageAssembly extends ComponentAssembly {
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 		StorageDao storageDao = new StorageDao(); 
 		Storage componentToSet = storageDao.getComponent(index);
-		f1.storage(componentToSet);
+		f1.setStorage(componentToSet);
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class StorageAssembly extends ComponentAssembly {
 		return new StorageDao();
 	}
 	@Override
-	public ArrayList<Storage> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
+	public ArrayList<Storage> getCompatibleComponents(FullConfig f1) throws JAXBException {
 
 		StorageDao storageDao = new StorageDao();
 		return storageDao.readComponents();

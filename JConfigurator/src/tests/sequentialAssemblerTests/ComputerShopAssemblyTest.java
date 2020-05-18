@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ConfiguratorEngine.ComputerShop;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import dataSource.ComputerShopDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.ComputerShopAssembly;
@@ -21,7 +21,7 @@ class ComputerShopAssemblyTest {
 	
 	ComponentAssembly computerShopAssembly;
 	ComputerShopDao computerShopDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -30,14 +30,8 @@ class ComputerShopAssemblyTest {
 		computerShopAssembly = new ComputerShopAssembly();
 		computerShopDao = new ComputerShopDao();
 		computerShopDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
-	
 	
 	@Test
 	void getComponentsByIndex() throws JAXBException {
@@ -56,8 +50,8 @@ class ComputerShopAssemblyTest {
 		
 
 		computerShopAssembly.InputBasedBehavior(computerShopAssembly, f1 , "0");
-		assertEquals(f1.getMyComputerShop(), computerShop0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
-		assertNotEquals(f1.getMyComputerShop(), computerShop1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
+		assertEquals(f1.getComputerShop(), computerShop0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
+		assertNotEquals(f1.getComputerShop(), computerShop1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
 		
 	}
 

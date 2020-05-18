@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Ram;
 import dataSource.RamDao;
@@ -23,7 +23,7 @@ class RamAssemblyTest {
 	
 	ComponentAssembly ramAssembly;
 	RamDao ramDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -32,12 +32,7 @@ class RamAssemblyTest {
 		ramAssembly = new RamAssembly();
 		ramDao = new RamDao();
 		ramDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 	
 	
@@ -55,15 +50,12 @@ class RamAssemblyTest {
 		ramDao.addComponents(ramList);
 		Motherboard motherboard = new Motherboard("MotherboardProva", 43, 3, "LGA1150", "Z77", "DDR3", false, 2);
 
-		f1.motherboard(motherboard);
+		f1.setMotherboard(motherboard);
 		
 		ArrayList<Ram> compatibleComponents = ramAssembly.getCompatibleComponents(f1);
 		
 		assertFalse(compatibleComponents.contains(ram1), "Verifying the incompatibility of a ram with different ramType");
 		assertTrue(compatibleComponents.contains(ram0), "Verifying the compatibility of a ram with different ramType");
-		
-		f1.motherboard(null);
-
 	}
 	
 	@Test
@@ -79,10 +71,10 @@ class RamAssemblyTest {
 		
 		ramDao.addComponents(ramList);
 		
-		FullConfigBuilder f1 = FullConfigBuilder.getInstance();
+		FullConfig f1 = new FullConfig();
 		ramAssembly.InputBasedBehavior(ramAssembly, f1 , "0");
-		assertEquals(f1.getMyRam(), ram0, "Comparing the Case with right index");
-		assertNotEquals(f1.getMyRam(), ram1, "Choosing the Case with wrong index");
+		assertEquals(f1.getRam(), ram0, "Comparing the Case with right index");
+		assertNotEquals(f1.getRam(), ram1, "Choosing the Case with wrong index");
 
 	}
 

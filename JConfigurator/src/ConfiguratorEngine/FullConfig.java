@@ -1,65 +1,127 @@
 package ConfiguratorEngine;
 
 public class FullConfig {
-	private Psu myPsu;
-	private Gpu myGpu;
-	private Motherboard myMotherboard;
-	private Cpu myCpu;
-	private Case myCase1;
-	private Storage myStorage;
-	private Ram myRam;
-	private int totalPower=0;
+
+	private Psu psu;
+	private Gpu gpu;
+	private Motherboard motherboard;
+	private Cpu cpu;
+	private Case case0;
+	private Storage storage;
+	private Ram ram;
+	private ComputerShop computerShop;
 	
-	public FullConfig(Cpu myCpu, Gpu myGpu, Motherboard myMotherboard, Ram myRam, Case myCase1, Storage myStorage, Psu myPsu, int totalPower) {
-		this.myCpu=myCpu;
-		this.myGpu=myGpu;
-		this.myMotherboard=myMotherboard;
-		this.myRam=myRam;
-		this.myCase1=myCase1;
-		this.myStorage=myStorage;
-		this.myPsu=myPsu;
-		this.totalPower=totalPower;
+	
+	private static int psuOverhead = 50;
+
+
+	public FullConfig() {}
+	
+	public Psu getPsu() {
+		return psu;
 	}
 
-	public Psu getMyPsu() {
-		return myPsu;
+	public void setPsu(Psu psu) {
+		this.psu = psu;
 	}
 
-	public Gpu getMyGpu() {
-		return myGpu;
+	public Gpu getGpu() {
+		return gpu;
 	}
 
-	public Motherboard getMyMotherboard() {
-		return myMotherboard;
+	public void setGpu(Gpu gpu) {
+		this.gpu = gpu;
 	}
 
-	public Cpu getMyCpu() {
-		return myCpu;
+	public Motherboard getMotherboard() {
+		return motherboard;
 	}
 
-	public Case getMyCase1() {
-		return myCase1;
+	public void setMotherboard(Motherboard motherboard) {
+		this.motherboard = motherboard;
 	}
 
-	public Storage getMyStorage() {
-		return myStorage;
+	public Cpu getCpu() {
+		return cpu;
 	}
 
-	public Ram getMyRam() {
-		return myRam;
+	public void setCpu(Cpu cpu) {
+		this.cpu = cpu;
 	}
 
-	public int getTotalPower() {
-		return totalPower;
+	public Case getCase0() {
+		return case0;
 	}
+
+	public void setCase0(Case case0) {
+		this.case0 = case0;
+	}
+
+	public Storage getStorage() {
+		return storage;
+	}
+
+	public void setStorage(Storage storage) {
+		this.storage = storage;
+	}
+
+	public Ram getRam() {
+		return ram;
+	}
+
+	public void setRam(Ram ram) {
+		this.ram = ram;
+	}
+
+	public ComputerShop getComputerShop() {
+		return computerShop;
+	}
+
+	public void setComputerShop(ComputerShop computerShop) {
+		this.computerShop = computerShop;
+	}
+
+	public static int getPsuOverhead() {
+		return psuOverhead;
+	}
+
+	public static void setPsuOverhead(int psuOverhead) {
+		FullConfig.psuOverhead = psuOverhead;
+	}
+
+	public int getTotalEstimatedPower() {
+		int allPower=0;
+		allPower+=this.getCpu().getPower();
+		allPower+=this.getGpu().getPower();
+		allPower+=this.getMotherboard().getPower();
+		allPower+=this.getRam().getPower();
+		allPower+=this.getCase0().getPower();
+		allPower+=this.getStorage().getPower();
+
+		return allPower;
+	}
+	
+	public int getTotalPrice() {
+		int allPrice=0;
+		allPrice+=this.getCpu().getPrice();
+		allPrice+=this.getGpu().getPrice();
+		allPrice+=this.getMotherboard().getPrice();
+		allPrice+=this.getRam().getPrice();
+		allPrice+=this.getCase0().getPrice();
+		allPrice+=this.getStorage().getPrice();
+		allPrice+=this.getPsu().getPrice();
+		return allPrice;
+	}
+	
+
 
 	@Override
 	public String toString() {
-		return "FullConfig [Psu=" + myPsu + ", \nGpu=" + myGpu + ", \nMotherboard=" + myMotherboard + ", \nCpu="
-				+ myCpu + ", \nCase1=" + myCase1 + ", \nStorage=" + myStorage + ", \nRam=" + myRam + ", \ntotalPower="
-				+ totalPower + "]";
+		return "FullConfig : \n myCpu =" + this.getCpu() + "\n myGpu =" + this.getGpu() + "\n myMotherboard =" + this.getMotherboard() + "\n myRam ="
+				+ this.getRam() + "\n myCase1 =" + this.getCase0() + "\n myStorage =" + this.getStorage() + "\n myPsu=" + this.getPsu() + "\n myComputerShop ="
+				+ this.getComputerShop();
 	}
-	
+
+
 	
 }
-

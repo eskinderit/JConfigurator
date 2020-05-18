@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 
 import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Motherboard;
 import dataSource.CpuDao;
 import sequentialAssembler.ComponentAssembly;
@@ -23,7 +23,7 @@ class CpuAssemblyTest {
 	
 	ComponentAssembly cpuAssembly;
 	CpuDao cpuDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -32,12 +32,7 @@ class CpuAssemblyTest {
 		cpuAssembly = new CpuAssembly();
 		cpuDao = new CpuDao();
 		cpuDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 
 	
@@ -58,7 +53,7 @@ class CpuAssemblyTest {
 		cpuDao.addComponents(cpuList);
 		Motherboard motherboard = new Motherboard("MotherboardProva", 43, 3, "LGA1150", "Z77", "DDR3", false, 2);
 
-		f1.motherboard(motherboard);
+		f1.setMotherboard(motherboard);
 		
 		ArrayList<Cpu> compatibleComponents = cpuAssembly.getCompatibleComponents(f1);
 		
@@ -66,8 +61,7 @@ class CpuAssemblyTest {
 		assertTrue(compatibleComponents.contains(cpu1), "Comparing compatible Motherboard and Cpu: same sockets");
 		assertFalse(compatibleComponents.contains(cpu2), "Comparing incompatible Motherboard and Cpu: different sockets");
 		assertFalse(compatibleComponents.contains(cpu3), "Comparing incompatible Motherboard and Cpu: different sockets");
-		
-		f1.motherboard(null);
+
 	}
 
 	@Test
@@ -85,10 +79,10 @@ class CpuAssemblyTest {
 		
 		cpuDao.addComponents(cpuList);
 		Motherboard m1 = new Motherboard("Prova Mobo", 15, 22, "AM4","FX567","DDR3",false, 3);
-		f1.motherboard(m1);
+		f1.setMotherboard(m1);
 		cpuAssembly.InputBasedBehavior(cpuAssembly, f1 , "0");
-		assertEquals(f1.getMyCpu(), cpu0, "Comparing the Case with right index");
-		assertNotEquals(f1.getMyCpu(), cpu1, "Choosing the Case with wrong index");
+		assertEquals(f1.getCpu(), cpu0, "Comparing the Case with right index");
+		assertNotEquals(f1.getCpu(), cpu1, "Choosing the Case with wrong index");
 		
 	}
 

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Gpu;
 import dataSource.GpuDao;
 import sequentialAssembler.ComponentAssembly;
@@ -22,7 +22,7 @@ class GpuAssemblyTest {
 	
 	ComponentAssembly gpuAssembly;
 	GpuDao gpuDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -31,12 +31,7 @@ class GpuAssemblyTest {
 		gpuAssembly = new GpuAssembly();
 		gpuDao = new GpuDao();
 		gpuDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 	
 	
@@ -56,8 +51,8 @@ class GpuAssemblyTest {
 		gpuDao.addComponents(gpuList);
 
 		gpuAssembly.InputBasedBehavior(gpuAssembly, f1 , "0");
-		assertEquals(f1.getMyGpu(), gpu0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
-		assertNotEquals(f1.getMyGpu(), gpu1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
+		assertEquals(f1.getGpu(), gpu0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
+		assertNotEquals(f1.getGpu(), gpu1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
 		
 	}
 

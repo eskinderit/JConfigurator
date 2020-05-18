@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import dataSource.ComponentDao;
 import dataSource.CpuDao;
 
@@ -21,18 +21,18 @@ public ComponentAssembly getNextPassage() {
 
 
 @Override
-protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {	
+protected void passageBehavior(FullConfig f1, int index) throws JAXBException {	
 	CpuDao cpuDao = new CpuDao(); 
 	Cpu componentToSet = cpuDao.getComponent(index);
-	f1.cpu(componentToSet);
+	f1.setCpu(componentToSet);
 	}
 @Override
 public ComponentDao<?,?> getComponentDao() {
 	return new CpuDao();
 }
 @Override
-public ArrayList<Cpu> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
-	if(f1.getMyMotherboard() != null)
+public ArrayList<Cpu> getCompatibleComponents(FullConfig f1) throws JAXBException {
+	if(f1.getMotherboard() != null)
 		return CompatibilityCheckAlgs.getCompatibleCpusByMotherboard(f1);
 	else
 	{

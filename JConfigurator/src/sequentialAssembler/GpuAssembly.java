@@ -4,7 +4,7 @@ package sequentialAssembler;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Gpu;
 import dataSource.ComponentDao;
 import dataSource.GpuDao;
@@ -22,10 +22,10 @@ public ComponentAssembly getNextPassage() {
 	}
 	
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 		GpuDao gpuDao = new GpuDao(); 
 		Gpu componentToSet = gpuDao.getComponent(index);
-		f1.gpu(componentToSet);
+		f1.setGpu(componentToSet);
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public ComponentAssembly getNextPassage() {
 		return new GpuDao();
 	}
 	@Override
-	public ArrayList<Gpu> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
+	public ArrayList<Gpu> getCompatibleComponents(FullConfig f1) throws JAXBException {
 		GpuDao gpuDao = new GpuDao();
 		return gpuDao.readComponents();
 	}

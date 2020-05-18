@@ -11,71 +11,71 @@ import dataSource.*;
 public class CompatibilityCheckAlgs {
 
 
-	static	public int getTotalPowerOverstimation(FullConfigBuilder f1) {
+	static	public int getTotalPowerOverstimation(FullConfig f1) {
 		return f1.getTotalEstimatedPower() + f1.getPsuOverhead();
 	}
 	
-	static	public int getTotalPrice (FullConfigBuilder f1) {
+	static	public int getTotalPrice (FullConfig f1) {
 		return f1.getTotalPrice();
 	}
 
-	static	public ArrayList<Motherboard> getCompatibleMotherboardsByCpu(FullConfigBuilder f1) throws JAXBException{
+	static	public ArrayList<Motherboard> getCompatibleMotherboardsByCpu(FullConfig f1) throws JAXBException{
 
 		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
 		MotherboardDao motherboardDao = new MotherboardDao();
 		for(Motherboard m:motherboardDao.readComponents()) {
-			if(CompatibilityCheckAlgs.checkMotherboardCpu(f1.getMyCpu(),m))
+			if(CompatibilityCheckAlgs.checkMotherboardCpu(f1.getCpu(),m))
 				compatibleMotherboards.add(m);
 		}
 		return compatibleMotherboards;
 	}
 	
-	static	public ArrayList<Cpu> getCompatibleCpusByMotherboard(FullConfigBuilder f1) throws JAXBException{
+	static	public ArrayList<Cpu> getCompatibleCpusByMotherboard(FullConfig f1) throws JAXBException{
 
 		ArrayList<Cpu> compatibleCpus = new ArrayList<Cpu>();
 		CpuDao cpuDao = new CpuDao();
 		for(Cpu c : cpuDao.readComponents()) {
-			if(CompatibilityCheckAlgs.checkMotherboardCpu(c, f1.getMyMotherboard()))
+			if(CompatibilityCheckAlgs.checkMotherboardCpu(c, f1.getMotherboard()))
 				compatibleCpus.add(c);
 		}
 		return compatibleCpus;
 	}
 
-	static public ArrayList<Ram> getCompatibleRamsByMotherboard(FullConfigBuilder f1) throws JAXBException{
+	static public ArrayList<Ram> getCompatibleRamsByMotherboard(FullConfig f1) throws JAXBException{
 		RamDao ramDao = new RamDao();
 		ArrayList<Ram> compatibleRams = new ArrayList<Ram>();
 		for(Ram r:ramDao.readComponents()) {
-			if(CompatibilityCheckAlgs.checkMotherboardRam(f1.getMyMotherboard(),r))
+			if(CompatibilityCheckAlgs.checkMotherboardRam(f1.getMotherboard(),r))
 				compatibleRams.add(r);
 		}
 		return compatibleRams;
 	}
 	
-	static public ArrayList<Motherboard> getCompatibleMotherboardsByRam(FullConfigBuilder f1) throws JAXBException{
+	static public ArrayList<Motherboard> getCompatibleMotherboardsByRam(FullConfig f1) throws JAXBException{
 		MotherboardDao motherboardDao = new MotherboardDao();
 		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
 		for(Motherboard m:motherboardDao.readComponents()) {
-			if(CompatibilityCheckAlgs.checkMotherboardRam(m ,f1.getMyRam()))
+			if(CompatibilityCheckAlgs.checkMotherboardRam(m ,f1.getRam()))
 				compatibleMotherboards.add(m);
 		}
 		return compatibleMotherboards;
 	}
 
-	static public ArrayList<Case> getCompatibleCasesByMotherboard(FullConfigBuilder f1) throws JAXBException{
+	static public ArrayList<Case> getCompatibleCasesByMotherboard(FullConfig f1) throws JAXBException{
 		ArrayList<Case> compatibleCases = new ArrayList<Case>();
 		CaseDao caseDao = new CaseDao();
 		for(Case c:caseDao.readComponents()) {
-			if(CompatibilityCheckAlgs.checkMotherboardCase(f1.getMyMotherboard(),c))
+			if(CompatibilityCheckAlgs.checkMotherboardCase(f1.getMotherboard(),c))
 				compatibleCases.add(c);
 		}
 		return compatibleCases;
 	}
 	
-	static public ArrayList<Motherboard> getCompatibleMotherboardsByCase(FullConfigBuilder f1) throws JAXBException{
+	static public ArrayList<Motherboard> getCompatibleMotherboardsByCase(FullConfig f1) throws JAXBException{
 		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
 		MotherboardDao motherboardDao = new MotherboardDao();
 		for(Motherboard m : motherboardDao.readComponents()) {
-			if(CompatibilityCheckAlgs.checkMotherboardCase(m,f1.getMyCase1()))
+			if(CompatibilityCheckAlgs.checkMotherboardCase(m,f1.getCase0()))
 				compatibleMotherboards.add(m);
 		}
 		return compatibleMotherboards;
@@ -83,7 +83,7 @@ public class CompatibilityCheckAlgs {
 
 
 
-	static public ArrayList<Psu> getCompatiblePsu(FullConfigBuilder f1) throws JAXBException{
+	static public ArrayList<Psu> getCompatiblePsu(FullConfig f1) throws JAXBException{
 		ArrayList<Psu> compatiblePsus = new ArrayList<Psu>();
 		PsuDao psuDao = new PsuDao();
 		for(Psu p:psuDao.readComponents()) {
@@ -94,7 +94,7 @@ public class CompatibilityCheckAlgs {
 	}
 
 
-	static public boolean checkTotalWattagePsu(FullConfigBuilder f1, Psu psu ) {
+	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu ) {
 		if(psu.getPower()-f1.getTotalEstimatedPower()>50)
 			return true;
 		else

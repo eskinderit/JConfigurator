@@ -5,29 +5,29 @@ import java.util.ArrayList;
 import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.Case;
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import dataSource.CaseDao;
 import dataSource.ComponentDao;
 
 
 
-public class CaseAssembly extends ComponentAssembly {
+public class CaseAssembly extends ComponentAssembly{
 
 	@Override
-public	ComponentAssembly getPreviousPassage() {
+	public	ComponentAssembly getPreviousPassage() {
 		return new RamAssembly();
 	}
 	@Override
-public	ComponentAssembly getNextPassage() {
+	public	ComponentAssembly getNextPassage() {
 		return new StorageAssembly();
 	}
 
 	@Override
-	protected void passageBehavior(FullConfigBuilder f1, int index) throws JAXBException {
+	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 		CaseDao caseDao = new CaseDao(); 
 		Case componentToSet = caseDao.getComponent(index);
-		f1.case1(componentToSet);
-		
+		f1.setCase0(componentToSet);
+
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public	ComponentAssembly getNextPassage() {
 		return new CaseDao();
 	}
 	@Override
-	public ArrayList<Case> getCompatibleComponents(FullConfigBuilder f1) throws JAXBException {
-		if(f1.getMyMotherboard() != null)
+	public ArrayList<Case> getCompatibleComponents(FullConfig f1) throws JAXBException {
+		if(f1.getMotherboard() != null)
 			return CompatibilityCheckAlgs.getCompatibleCasesByMotherboard(f1);
 		else
 		{

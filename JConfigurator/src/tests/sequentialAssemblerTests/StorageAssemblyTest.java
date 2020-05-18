@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import ConfiguratorEngine.FullConfigBuilder;
+import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Storage;
 import dataSource.StorageDao;
 import sequentialAssembler.ComponentAssembly;
@@ -22,7 +22,7 @@ class StorageAssemblyTest {
 	
 	ComponentAssembly storageAssembly;
 	StorageDao storageDao;
-	FullConfigBuilder f1 = FullConfigBuilder.getIstance();
+	FullConfig f1;
 
 	
 	@BeforeEach
@@ -31,12 +31,7 @@ class StorageAssemblyTest {
 		storageAssembly = new StorageAssembly();
 		storageDao = new StorageDao();
 		storageDao.setEmptyComponents();
-		f1.cpu(null);
-		f1.gpu(null);
-		f1.motherboard(null);
-		f1.case1(null);
-		f1.ram(null);
-		f1.storage(null);
+		f1 = new FullConfig();
 	}
 	
 	
@@ -55,8 +50,8 @@ class StorageAssemblyTest {
 		
 		storageDao.addComponents(storageList);
 		storageAssembly.InputBasedBehavior(storageAssembly, f1 , "0");
-		assertEquals(f1.getMyStorage(), storage0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
-		assertNotEquals(f1.getMyStorage(),storage1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
+		assertEquals(f1.getStorage(), storage0, "Comparing the expected component with the one obtained through the InputBasedBehavior method");
+		assertNotEquals(f1.getStorage(),storage1, "Comparing the NOT expected component with the one obtained through the InputBasedBehavior method");
 		
 	}
 
