@@ -10,13 +10,12 @@ public class FullConfig {
 	private Storage storage;
 	private Ram ram;
 	private ComputerShop computerShop;
-	
-	
+
 	private static int psuOverhead = 50;
 
+	public FullConfig() {
+	}
 
-	public FullConfig() {}
-	
 	public Psu getPsu() {
 		return psu;
 	}
@@ -90,38 +89,35 @@ public class FullConfig {
 	}
 
 	public int getTotalEstimatedPower() {
-		int allPower=0;
-		allPower+=this.getCpu().getPower();
-		allPower+=this.getGpu().getPower();
-		allPower+=this.getMotherboard().getPower();
-		allPower+=this.getRam().getPower();
-		allPower+=this.getCase0().getPower();
-		allPower+=this.getStorage().getPower();
+		int allPower = 0;
+		allPower += this.getCpu().getPower();
+		allPower += this.getGpu().getPower();
+		allPower += this.getMotherboard().getPower();
+		allPower += this.getRam().getPower();
+		allPower += this.getCase0().getPower();
+		allPower += this.getStorage().getPower();
 
 		return allPower;
 	}
-	
+
 	public int getTotalPrice() {
-		int allPrice=0;
-		allPrice+=this.getCpu().getPrice();
-		allPrice+=this.getGpu().getPrice();
-		allPrice+=this.getMotherboard().getPrice();
-		allPrice+=this.getRam().getPrice();
-		allPrice+=this.getCase0().getPrice();
-		allPrice+=this.getStorage().getPrice();
-		allPrice+=this.getPsu().getPrice();
+		int allPrice = 0;
+		allPrice += this.getCpu().getPrice();
+		allPrice += this.getGpu().getPrice();
+		allPrice += this.getMotherboard().getPrice();
+		allPrice += this.getRam().getPrice();
+		allPrice += this.getCase0().getPrice();
+		allPrice += this.getStorage().getPrice();
+		allPrice += this.getPsu().getPrice();
 		return allPrice;
 	}
-	
-
 
 	@Override
 	public String toString() {
-		return "FullConfig : \n myCpu =" + this.getCpu() + "\n myGpu =" + this.getGpu() + "\n myMotherboard =" + this.getMotherboard() + "\n myRam ="
-				+ this.getRam() + "\n myCase1 =" + this.getCase0() + "\n myStorage =" + this.getStorage() + "\n myPsu=" + this.getPsu() + "\n myComputerShop ="
+		return "FullConfig : \n myCpu =" + this.getCpu() + "\n myGpu =" + this.getGpu() + "\n myMotherboard ="
+				+ this.getMotherboard() + "\n myRam =" + this.getRam() + "\n myCase1 =" + this.getCase0()
+				+ "\n myStorage =" + this.getStorage() + "\n myPsu=" + this.getPsu() + "\n myComputerShop ="
 				+ this.getComputerShop();
 	}
 
-
-	
 }

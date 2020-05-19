@@ -4,11 +4,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder={"name","price","power"})
+@XmlType(propOrder = { "name", "price", "power" })
 public class Psu extends Component {
-	
+
 	private int power;
-	
+
 	public int getPower() {
 		return power;
 	}
@@ -23,12 +23,12 @@ public class Psu extends Component {
 
 	public Psu(String name, int price, int power) {
 		super(name, price);
-		this.power=power;
+		this.power = power;
 	}
 
 	@Override
 	public String toString() {
-		return "Psu [name=" + getName() + ", power=" + getPower() + ", price=" + getPrice()	+ "]";
+		return "Psu [name=" + getName() + ", power=" + getPower() + ", price=" + getPrice() + "]";
 	}
 
 	@Override
@@ -46,6 +46,5 @@ public class Psu extends Component {
 			return false;
 		return true;
 	}
-
 
 }

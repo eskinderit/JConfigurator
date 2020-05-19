@@ -1,34 +1,30 @@
 package ConfiguratorEngine;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder={"name","price","address"})
-public class ComputerShop extends Component{
+@XmlType(propOrder = { "name", "price", "address" })
+public class ComputerShop extends Component {
 
 	protected String address;
-	
-	
+
 	public ComputerShop() {
 		super();
 	}
-	
 
 	public ComputerShop(String name, int price, String address) {
 		super(name, price);
 		this.address = address;
 	}
 
-
 	public String getAddress() {
 		return address;
 	}
 
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -37,7 +33,6 @@ public class ComputerShop extends Component{
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -56,14 +51,9 @@ public class ComputerShop extends Component{
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "ComputerShop [name=" + name + ", price=" + price + ", address=" + address + "]";
 	}
-	
-	
-	
-
 
 }

@@ -9,40 +9,39 @@ import ConfiguratorEngine.FullConfig;
 import dataSource.CaseDao;
 import dataSource.ComponentDao;
 
-
-
-public class CaseAssembly extends ComponentAssembly{
+public class CaseAssembly extends ComponentAssembly<Case> {
 
 	@Override
-	public	ComponentAssembly getPreviousPassage() {
+	public ComponentAssembly<?> getPreviousPassage() {
 		return new RamAssembly();
 	}
+
 	@Override
-	public	ComponentAssembly getNextPassage() {
+	public ComponentAssembly<?> getNextPassage() {
 		return new StorageAssembly();
 	}
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
-		CaseDao caseDao = new CaseDao(); 
+		CaseDao caseDao = new CaseDao();
 		Case componentToSet = caseDao.getComponent(index);
 		f1.setCase0(componentToSet);
 
 	}
 
 	@Override
-	public ComponentDao<?,?> getComponentDao() {
+	public ComponentDao<?, ?> getComponentDao() {
 		return new CaseDao();
 	}
+
 	@Override
 	public ArrayList<Case> getCompatibleComponents(FullConfig f1) throws JAXBException {
-		if(f1.getMotherboard() != null)
+		if (f1.getMotherboard() != null)
 			return CompatibilityCheckAlgs.getCompatibleCasesByMotherboard(f1);
-		else
-		{
+		else {
 			CaseDao caseDao = new CaseDao();
 			return caseDao.readComponents();
 		}
 	}
-	
+
 }

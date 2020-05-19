@@ -4,29 +4,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder={"name", "price", "power","oc","socket"})
-public class Cpu extends Component{
+@XmlType(propOrder = { "name", "price", "power", "oc", "socket" })
+public class Cpu extends Component {
 	private int power;
 	private String socket;
 	private boolean oc;
 
-	
 	public Cpu(String name, int price, int power, String socket, boolean oc) {
 		super(name, price);
 		this.socket = socket;
 		this.oc = oc;
 		this.power = power;
 	}
-	
+
 	public Cpu(String name, int price, int power) {
 		super(name, price);
-		this.power=power;
+		this.power = power;
 	}
-	
+
 	public Cpu() {
 		super();
 	}
-	
 
 	public int getPower() {
 		return power;
@@ -36,17 +34,18 @@ public class Cpu extends Component{
 		this.power = power;
 	}
 
-
-
 	public String getSocket() {
 		return socket;
 	}
+
 	public void setSocket(String socket) {
 		this.socket = socket;
 	}
+
 	public boolean isOc() {
 		return oc;
 	}
+
 	public void setOc(boolean oc) {
 		this.oc = oc;
 	}
@@ -84,9 +83,5 @@ public class Cpu extends Component{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+
 }
