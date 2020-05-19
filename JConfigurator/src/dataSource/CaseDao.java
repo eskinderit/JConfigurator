@@ -13,7 +13,7 @@ public class CaseDao extends ComponentDao<Case,CaseDao>{
 	@XmlElement(name="Case")
 	private ArrayList<Case> caseList;
 	
-	public CaseDao() {
+	public CaseDao(){
 		super();
 		this.caseList = new ArrayList<Case>();
 	}

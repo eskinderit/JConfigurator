@@ -12,6 +12,14 @@ import dataSource.MotherboardDao;
 public class MotherboardDataManagement extends ComponentDataManagement<Motherboard>{
 
 	ArrayList<Motherboard> motherboards = new ArrayList<Motherboard>();
+	public String name = null;
+	public int price = 0;
+	public int power = 0;
+	public String socket = null;
+	public String chipset = null;
+	public String ramType = null;
+	public int size = 0;
+	public boolean oc = false;
 	
 	@Override
 	public ArrayList<Motherboard> deleteComp(int index) throws JAXBException {
@@ -28,13 +36,7 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 		MotherboardDao motherboardDao = new MotherboardDao();
 		String input;
 		
-		String name = null;
-		int price = 0;
-		int power = 0;
-		String socket;
-		String chipset;
-		String ramType;
-		int size;
+		
 		
 		
 		name = this.setName(parameter, name);
@@ -65,11 +67,14 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 		
 		
 		Motherboard motherboard;
-		if(input.contains("a"))
-			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, true, size);
-		else
-			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, false, size);
-		
+		if(input.contains("a")) {
+			oc = true;
+			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, oc, size);
+		}
+		else {
+			oc = false;
+			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, oc, size);
+		}
 		motherboards.add(motherboard);
 		return motherboardDao.addComponents(motherboards);
 	}

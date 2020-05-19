@@ -11,6 +11,9 @@ import dataSource.PsuDao;
 public class PsuDataManagement extends ComponentDataManagement<Psu>{
 
 	private ArrayList<Psu> psus= new ArrayList<Psu>();
+	public String name = null;
+	public int price = 0; 
+	public int power = 0;
 	
 	@Override
 	public ArrayList<Psu> deleteComp(int index) throws JAXBException {
@@ -25,9 +28,7 @@ public class PsuDataManagement extends ComponentDataManagement<Psu>{
 
 		PsuDao psuDao = new PsuDao();
 		
-		String name = null;
-		int price = 0; 
-		int power = 0;
+		
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);

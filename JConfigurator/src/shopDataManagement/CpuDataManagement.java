@@ -10,6 +10,11 @@ import dataSource.CpuDao;
 
 public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 	ArrayList<Cpu> cpus = new ArrayList<Cpu>();
+	public String name = null;
+	public int price = 0;
+	public int power = 0;
+	public String socket = null;
+	public boolean oc = false;
 	
 	@Override
 	public ArrayList<Cpu> deleteComp(int index) throws JAXBException {
@@ -28,10 +33,7 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 		
 		
 		String input;
-		String name = null;
-		int price = 0;
-		int power = 0;
-		String socket;
+		
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
@@ -48,10 +50,14 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 		}while(!(input.contains("a") || input.contains("b")));
 		
 		Cpu c;
-		if(input.contains("a"))
-			c = new Cpu(name, price, power, socket, true);
-		else
-			c = new Cpu(name, price, power, socket, false);
+		if(input.contains("a")) {
+			oc=true;
+			c = new Cpu(name, price, power, socket, oc);
+		}
+		else {
+			oc = false;
+			c = new Cpu(name, price, power, socket, oc);
+		}
 
 		cpus.add(c);
 		return cpuDao.addComponents(cpus);

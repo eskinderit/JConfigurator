@@ -14,6 +14,10 @@ import dataSource.GpuDao;
 public class GpuDataManagement extends ComponentDataManagement<Gpu>{
 
 	private ArrayList<Gpu> gpus = new ArrayList<Gpu>();
+	public String name = null;
+	public int price = 0; 
+	public int power = 0;
+	public int memory = 0;
 	
 	@Override
 	public ArrayList<Gpu> deleteComp(int index) throws JAXBException {
@@ -27,10 +31,7 @@ public class GpuDataManagement extends ComponentDataManagement<Gpu>{
 	public ArrayList<Gpu> addComp(Scanner parameter) throws JAXBException {
 		GpuDao gpuDao = new GpuDao();
 		String input;
-		String name = null;
-		int price = 0; 
-		int power = 0;
-		int memory;
+		
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);

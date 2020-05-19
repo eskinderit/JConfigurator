@@ -11,6 +11,12 @@ import dataSource.RamDao;
 
 public class RamDataManagement extends ComponentDataManagement<Ram>{
 	private ArrayList<Ram> rams = new ArrayList<Ram>();
+	public String name = null;
+	public int price = 0; 
+	public int power = 0;
+	public int memory = 0;
+	public String ramType = null;
+	
 	
 	@Override
 	public ArrayList<Ram> deleteComp(int index) throws JAXBException {
@@ -25,11 +31,7 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 	public ArrayList<Ram> addComp(Scanner parameter) throws JAXBException {
 		RamDao ramDao = new RamDao();
 		String input;
-		String name = null;
-		int price = 0; 
-		int power = 0;
-		int memory;
-		String ramType;
+		
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);

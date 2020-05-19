@@ -12,6 +12,11 @@ import dataSource.StorageDao;
 public class StorageDataManagement extends ComponentDataManagement<Storage>{
 
 	private ArrayList<Storage> storages = new ArrayList<Storage>();
+	public String name = null;
+	public int price = 0; 
+	public int power = 0;
+	public int capacity;
+	public boolean ssd = false;
 	
 	@Override
 	public ArrayList<Storage> deleteComp(int index) throws JAXBException {
@@ -26,10 +31,7 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 		String input;
 		StorageDao storageDao = new StorageDao();
 		
-		String name = null;
-		int price = 0; 
-		int power = 0;
-		int capacity;
+		
 		
 		name = this.setName(parameter, name);
 		price = this.setPrice(parameter, price);
@@ -48,10 +50,14 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 		}while(!(input.contains("a") || input.contains("b")));
 		
 		Storage storage;
-		if(input.contains("a"))
-			storage = new Storage(name, price, power, capacity, true);
-		else
-			storage = new Storage(name, price, power, capacity, false);
+		if(input.contains("a")) {
+			ssd = true;
+			storage = new Storage(name, price, power, capacity, ssd);
+		}
+		else {
+			ssd = false;
+			storage = new Storage(name, price, power, capacity, ssd);
+		}
 		
 		storages.add(storage);
 		return storageDao.addComponents(storages);
