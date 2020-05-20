@@ -14,11 +14,13 @@ import dataSource.GpuDao;
 public class GpuDataManagement extends ComponentDataManagement<Gpu>{
 
 	private ArrayList<Gpu> gpus = new ArrayList<Gpu>();
-	public String name = null;
-	public int price = 0; 
-	public int power = 0;
-	public int memory = 0;
+	private String name = null;
+	private int price = 0; 
+	private int power = 0;
+	private int memory = 0;
 	
+	
+
 	@Override
 	public ArrayList<Gpu> deleteComp(int index) throws JAXBException {
 		
@@ -54,6 +56,42 @@ public class GpuDataManagement extends ComponentDataManagement<Gpu>{
 	public ArrayList<Gpu> resetComp() throws JAXBException {
 		GpuDao gpuDao = new GpuDao();
 		return gpuDao.setDefaultComponents();
+	}
+	
+	
+	// GETTERS AND SETTERS
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
+	public int getMemory() {
+		return memory;
+	}
+
+	public void setMemory(int memory) {
+		this.memory = memory;
 	}
 
 }

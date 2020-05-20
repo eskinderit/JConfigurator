@@ -11,13 +11,16 @@ import dataSource.RamDao;
 
 public class RamDataManagement extends ComponentDataManagement<Ram>{
 	private ArrayList<Ram> rams = new ArrayList<Ram>();
-	public String name = null;
-	public int price = 0; 
-	public int power = 0;
-	public int memory = 0;
-	public String ramType = null;
+	private String name = null;
+	private int price = 0; 
+	private int power = 0;
+	private int memory = 0;
+	private String ramType = null;
 	
 	
+	
+
+
 	@Override
 	public ArrayList<Ram> deleteComp(int index) throws JAXBException {
 		
@@ -56,6 +59,61 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 	public ArrayList<Ram> resetComp() throws JAXBException {
 		RamDao ramDao = new RamDao();
 		return ramDao.setDefaultComponents();
+	}
+	
+	
+	
+	// GETTERS AND SETTERS
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+	public int getPower() {
+		return power;
+	}
+
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
+
+	public int getMemory() {
+		return memory;
+	}
+
+
+	public void setMemory(int memory) {
+		this.memory = memory;
+	}
+
+
+	public String getRamType() {
+		return ramType;
+	}
+
+
+	public void setRamType(String ramType) {
+		this.ramType = ramType;
 	}
 
 }

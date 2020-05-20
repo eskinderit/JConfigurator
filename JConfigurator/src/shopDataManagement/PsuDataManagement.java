@@ -11,10 +11,12 @@ import dataSource.PsuDao;
 public class PsuDataManagement extends ComponentDataManagement<Psu>{
 
 	private ArrayList<Psu> psus= new ArrayList<Psu>();
-	public String name = null;
-	public int price = 0; 
-	public int power = 0;
+	private String name = null;
+	private int price = 0; 
+	private int power = 0;
 	
+	
+
 	@Override
 	public ArrayList<Psu> deleteComp(int index) throws JAXBException {
 		
@@ -45,6 +47,36 @@ public class PsuDataManagement extends ComponentDataManagement<Psu>{
 	public ArrayList<Psu> resetComp() throws JAXBException {
 		PsuDao psuDao = new PsuDao();
 		return psuDao.setDefaultComponents();
+	}
+	
+	
+	
+	// GETTERS AND SETTERS
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
 	}
 	
 

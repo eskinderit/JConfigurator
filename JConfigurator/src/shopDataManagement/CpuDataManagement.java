@@ -9,12 +9,13 @@ import ConfiguratorEngine.Cpu;
 import dataSource.CpuDao;
 
 public class CpuDataManagement extends ComponentDataManagement<Cpu>{
+	
 	ArrayList<Cpu> cpus = new ArrayList<Cpu>();
-	public String name = null;
-	public int price = 0;
-	public int power = 0;
-	public String socket = null;
-	public boolean oc = false;
+	private String name = null;
+	private int price = 0;
+	private int power = 0;
+	private String socket = null;
+	private boolean oc = false;
 	
 	@Override
 	public ArrayList<Cpu> deleteComp(int index) throws JAXBException {
@@ -69,6 +70,59 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 	public ArrayList<Cpu> resetComp() throws JAXBException {
 		CpuDao cpuDao = new CpuDao();
 		return cpuDao.setDefaultComponents();
+	}
+	
+	
+	// GETTERS AND SETTERS
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+	public int getPower() {
+		return power;
+	}
+
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
+
+	public String getSocket() {
+		return socket;
+	}
+
+
+	public void setSocket(String socket) {
+		this.socket = socket;
+	}
+
+
+	public boolean isOc() {
+		return oc;
+	}
+
+
+	public void setOc(boolean oc) {
+		this.oc = oc;
 	}
 }
 
