@@ -1,110 +1,22 @@
 package sequentialAssembler;
 
-import java.util.ArrayList;
-
-import javax.xml.bind.JAXBException;
-
 import ConfiguratorEngine.Case;
 import ConfiguratorEngine.Cpu;
 import ConfiguratorEngine.FullConfig;
 import ConfiguratorEngine.Motherboard;
 import ConfiguratorEngine.Psu;
 import ConfiguratorEngine.Ram;
-import dataSource.CaseDao;
-import dataSource.CpuDao;
-import dataSource.MotherboardDao;
-import dataSource.PsuDao;
-import dataSource.RamDao;
 
 public class CompatibilityCheckAlgs {
 
-	static public int getTotalPowerOverstimation(FullConfig f1) {
-		return f1.getTotalEstimatedPower() + FullConfig.getPsuOverhead();
-	}
-
-	static public int getTotalPrice(FullConfig f1) {
-		return f1.getTotalPrice();
-	}
-
-	static public ArrayList<Motherboard> getCompatibleMotherboardsByCpu(FullConfig f1) throws JAXBException {
-
-		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
-		MotherboardDao motherboardDao = new MotherboardDao();
-		for (Motherboard m : motherboardDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkMotherboardCpu(f1.getCpu(), m))
-				compatibleMotherboards.add(m);
-		}
-		return compatibleMotherboards;
-	}
-
-	static public ArrayList<Cpu> getCompatibleCpusByMotherboard(FullConfig f1) throws JAXBException {
-
-		ArrayList<Cpu> compatibleCpus = new ArrayList<Cpu>();
-		CpuDao cpuDao = new CpuDao();
-		for (Cpu c : cpuDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkMotherboardCpu(c, f1.getMotherboard()))
-				compatibleCpus.add(c);
-		}
-		return compatibleCpus;
-	}
-
-	static public ArrayList<Ram> getCompatibleRamsByMotherboard(FullConfig f1) throws JAXBException {
-		RamDao ramDao = new RamDao();
-		ArrayList<Ram> compatibleRams = new ArrayList<Ram>();
-		for (Ram r : ramDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkMotherboardRam(f1.getMotherboard(), r))
-				compatibleRams.add(r);
-		}
-		return compatibleRams;
-	}
-
-	static public ArrayList<Motherboard> getCompatibleMotherboardsByRam(FullConfig f1) throws JAXBException {
-		MotherboardDao motherboardDao = new MotherboardDao();
-		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
-		for (Motherboard m : motherboardDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkMotherboardRam(m, f1.getRam()))
-				compatibleMotherboards.add(m);
-		}
-		return compatibleMotherboards;
-	}
-
-	static public ArrayList<Case> getCompatibleCasesByMotherboard(FullConfig f1) throws JAXBException {
-		ArrayList<Case> compatibleCases = new ArrayList<Case>();
-		CaseDao caseDao = new CaseDao();
-		for (Case c : caseDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkMotherboardCase(f1.getMotherboard(), c))
-				compatibleCases.add(c);
-		}
-		return compatibleCases;
-	}
-
-	static public ArrayList<Motherboard> getCompatibleMotherboardsByCase(FullConfig f1) throws JAXBException {
-		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
-		MotherboardDao motherboardDao = new MotherboardDao();
-		for (Motherboard m : motherboardDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkMotherboardCase(m, f1.getCase0()))
-				compatibleMotherboards.add(m);
-		}
-		return compatibleMotherboards;
-	}
-
-	static public ArrayList<Psu> getCompatiblePsu(FullConfig f1) throws JAXBException {
-		ArrayList<Psu> compatiblePsus = new ArrayList<Psu>();
-		PsuDao psuDao = new PsuDao();
-		for (Psu p : psuDao.readComponents()) {
-			if (CompatibilityCheckAlgs.checkTotalWattagePsu(f1, p))
-				compatiblePsus.add(p);
-		}
-		return compatiblePsus;
-	}
-
-	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu) {
-		if (psu.getPower() - f1.getTotalEstimatedPower() > 50)
-			return true;
-		else
-			return false;
-	}
-
+	/**
+	 * Checks if a motherboard and a case are compatible by comparing the sizes on
+	 * both
+	 * 
+	 * @param m1 Motherboard to be checked
+	 * @param c1 Case to be checked
+	 * @return
+	 */
 	static public boolean checkMotherboardCase(Motherboard m1, Case c1) {
 		if (c1.getSize() >= m1.getSize())
 			return true;
@@ -112,6 +24,14 @@ public class CompatibilityCheckAlgs {
 			return false;
 	}
 
+	/**
+	 * Checks if a motherboard and a ram are compatible by comparing the type of ram
+	 * socket on both
+	 * 
+	 * @param m1 Motherboard to be checked
+	 * @param r1 Ram to be checked
+	 * @return the result of the comparison
+	 */
 	static public boolean checkMotherboardRam(Motherboard m1, Ram r1) {
 		if (r1.getRamType().contentEquals(m1.getRamType()))
 			return true;
@@ -119,8 +39,31 @@ public class CompatibilityCheckAlgs {
 			return false;
 	}
 
+	/**
+	 * Checks if a motherboard and a cpu are compatible by comparing the cpu socket
+	 * on both
+	 * 
+	 * @param c1 Case to be checked
+	 * @param m1 Motherboard to be checked
+	 * @return the result of the comparison
+	 */
 	static public boolean checkMotherboardCpu(Cpu c1, Motherboard m1) {
 		if (m1.getSocket().contentEquals(c1.getSocket()))
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * Checks if a psu is enough powerful to power the whole pc with an overhead
+	 * fixed by configuration
+	 * 
+	 * @param f1  the full configuration of the pc
+	 * @param Psu to check
+	 * @return the result of the comparison
+	 */
+	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu) {
+		if (psu.getPower() - f1.getSubtotalPower() > f1.getPsuOverhead())
 			return true;
 		else
 			return false;

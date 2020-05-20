@@ -29,19 +29,30 @@ public class CpuAssembly extends ComponentAssembly<Cpu> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<Cpu, CpuDao> getComponentDao() {
 		return new CpuDao();
 	}
 
 	@Override
 	public ArrayList<Cpu> getCompatibleComponents(FullConfig f1) throws JAXBException {
 		if (f1.getMotherboard() != null)
-			return CompatibilityCheckAlgs.getCompatibleCpusByMotherboard(f1);
+			return this.getCompatibleCpusByMotherboard(f1);
 		else {
 			CpuDao cpuDao = new CpuDao();
 			return cpuDao.readComponents();
 		}
 
+	}
+
+	private ArrayList<Cpu> getCompatibleCpusByMotherboard(FullConfig f1) throws JAXBException {
+
+		ArrayList<Cpu> compatibleCpus = new ArrayList<Cpu>();
+		CpuDao cpuDao = new CpuDao();
+		for (Cpu c : cpuDao.readComponents()) {
+			if (CompatibilityCheckAlgs.checkMotherboardCpu(c, f1.getMotherboard()))
+				compatibleCpus.add(c);
+		}
+		return compatibleCpus;
 	}
 
 }

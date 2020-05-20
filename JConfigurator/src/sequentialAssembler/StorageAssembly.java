@@ -28,7 +28,7 @@ public class StorageAssembly extends ComponentAssembly<Storage> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<Storage, StorageDao> getComponentDao() {
 		return new StorageDao();
 	}
 

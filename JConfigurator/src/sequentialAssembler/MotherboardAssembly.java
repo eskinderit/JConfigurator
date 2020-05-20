@@ -30,7 +30,7 @@ public class MotherboardAssembly extends ComponentAssembly<Motherboard> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<Motherboard, MotherboardDao> getComponentDao() {
 		return new MotherboardDao();
 	}
 
@@ -41,21 +41,52 @@ public class MotherboardAssembly extends ComponentAssembly<Motherboard> {
 		ArrayList<Motherboard> motherboardList = motherboardDao.readComponents();
 
 		if (f1.getCpu() != null) {
-			ArrayList<Motherboard> toRemoveList1 = CompatibilityCheckAlgs.getCompatibleMotherboardsByCpu(f1);
+			ArrayList<Motherboard> toRemoveList1 = this.getCompatibleMotherboardsByCpu(f1);
 			motherboardList.retainAll(toRemoveList1);
 		}
 
 		if (f1.getCase0() != null) {
-			ArrayList<Motherboard> toRemoveList2 = CompatibilityCheckAlgs.getCompatibleMotherboardsByCase(f1);
+			ArrayList<Motherboard> toRemoveList2 = this.getCompatibleMotherboardsByCase(f1);
 			motherboardList.retainAll(toRemoveList2);
 		}
 
 		if (f1.getRam() != null) {
-			ArrayList<Motherboard> toRemoveList2 = CompatibilityCheckAlgs.getCompatibleMotherboardsByRam(f1);
+			ArrayList<Motherboard> toRemoveList2 = this.getCompatibleMotherboardsByRam(f1);
 			motherboardList.retainAll(toRemoveList2);
 		}
 
 		return motherboardList;
+	}
+
+	private ArrayList<Motherboard> getCompatibleMotherboardsByRam(FullConfig f1) throws JAXBException {
+		MotherboardDao motherboardDao = new MotherboardDao();
+		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
+		for (Motherboard m : motherboardDao.readComponents()) {
+			if (CompatibilityCheckAlgs.checkMotherboardRam(m, f1.getRam()))
+				compatibleMotherboards.add(m);
+		}
+		return compatibleMotherboards;
+	}
+
+	private ArrayList<Motherboard> getCompatibleMotherboardsByCase(FullConfig f1) throws JAXBException {
+		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
+		MotherboardDao motherboardDao = new MotherboardDao();
+		for (Motherboard m : motherboardDao.readComponents()) {
+			if (CompatibilityCheckAlgs.checkMotherboardCase(m, f1.getCase0()))
+				compatibleMotherboards.add(m);
+		}
+		return compatibleMotherboards;
+	}
+
+	private ArrayList<Motherboard> getCompatibleMotherboardsByCpu(FullConfig f1) throws JAXBException {
+
+		ArrayList<Motherboard> compatibleMotherboards = new ArrayList<Motherboard>();
+		MotherboardDao motherboardDao = new MotherboardDao();
+		for (Motherboard m : motherboardDao.readComponents()) {
+			if (CompatibilityCheckAlgs.checkMotherboardCpu(f1.getCpu(), m))
+				compatibleMotherboards.add(m);
+		}
+		return compatibleMotherboards;
 	}
 
 }

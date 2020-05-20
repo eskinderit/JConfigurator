@@ -29,7 +29,7 @@ public class ComputerShopAssembly extends ComponentAssembly<ComputerShop> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<ComputerShop, ?> getComponentDao() {
 		return new ComputerShopDao();
 	}
 

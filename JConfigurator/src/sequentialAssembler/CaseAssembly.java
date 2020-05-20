@@ -30,18 +30,28 @@ public class CaseAssembly extends ComponentAssembly<Case> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<Case, CaseDao> getComponentDao() {
 		return new CaseDao();
 	}
 
 	@Override
 	public ArrayList<Case> getCompatibleComponents(FullConfig f1) throws JAXBException {
 		if (f1.getMotherboard() != null)
-			return CompatibilityCheckAlgs.getCompatibleCasesByMotherboard(f1);
+			return this.getCompatibleCasesByMotherboard(f1);
 		else {
 			CaseDao caseDao = new CaseDao();
 			return caseDao.readComponents();
 		}
+	}
+
+	private ArrayList<Case> getCompatibleCasesByMotherboard(FullConfig f1) throws JAXBException {
+		ArrayList<Case> compatibleCases = new ArrayList<Case>();
+		CaseDao caseDao = new CaseDao();
+		for (Case c : caseDao.readComponents()) {
+			if (CompatibilityCheckAlgs.checkMotherboardCase(f1.getMotherboard(), c))
+				compatibleCases.add(c);
+		}
+		return compatibleCases;
 	}
 
 }

@@ -11,7 +11,7 @@ public class FullConfig {
 	private Ram ram;
 	private ComputerShop computerShop;
 
-	private static int psuOverhead = 50;
+	private int psuOverhead = 50;
 
 	public FullConfig() {
 	}
@@ -80,15 +80,15 @@ public class FullConfig {
 		this.computerShop = computerShop;
 	}
 
-	public static int getPsuOverhead() {
-		return psuOverhead;
+	public int getPsuOverhead() {
+		return this.psuOverhead;
 	}
 
-	public static void setPsuOverhead(int psuOverhead) {
-		FullConfig.psuOverhead = psuOverhead;
+	public void setPsuOverhead(int psuOverhead) {
+		this.psuOverhead = psuOverhead;
 	}
 
-	public int getTotalEstimatedPower() {
+	public int getSubtotalPower() {
 		int allPower = 0;
 		allPower += this.getCpu().getPower();
 		allPower += this.getGpu().getPower();
@@ -118,6 +118,11 @@ public class FullConfig {
 				+ this.getMotherboard() + "\n myRam =" + this.getRam() + "\n myCase1 =" + this.getCase0()
 				+ "\n myStorage =" + this.getStorage() + "\n myPsu=" + this.getPsu() + "\n myComputerShop ="
 				+ this.getComputerShop();
+	}
+
+	public int getTotalEstimatedPower() {
+		int total = this.getSubtotalPower();
+		return total += this.psuOverhead;
 	}
 
 }

@@ -29,7 +29,7 @@ public class GpuAssembly extends ComponentAssembly<Gpu> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<Gpu, GpuDao> getComponentDao() {
 		return new GpuDao();
 	}
 

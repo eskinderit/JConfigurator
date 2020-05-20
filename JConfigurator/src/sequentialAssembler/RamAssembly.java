@@ -29,19 +29,29 @@ public class RamAssembly extends ComponentAssembly<Ram> {
 	}
 
 	@Override
-	public ComponentDao<?, ?> getComponentDao() {
+	public ComponentDao<Ram, RamDao> getComponentDao() {
 		return new RamDao();
 	}
 
 	@Override
 	public ArrayList<Ram> getCompatibleComponents(FullConfig f1) throws JAXBException {
 		if (f1.getMotherboard() != null)
-			return CompatibilityCheckAlgs.getCompatibleRamsByMotherboard(f1);
+			return this.getCompatibleRamsByMotherboard(f1);
 		else {
 			RamDao ramDao = new RamDao();
 			return ramDao.readComponents();
 		}
 
+	}
+
+	private ArrayList<Ram> getCompatibleRamsByMotherboard(FullConfig f1) throws JAXBException {
+		RamDao ramDao = new RamDao();
+		ArrayList<Ram> compatibleRams = new ArrayList<Ram>();
+		for (Ram r : ramDao.readComponents()) {
+			if (CompatibilityCheckAlgs.checkMotherboardRam(f1.getMotherboard(), r))
+				compatibleRams.add(r);
+		}
+		return compatibleRams;
 	}
 
 }

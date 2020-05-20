@@ -6,14 +6,21 @@ import javax.xml.bind.JAXBException;
 
 import ConfiguratorEngine.Component;
 import ConfiguratorEngine.FullConfig;
+import sequentialAssembler.AssemblyComposition;
+import sequentialAssembler.AssemblySequenceBuilder;
+import sequentialAssembler.AssemblySequenceDirector;
 import sequentialAssembler.ComponentAssembly;
-import sequentialAssembler.CpuAssembly;
+import sequentialAssembler.ShopAssemblyBuilder;
 
-public class TerminalDemoGUI {
+public class NewGui {
 
 	public static void main(String[] args) throws JAXBException {
 
-		ComponentAssembly<?> assemblyStep = new CpuAssembly();
+		AssemblySequenceBuilder builder = new ShopAssemblyBuilder();
+		AssemblySequenceDirector director = new AssemblySequenceDirector(builder);
+		AssemblyComposition composizione = builder.buildAssemblySequence();
+
+		ComponentAssembly<?> assemblyStep = composizione.getCpuAssembly();
 
 		FullConfig f1 = new FullConfig();
 
@@ -39,12 +46,12 @@ public class TerminalDemoGUI {
 
 			System.out.println(s);
 			if ((assemblyStep.isRetry() == false) && (assemblyStep.isGoback() == false)) {
-				assemblyStep = assemblyStep.getNextPassage();
+				assemblyStep = assemblyStep.getNextPassage1();
 
 			}
 
 			else if ((assemblyStep.isGoback() == true) && (assemblyStep.isRetry() == false)) {
-				assemblyStep = assemblyStep.getPreviousPassage();
+				assemblyStep = assemblyStep.getPreviousPassage1();
 			} else {
 				System.out.println("########### Input errato! ########### \n");
 			}

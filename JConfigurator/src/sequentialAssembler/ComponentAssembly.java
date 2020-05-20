@@ -13,11 +13,8 @@ import dataSource.ComponentDao;
 public abstract class ComponentAssembly<T extends Component> {
 	protected boolean retry;
 	protected boolean goback;
-
-	ComponentAssembly() {
-		this.retry = false;
-		this.goback = false;
-	}
+	ComponentAssembly<?> previousPassage1;
+	ComponentAssembly<?> nextPassage1;
 
 	public boolean isRetry() {
 		return retry;
@@ -27,13 +24,31 @@ public abstract class ComponentAssembly<T extends Component> {
 		return goback;
 	}
 
+	/**
+	 * @return the previous passage of the sequential assembly
+	 */
 	public abstract ComponentAssembly<?> getPreviousPassage();
 
+	/**
+	 * @return the next passage of the sequential assembly
+	 */
 	public abstract ComponentAssembly<?> getNextPassage();
 
+	/**
+	 * core of the behavior of the passage
+	 * 
+	 * @param f1    full configuration to manage in the step
+	 * @param index index of the component selected by input
+	 * @throws JAXBException
+	 */
 	protected abstract void passageBehavior(FullConfig f1, int index) throws JAXBException;
 
-	abstract public ComponentDao<?, ?> getComponentDao();
+	/**
+	 * Abstract factory
+	 * 
+	 * @return
+	 */
+	abstract public ComponentDao<T, ?> getComponentDao();
 
 	abstract public ArrayList<T> getCompatibleComponents(FullConfig f1) throws JAXBException;
 
@@ -63,5 +78,21 @@ public abstract class ComponentAssembly<T extends Component> {
 			System.out.println("The index of the selected component is not in the list");
 			this.retry = true;
 		}
+	}
+
+	public ComponentAssembly<?> getPreviousPassage1() {
+		return previousPassage1;
+	}
+
+	public void setPreviousPassage1(ComponentAssembly<?> previousPassage1) {
+		this.previousPassage1 = previousPassage1;
+	}
+
+	public ComponentAssembly<?> getNextPassage1() {
+		return nextPassage1;
+	}
+
+	public void setNextPassage1(ComponentAssembly<?> nextPassage1) {
+		this.nextPassage1 = nextPassage1;
 	}
 }
