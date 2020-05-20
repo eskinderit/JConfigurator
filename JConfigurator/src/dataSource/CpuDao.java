@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import ConfiguratorEngine.Cpu;
+import configuratorEngine.Cpu;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -1,0 +1,8 @@
+configuratorEngine
+dataSource
+guiDemo
+sequentialAssembler
+shopDataManagement
+tests.daoTest
+tests.sequentialAssemblerTests
+tests.shopDataManagementTests

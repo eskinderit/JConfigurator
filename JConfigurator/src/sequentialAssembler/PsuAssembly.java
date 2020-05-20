@@ -4,32 +4,17 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Psu;
-import dataSource.ComponentDao;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Psu;
 import dataSource.PsuDao;
 
 public class PsuAssembly extends ComponentAssembly<Psu> {
-	@Override
-	public ComponentAssembly<?> getPreviousPassage() {
-		return new StorageAssembly();
-	}
-
-	@Override
-	public ComponentAssembly<?> getNextPassage() {
-		return new ComputerShopAssembly();
-	}
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 		PsuDao psuDao = new PsuDao();
 		Psu componentToSet = psuDao.getComponent(index);
 		f1.setPsu(componentToSet);
-	}
-
-	@Override
-	public ComponentDao<Psu, PsuDao> getComponentDao() {
-		return new PsuDao();
 	}
 
 	@Override

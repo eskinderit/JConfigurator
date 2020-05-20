@@ -8,13 +8,12 @@ import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import ConfiguratorEngine.Gpu;
+import configuratorEngine.Gpu;
 import dataSource.GpuDao;
 import shopDataManagement.GpuDataManagement;
 
@@ -28,6 +27,11 @@ public class GpuDataManagementTest {
 	@BeforeAll
 	static void saveList () throws JAXBException {
 		savedGpus.addAll(gpuDao.readComponents());
+		
+		Gpu g = new Gpu("Gpu1", 50, 50, 50);
+		ArrayList<Gpu> gpuToAdd = new ArrayList<Gpu>();
+		gpuToAdd.add(g);
+		gpuDao.addComponents(gpuToAdd);
 	}
 	
 	@BeforeEach
@@ -38,30 +42,32 @@ public class GpuDataManagementTest {
 	
 	@Test
 	public void deleteGpuTest() throws JAXBException {
-		int index = (int)Math.random() * (gpuDao.readComponents().size());
-		assertNotEquals(gpuData.deleteComp(index), gpuList, " ");
-		gpuList.remove(index);
-		assertEquals(gpuDao.readComponents(), gpuList, " ");
+		if(gpuDao.readComponents().size() > 0) {
+			int index = (int)(Math.random() * gpuDao.readComponents().size());
+			assertNotEquals(gpuData.deleteComp(index), gpuList, "Makes sure that components in Gpu.XML are not the same as before, after the deletion.");
+			gpuList.remove(index);
+			assertEquals(gpuDao.readComponents(), gpuList, "Makes sure that the componenent was removed from Gpu.XML file");
+		}
 	}
 	
 	@Test
 	public void addGpuTest() throws JAXBException {
 		Scanner parameter = new Scanner(System.in);
 		gpuData.addComp(parameter);
-		assertNotEquals(gpuDao.readComponents(), gpuList, " ");
-		Gpu gpuToAdd = new Gpu(gpuData.name, gpuData.price, gpuData.power, gpuData.memory);
+		assertNotEquals(gpuDao.readComponents(), gpuList, "Makes sure that components in Gpu.XML are not the same as before, after the addition.");
+		Gpu gpuToAdd = new Gpu(gpuData.getName(), gpuData.getPrice(), gpuData.getPower(), gpuData.getMemory());
 		gpuList.add(gpuToAdd);
-		assertEquals(gpuDao.readComponents(), gpuList, " ");
+		assertEquals(gpuDao.readComponents(), gpuList, "Makes sure that the componenent was added in Gpu.XML file");
 		parameter.close();
 	}
 	
 	@Test 
 	public void resetGpusTest() throws JAXBException {
-		assertEquals(gpuData.resetComp(), gpuDao.setDefaultComponents(), " ");
+		assertEquals(gpuData.resetComp(), gpuDao.setDefaultComponents(), "Makes sure that Gpu.Xml file contains defauld data from GpuDefault.XML file");
 	}
 	
-	@AfterEach
-	public void restoreList() throws JAXBException {
+	@AfterAll
+	public static void restoreList() throws JAXBException {
 		gpuDao.setEmptyComponents();
 		gpuDao.addComponents(savedGpus);
 	}

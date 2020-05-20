@@ -12,8 +12,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Storage;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Storage;
 import dataSource.StorageDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.StorageAssembly;
@@ -47,7 +47,7 @@ class StorageAssemblyTest {
 		storageList.add(storage3);
 
 		storageDao.addComponents(storageList);
-		storageAssembly.InputBasedBehavior(storageAssembly, f1, "0");
+		storageAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getStorage(), storage0,
 				"Comparing the expected component with the one obtained through the InputBasedBehavior method");
 		assertNotEquals(f1.getStorage(), storage1,

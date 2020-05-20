@@ -6,15 +6,14 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ConfiguratorEngine.Component;
-import ConfiguratorEngine.FullConfig;
-import dataSource.ComponentDao;
+import configuratorEngine.Component;
+import configuratorEngine.FullConfig;
 
 public abstract class ComponentAssembly<T extends Component> {
 	protected boolean retry;
 	protected boolean goback;
-	ComponentAssembly<?> previousPassage1;
-	ComponentAssembly<?> nextPassage1;
+	protected ComponentAssembly<?> previousPassage;
+	protected ComponentAssembly<?> nextPassage;
 
 	public boolean isRetry() {
 		return retry;
@@ -25,40 +24,35 @@ public abstract class ComponentAssembly<T extends Component> {
 	}
 
 	/**
-	 * @return the previous passage of the sequential assembly
-	 */
-	public abstract ComponentAssembly<?> getPreviousPassage();
-
-	/**
-	 * @return the next passage of the sequential assembly
-	 */
-	public abstract ComponentAssembly<?> getNextPassage();
-
-	/**
-	 * core of the behavior of the passage
+	 * this function should contain the behavior of the passage
 	 * 
-	 * @param f1    full configuration to manage in the step
+	 * @param f1    full configuration subject of comparison checks of the
+	 *              corresponding assembly step or a usual read from a dao if there
+	 *              are no checks to do
 	 * @param index index of the component selected by input
 	 * @throws JAXBException
 	 */
 	protected abstract void passageBehavior(FullConfig f1, int index) throws JAXBException;
 
-	/**
-	 * Abstract factory
-	 * 
-	 * @return
-	 */
-	abstract public ComponentDao<T, ?> getComponentDao();
-
 	abstract public ArrayList<T> getCompatibleComponents(FullConfig f1) throws JAXBException;
 
-	public void InputBasedBehavior(ComponentAssembly<?> assemblyStep, FullConfig f1, String s) throws JAXBException {
+	/**
+	 * In this implementation InputBasedBehavior manages the input performing the
+	 * requested operations if the input is a number corresponding to a compatible
+	 * component index. This function uses the abstract method passageBehavior
+	 * 
+	 * @param assemblyStep
+	 * @param f1           FullConfig to be managed by the user
+	 * @param s
+	 * @throws JAXBException
+	 */
+	public void InputBasedBehavior(FullConfig f1, String s) throws JAXBException {
 
 		if (StringUtils.isNumeric(s)) {
 			int selectedIndex = Integer.parseInt(s);
 			int listSize;
 
-			listSize = assemblyStep.getCompatibleComponents(f1).size();
+			listSize = this.getCompatibleComponents(f1).size();
 
 			if (selectedIndex < listSize && selectedIndex >= 0) {
 				this.passageBehavior(f1, selectedIndex);
@@ -81,18 +75,26 @@ public abstract class ComponentAssembly<T extends Component> {
 	}
 
 	public ComponentAssembly<?> getPreviousPassage1() {
-		return previousPassage1;
+		return previousPassage;
 	}
 
 	public void setPreviousPassage1(ComponentAssembly<?> previousPassage1) {
-		this.previousPassage1 = previousPassage1;
+		this.previousPassage = previousPassage1;
 	}
 
 	public ComponentAssembly<?> getNextPassage1() {
-		return nextPassage1;
+		return nextPassage;
 	}
 
 	public void setNextPassage1(ComponentAssembly<?> nextPassage1) {
-		this.nextPassage1 = nextPassage1;
+		this.nextPassage = nextPassage1;
+	}
+
+	public void setRetry(boolean retry) {
+		this.retry = retry;
+	}
+
+	public void setGoback(boolean goback) {
+		this.goback = goback;
 	}
 }

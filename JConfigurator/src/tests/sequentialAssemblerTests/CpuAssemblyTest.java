@@ -14,9 +14,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
+import configuratorEngine.Cpu;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Motherboard;
 import dataSource.CpuDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.CpuAssembly;
@@ -83,7 +83,7 @@ class CpuAssemblyTest {
 		cpuDao.addComponents(cpuList);
 		Motherboard m1 = new Motherboard("Prova Mobo", 15, 22, "AM4", "FX567", "DDR3", false, 3);
 		f1.setMotherboard(m1);
-		cpuAssembly.InputBasedBehavior(cpuAssembly, f1, "0");
+		cpuAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getCpu(), cpu0, "Comparing the Case with right index");
 		assertNotEquals(f1.getCpu(), cpu1, "Choosing the Case with wrong index");
 

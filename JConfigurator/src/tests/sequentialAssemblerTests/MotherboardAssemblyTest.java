@@ -14,11 +14,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Ram;
+import configuratorEngine.Case;
+import configuratorEngine.Cpu;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Motherboard;
+import configuratorEngine.Ram;
 import dataSource.MotherboardDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.MotherboardAssembly;
@@ -134,7 +134,7 @@ class MotherboardAssemblyTest {
 
 		motherboardDao.addComponents(motherboardList);
 
-		motherboardAssembly.InputBasedBehavior(motherboardAssembly, f1, "0");
+		motherboardAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getMotherboard(), motherboard0, "Comparing the Case with right index");
 		assertNotEquals(f1.getMotherboard(), motherboard1, "Choosing the Case with wrong index");
 

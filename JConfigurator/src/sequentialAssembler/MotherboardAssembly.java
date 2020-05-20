@@ -4,22 +4,11 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
-import dataSource.ComponentDao;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Motherboard;
 import dataSource.MotherboardDao;
 
 public class MotherboardAssembly extends ComponentAssembly<Motherboard> {
-
-	@Override
-	public ComponentAssembly<?> getPreviousPassage() {
-		return new GpuAssembly();
-	}
-
-	@Override
-	public ComponentAssembly<?> getNextPassage() {
-		return new RamAssembly();
-	}
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
@@ -27,11 +16,6 @@ public class MotherboardAssembly extends ComponentAssembly<Motherboard> {
 		Motherboard componentToSet = motherboardDao.getComponent(index);
 		f1.setMotherboard(componentToSet);
 
-	}
-
-	@Override
-	public ComponentDao<Motherboard, MotherboardDao> getComponentDao() {
-		return new MotherboardDao();
 	}
 
 	@Override

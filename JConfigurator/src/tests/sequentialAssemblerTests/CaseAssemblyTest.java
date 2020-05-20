@@ -14,9 +14,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
+import configuratorEngine.Case;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Motherboard;
 import dataSource.CaseDao;
 import sequentialAssembler.CaseAssembly;
 import sequentialAssembler.ComponentAssembly;
@@ -78,7 +78,7 @@ class CaseAssemblyTest {
 		caseList.add(case3);
 
 		caseDao.addComponents(caseList);
-		caseAssembly.InputBasedBehavior(caseAssembly, f1, "0");
+		caseAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getCase0(), case0, "Comparing the Case with right index");
 		assertNotEquals(f1.getCase0(), case1, "Choosing the Case with wrong index");
 

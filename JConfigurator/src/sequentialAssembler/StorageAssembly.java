@@ -4,32 +4,17 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Storage;
-import dataSource.ComponentDao;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Storage;
 import dataSource.StorageDao;
 
 public class StorageAssembly extends ComponentAssembly<Storage> {
-	@Override
-	public ComponentAssembly<?> getPreviousPassage() {
-		return new CaseAssembly();
-	}
-
-	@Override
-	public ComponentAssembly<?> getNextPassage() {
-		return new PsuAssembly();
-	}
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
 		StorageDao storageDao = new StorageDao();
 		Storage componentToSet = storageDao.getComponent(index);
 		f1.setStorage(componentToSet);
-	}
-
-	@Override
-	public ComponentDao<Storage, StorageDao> getComponentDao() {
-		return new StorageDao();
 	}
 
 	@Override

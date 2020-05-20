@@ -7,8 +7,7 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ConfiguratorEngine.Component;
-
+import configuratorEngine.Component;
 import dataSource.CaseDao;
 import dataSource.ComponentDao;
 import dataSource.CpuDao;

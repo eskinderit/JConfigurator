@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.ComputerShop;
+import configuratorEngine.ComputerShop;
 import dataSource.ComputerShopDao;
 
 class ComputerShopDaoTest {

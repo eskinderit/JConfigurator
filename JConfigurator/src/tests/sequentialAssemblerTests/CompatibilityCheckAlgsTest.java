@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Gpu;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Psu;
-import ConfiguratorEngine.Ram;
-import ConfiguratorEngine.Storage;
+import configuratorEngine.Case;
+import configuratorEngine.Cpu;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Gpu;
+import configuratorEngine.Motherboard;
+import configuratorEngine.Psu;
+import configuratorEngine.Ram;
+import configuratorEngine.Storage;
 import sequentialAssembler.CompatibilityCheckAlgs;
 
 class CompatibilityCheckAlgsTest {

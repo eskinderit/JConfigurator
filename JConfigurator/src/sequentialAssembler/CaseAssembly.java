@@ -4,22 +4,11 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.FullConfig;
+import configuratorEngine.Case;
+import configuratorEngine.FullConfig;
 import dataSource.CaseDao;
-import dataSource.ComponentDao;
 
 public class CaseAssembly extends ComponentAssembly<Case> {
-
-	@Override
-	public ComponentAssembly<?> getPreviousPassage() {
-		return new RamAssembly();
-	}
-
-	@Override
-	public ComponentAssembly<?> getNextPassage() {
-		return new StorageAssembly();
-	}
 
 	@Override
 	protected void passageBehavior(FullConfig f1, int index) throws JAXBException {
@@ -27,11 +16,6 @@ public class CaseAssembly extends ComponentAssembly<Case> {
 		Case componentToSet = caseDao.getComponent(index);
 		f1.setCase0(componentToSet);
 
-	}
-
-	@Override
-	public ComponentDao<Case, CaseDao> getComponentDao() {
-		return new CaseDao();
 	}
 
 	@Override

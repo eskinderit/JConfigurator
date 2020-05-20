@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
 
@@ -13,13 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.Gpu;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Psu;
-import ConfiguratorEngine.Ram;
-import ConfiguratorEngine.Storage;
+import configuratorEngine.Case;
+import configuratorEngine.Cpu;
+import configuratorEngine.Gpu;
+import configuratorEngine.Motherboard;
+import configuratorEngine.Psu;
+import configuratorEngine.Ram;
+import configuratorEngine.Storage;
 import dataSource.CaseDao;
 import dataSource.CpuDao;
 import dataSource.GpuDao;
@@ -82,67 +81,58 @@ public class DataManagementTest {
 	@Test
 	public void deletecTest() throws JAXBException {
 		shopData.deletec(0, "a");
-		assertNotEquals(cpuList, cpuDao.readComponents(), " ");
+		assertNotEquals(cpuList, cpuDao.readComponents(), "Makes sure that components in Cpu.XML are not the same as before, after the deletion.");
 		cpuList.remove(0);
-		assertEquals(cpuList, cpuDao.readComponents(), " ");
+		assertEquals(cpuList, cpuDao.readComponents(), "Makes sure that the componenent was removed from Cpu.XML file");
 		
 		shopData.deletec(0, "b");
-		assertNotEquals(gpuList, gpuDao.readComponents(), " ");
+		assertNotEquals(gpuList, gpuDao.readComponents(), "Makes sure that components in Gpu.XML are not the same as before, after the deletion.");
 		gpuList.remove(0);
-		assertEquals(gpuList, gpuDao.readComponents(), " ");
+		assertEquals(gpuList, gpuDao.readComponents(), "Makes sure that the componenent was removed from Gpu.XML file");
 		
 		shopData.deletec(0, "c");
-		assertNotEquals(motherboardList, motherboardDao.readComponents(), " ");
+		assertNotEquals(motherboardList, motherboardDao.readComponents(), "Makes sure that components in Motherbaord.XML are not the same as before, after the deletion.");
 		motherboardList.remove(0);
-		assertEquals(motherboardList, motherboardDao.readComponents(), " ");
+		assertEquals(motherboardList, motherboardDao.readComponents(), "Makes sure that the componenent was removed from Motherboard.XML file");
 		
 		shopData.deletec(0, "d");
-		assertNotEquals(caseList, caseDao.readComponents(), " ");
+		assertNotEquals(caseList, caseDao.readComponents(), "Makes sure that components in Case.XML are not the same as before, after the deletion.");
 		caseList.remove(0);
-		assertEquals(caseList, caseDao.readComponents(), " ");
+		assertEquals(caseList, caseDao.readComponents(), "Makes sure that the componenent was removed from Case.XML file");
 		
 		shopData.deletec(0, "e");
-		assertNotEquals(ramList, ramDao.readComponents(), " ");
+		assertNotEquals(ramList, ramDao.readComponents(), "Makes sure that components in Ram.XML are not the same as before, after the deletion.");
 		ramList.remove(0);
-		assertEquals(ramList, ramDao.readComponents(), " ");
+		assertEquals(ramList, ramDao.readComponents(), "Makes sure that the componenent was removed from Ram.XML file");
 		
 		shopData.deletec(0, "f");
-		assertNotEquals(storageList, storageDao.readComponents(), " ");
+		assertNotEquals(storageList, storageDao.readComponents(), "Makes sure that components in Storage.XML are not the same as before, after the deletion.");
 		storageList.remove(0);
-		assertEquals(storageList, storageDao.readComponents(), " ");
+		assertEquals(storageList, storageDao.readComponents(), "Makes sure that the componenent was removed from Storage.XML file");
 		
 		shopData.deletec(0, "g");
-		assertNotEquals(psuList, psuDao.readComponents(), " ");
+		assertNotEquals(psuList, psuDao.readComponents(), "Makes sure that components in Psu.XML are not the same as before, after the deletion.");
 		psuList.remove(0);
-		assertEquals(psuList, psuDao.readComponents(), " ");
+		assertEquals(psuList, psuDao.readComponents(), "Makes sure that the componenent was removed from Psu.XML file");
 	}
 	
-	@Test
-	public void addcTest() throws JAXBException {
-		Scanner parameter = new Scanner(System.in);
-		shopData.addc("d", parameter);
-		Case caseToAdd = caseDao.getComponent(caseDao.readComponents().size()-1);
-		assertNotEquals(caseList, caseDao.readComponents(), " ");
-		caseList.add(caseToAdd);
-		assertEquals(caseList, caseDao.readComponents(), " ");
-	}
 	
 	@Test
 	public void resetcTest() throws JAXBException {
 		shopData.resetc("a");
-		assertEquals(cpuDao.readComponents(), cpuDao.setDefaultComponents(), " ");
+		assertEquals(cpuDao.readComponents(), cpuDao.setDefaultComponents(), "Makes sure that Gpu.Xml file contains defauld data from CpuDefault.XML file");
 		shopData.resetc("b");
-		assertEquals(gpuDao.readComponents(), gpuDao.setDefaultComponents(), " ");
+		assertEquals(gpuDao.readComponents(), gpuDao.setDefaultComponents(), "Makes sure that Gpu.Xml file contains defauld data from GpuDefault.XML file");
 		shopData.resetc("c");
-		assertEquals(motherboardDao.readComponents(), motherboardDao.setDefaultComponents(), " ");
+		assertEquals(motherboardDao.readComponents(), motherboardDao.setDefaultComponents(), "Makes sure that Motherboard.Xml file contains defauld data from GpuDefault.XML file");
 		shopData.resetc("d");
-		assertEquals(caseDao.readComponents(), caseDao.setDefaultComponents(), " ");
+		assertEquals(caseDao.readComponents(), caseDao.setDefaultComponents(), "Makes sure that Case.Xml file contains defauld data from GpuDefault.XML file");
 		shopData.resetc("e");
-		assertEquals(ramDao.readComponents(), ramDao.setDefaultComponents(), " ");
+		assertEquals(ramDao.readComponents(), ramDao.setDefaultComponents(), "Makes sure that Ram.Xml file contains defauld data from GpuDefault.XML file");
 		shopData.resetc("f");
-		assertEquals(storageDao.readComponents(), storageDao.setDefaultComponents(), " ");
+		assertEquals(storageDao.readComponents(), storageDao.setDefaultComponents(), "Makes sure that Storage.Xml file contains defauld data from GpuDefault.XML file");
 		shopData.resetc("g");
-		assertEquals(psuDao.readComponents(), psuDao.setDefaultComponents(), " ");
+		assertEquals(psuDao.readComponents(), psuDao.setDefaultComponents(), "Makes sure that Psu.Xml file contains defauld data from GpuDefault.XML file");
 		
 	}
 	

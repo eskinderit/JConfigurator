@@ -12,8 +12,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Gpu;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Gpu;
 import dataSource.GpuDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.GpuAssembly;
@@ -48,7 +48,7 @@ class GpuAssemblyTest {
 
 		gpuDao.addComponents(gpuList);
 
-		gpuAssembly.InputBasedBehavior(gpuAssembly, f1, "0");
+		gpuAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getGpu(), gpu0,
 				"Comparing the expected component with the one obtained through the InputBasedBehavior method");
 		assertNotEquals(f1.getGpu(), gpu1,

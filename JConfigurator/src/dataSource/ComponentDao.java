@@ -9,7 +9,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlTransient;
 
-import ConfiguratorEngine.Component;
+import configuratorEngine.Component;
 
 @XmlTransient
 public abstract class ComponentDao<T1 extends Component, T2 extends ComponentDao<T1, T2>> {
@@ -34,25 +34,25 @@ public abstract class ComponentDao<T1 extends Component, T2 extends ComponentDao
 	 * Should read a list of the components managed by the Dao from somewhere
 	 * 
 	 * @return the list of readed components
-	 * @throws JAXBException
+	 * @throws JAXBException Exception from the marshalling/unmarshalling of Xmls
 	 */
 	public abstract ArrayList<T1> readComponents() throws JAXBException;
 
 	/**
 	 * Should delete a list of components from the list in use by client
 	 * 
-	 * @param toDeleteList
+	 * @param toDeleteList list of components to be deleted
 	 * @return the obtained list after delete
-	 * @throws JAXBException
+	 * @throws JAXBException Exception from the marshalling/unmarshalling of Xmls
 	 */
 	public abstract ArrayList<T1> deleteComponents(ArrayList<T1> toDeleteList) throws JAXBException;
 
 	/**
 	 * Should add a list of components to the list in use by client
 	 * 
-	 * @param toAddList
+	 * @param toAddList list of components to be added
 	 * @return the obtained list after add
-	 * @throws JAXBException
+	 * @throws JAXBException Exception from the marshalling/unmarshalling of Xmls
 	 */
 	public abstract ArrayList<T1> addComponents(ArrayList<T1> toAddList) throws JAXBException;
 
@@ -60,7 +60,7 @@ public abstract class ComponentDao<T1 extends Component, T2 extends ComponentDao
 	 * Should reset the list in use by client to default components
 	 * 
 	 * @return the obtained list after reset
-	 * @throws JAXBException
+	 * @throws JAXBException Exception from the marshalling/unmarshalling of Xmls
 	 */
 	public abstract ArrayList<T1> setDefaultComponents() throws JAXBException;
 
@@ -68,7 +68,7 @@ public abstract class ComponentDao<T1 extends Component, T2 extends ComponentDao
 	 * Should empty the list in use by client
 	 * 
 	 * @return the obtained blank list
-	 * @throws JAXBException
+	 * @throws JAXBException Exception from the marshalling/unmarshalling of Xmls
 	 */
 	public abstract ArrayList<T1> setEmptyComponents() throws JAXBException;
 

@@ -14,14 +14,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Gpu;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Psu;
-import ConfiguratorEngine.Ram;
-import ConfiguratorEngine.Storage;
+import configuratorEngine.Case;
+import configuratorEngine.Cpu;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Gpu;
+import configuratorEngine.Motherboard;
+import configuratorEngine.Psu;
+import configuratorEngine.Ram;
+import configuratorEngine.Storage;
 import dataSource.PsuDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.PsuAssembly;
@@ -105,7 +105,7 @@ class PsuAssemblyTest {
 
 		psuDao.addComponents(psuList);
 
-		psuAssembly.InputBasedBehavior(psuAssembly, f1, "0");
+		psuAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getPsu(), psu0, "Comparing the Case with right index");
 		assertNotEquals(f1.getPsu(), psu1, "Choosing the Case with wrong index");
 

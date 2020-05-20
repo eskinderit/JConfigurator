@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Psu;
+import configuratorEngine.Psu;
 import dataSource.PsuDao;
 
 public class PsuDaoTest {

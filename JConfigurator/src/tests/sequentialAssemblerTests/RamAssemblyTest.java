@@ -14,9 +14,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Ram;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Motherboard;
+import configuratorEngine.Ram;
 import dataSource.RamDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.RamAssembly;
@@ -69,7 +69,7 @@ class RamAssemblyTest {
 		ramDao.addComponents(ramList);
 
 		FullConfig f1 = new FullConfig();
-		ramAssembly.InputBasedBehavior(ramAssembly, f1, "0");
+		ramAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getRam(), ram0, "Comparing the Case with right index");
 		assertNotEquals(f1.getRam(), ram1, "Choosing the Case with wrong index");
 

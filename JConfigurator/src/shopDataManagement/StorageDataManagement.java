@@ -6,18 +6,21 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-import ConfiguratorEngine.Storage;
+
+import configuratorEngine.Storage;
 import dataSource.StorageDao;
 
 public class StorageDataManagement extends ComponentDataManagement<Storage>{
 
 	private ArrayList<Storage> storages = new ArrayList<Storage>();
-	public String name = null;
-	public int price = 0; 
-	public int power = 0;
-	public int capacity;
-	public boolean ssd = false;
+	private String name = null;
+	private int price = 0; 
+	private int power = 0;
+	private int capacity;
+	private boolean ssd = false;
 	
+	
+
 	@Override
 	public ArrayList<Storage> deleteComp(int index) throws JAXBException {
 		
@@ -30,7 +33,6 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 	public ArrayList<Storage> addComp(Scanner parameter) throws JAXBException {
 		String input;
 		StorageDao storageDao = new StorageDao();
-		
 		
 		
 		name = this.setName(parameter, name);
@@ -67,6 +69,50 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 	public ArrayList<Storage> resetComp() throws JAXBException {
 		StorageDao storageDao = new StorageDao();
 		return storageDao.setDefaultComponents();
+	}
+	
+	
+	// GETTERS AND SETTERS
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public boolean isSsd() {
+		return ssd;
+	}
+
+	public void setSsd(boolean ssd) {
+		this.ssd = ssd;
 	}
 
 }

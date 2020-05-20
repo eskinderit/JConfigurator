@@ -12,8 +12,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.ComputerShop;
-import ConfiguratorEngine.FullConfig;
+import configuratorEngine.ComputerShop;
+import configuratorEngine.FullConfig;
 import dataSource.ComputerShopDao;
 import sequentialAssembler.ComponentAssembly;
 import sequentialAssembler.ComputerShopAssembly;
@@ -48,7 +48,7 @@ class ComputerShopAssemblyTest {
 
 		computerShopDao.addComponents(computerShopList);
 
-		computerShopAssembly.InputBasedBehavior(computerShopAssembly, f1, "0");
+		computerShopAssembly.InputBasedBehavior(f1, "0");
 		assertEquals(f1.getComputerShop(), computerShop0,
 				"Comparing the expected component with the one obtained through the InputBasedBehavior method");
 		assertNotEquals(f1.getComputerShop(), computerShop1,

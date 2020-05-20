@@ -1,11 +1,11 @@
 package sequentialAssembler;
 
-import ConfiguratorEngine.Case;
-import ConfiguratorEngine.Cpu;
-import ConfiguratorEngine.FullConfig;
-import ConfiguratorEngine.Motherboard;
-import ConfiguratorEngine.Psu;
-import ConfiguratorEngine.Ram;
+import configuratorEngine.Case;
+import configuratorEngine.Cpu;
+import configuratorEngine.FullConfig;
+import configuratorEngine.Motherboard;
+import configuratorEngine.Psu;
+import configuratorEngine.Ram;
 
 public class CompatibilityCheckAlgs {
 
@@ -15,7 +15,7 @@ public class CompatibilityCheckAlgs {
 	 * 
 	 * @param m1 Motherboard to be checked
 	 * @param c1 Case to be checked
-	 * @return
+	 * @return the result of the check (true if compatible, false if not)
 	 */
 	static public boolean checkMotherboardCase(Motherboard m1, Case c1) {
 		if (c1.getSize() >= m1.getSize())
@@ -30,7 +30,7 @@ public class CompatibilityCheckAlgs {
 	 * 
 	 * @param m1 Motherboard to be checked
 	 * @param r1 Ram to be checked
-	 * @return the result of the comparison
+	 * @return the result of the check (true if compatible, false if not)
 	 */
 	static public boolean checkMotherboardRam(Motherboard m1, Ram r1) {
 		if (r1.getRamType().contentEquals(m1.getRamType()))
@@ -45,7 +45,7 @@ public class CompatibilityCheckAlgs {
 	 * 
 	 * @param c1 Case to be checked
 	 * @param m1 Motherboard to be checked
-	 * @return the result of the comparison
+	 * @return the result of the check (true if compatible, false if not)
 	 */
 	static public boolean checkMotherboardCpu(Cpu c1, Motherboard m1) {
 		if (m1.getSocket().contentEquals(c1.getSocket()))
@@ -59,8 +59,8 @@ public class CompatibilityCheckAlgs {
 	 * fixed by configuration
 	 * 
 	 * @param f1  the full configuration of the pc
-	 * @param Psu to check
-	 * @return the result of the comparison
+	 * @param psu Psu to check
+	 * @return the result of the check (true if compatible, false if not)
 	 */
 	static public boolean checkTotalWattagePsu(FullConfig f1, Psu psu) {
 		if (psu.getPower() - f1.getSubtotalPower() > f1.getPsuOverhead())

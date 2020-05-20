@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ConfiguratorEngine.Motherboard;
+import configuratorEngine.Motherboard;
 import dataSource.MotherboardDao;
 
 public class MotherboardDaoTest {
