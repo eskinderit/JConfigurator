@@ -14,10 +14,10 @@ import dataSource.CaseDao;
 public class CaseDataManagement extends ComponentDataManagement<Case>{
 
 	private ArrayList<Case> cases = new ArrayList<Case>();
-	public String name = null;
-	public int price = 0; 
-	public int power = 0;
-	public int size = 0;
+	private String name = null;
+	private int price = 0; 
+	private int power = 0;
+	private int size = 0;
 	
 	@Override
 	public ArrayList<Case> deleteComp(int index) throws JAXBException {
@@ -55,6 +55,42 @@ public class CaseDataManagement extends ComponentDataManagement<Case>{
 	public ArrayList<Case> resetComp() throws JAXBException {
 		CaseDao caseDao = new CaseDao();
 		return caseDao.setDefaultComponents();
+	}
+	
+	
+	// GETTERS AND SETTERS
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 }

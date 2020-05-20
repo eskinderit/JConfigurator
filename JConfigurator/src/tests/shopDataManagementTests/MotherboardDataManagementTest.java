@@ -8,11 +8,10 @@ import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import ConfiguratorEngine.Motherboard;
 import dataSource.MotherboardDao;
@@ -25,9 +24,16 @@ public class MotherboardDataManagementTest {
 	ArrayList<Motherboard> motherboardList;
 	MotherboardDataManagement motherboardData;
 	
+	
+	
 	@BeforeAll
 	static void saveList () throws JAXBException {
 		savedMotherboards.addAll(motherboardDao.readComponents());
+		
+		Motherboard m = new Motherboard("Motherboard1", 50, 50, "Socket1", "RamType", "ChipSet", true, 50);
+		ArrayList<Motherboard> motherboardToAdd = new ArrayList<Motherboard>();
+		motherboardToAdd.add(m);
+		motherboardDao.addComponents(motherboardToAdd);
 	}
 	
 	@BeforeEach
@@ -38,30 +44,32 @@ public class MotherboardDataManagementTest {
 	
 	@Test
 	public void deleteMotherboardTest() throws JAXBException {
-		int index = (int)Math.random() * (motherboardDao.readComponents().size());
-		assertNotEquals(motherboardData.deleteComp(index), motherboardList, " ");
-		motherboardList.remove(index);
-		assertEquals(motherboardDao.readComponents(), motherboardList, " ");
+		if(motherboardDao.readComponents().size() > 0) {
+			int index = (int)(Math.random() * motherboardDao.readComponents().size());
+			assertNotEquals(motherboardData.deleteComp(index), motherboardList, "Makes sure that components in Motherboard.XML are not the same as before, after the deletion.");
+			motherboardList.remove(index);
+			assertEquals(motherboardDao.readComponents(), motherboardList, "Makes sure that the componenent was removed from Motherboard.XML file");
+		}
 	}
 	
 	@Test
 	public void addMotherboardTest() throws JAXBException {
 		Scanner parameter = new Scanner(System.in);
 		motherboardData.addComp(parameter);
-		assertNotEquals(motherboardDao.readComponents(), motherboardList, " ");
-		Motherboard motherboardToAdd = new Motherboard(motherboardData.name, motherboardData.price, motherboardData.power, motherboardData.socket, motherboardData.chipset, motherboardData.ramType, motherboardData.oc, motherboardData.size);
+		assertNotEquals(motherboardDao.readComponents(), motherboardList, "Makes sure that components in Motherboard.XML are not the same as before, after the addition.");
+		Motherboard motherboardToAdd = new Motherboard(motherboardData.getName(), motherboardData.getPrice(), motherboardData.getPower(), motherboardData.getSocket(), motherboardData.getChipset(), motherboardData.getRamType(), motherboardData.isOc(), motherboardData.getSize());
 		motherboardList.add(motherboardToAdd);
-		assertEquals(motherboardDao.readComponents(), motherboardList, " ");
+		assertEquals(motherboardDao.readComponents(), motherboardList, "Makes sure that the componenent was added in Motherboard.XML file");
 		parameter.close();
 	}
 	
 	@Test 
 	public void resetMotherboardsTest() throws JAXBException {
-		assertEquals(motherboardData.resetComp(), motherboardDao.setDefaultComponents(), " ");
+		assertEquals(motherboardData.resetComp(), motherboardDao.setDefaultComponents(), "Makes sure that Motherboard.Xml file contains defauld data from MotherboardDefault.XML file");
 	}
 	
-	@AfterEach
-	public void restoreList() throws JAXBException {
+	@AfterAll
+	public static void restoreList() throws JAXBException {
 		motherboardDao.setEmptyComponents();
 		motherboardDao.addComponents(savedMotherboards);
 	}
