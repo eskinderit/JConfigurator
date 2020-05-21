@@ -56,11 +56,4 @@
         <oc>true</oc>
         <socket>LGA2011</socket>
     </Cpu>
-    <Cpu>
-        <name>Prova</name>
-        <price>33</price>
-        <power>54</power>
-        <oc>false</oc>
-        <socket>AM3</socket>
-    </Cpu>
 </cpuDao>
