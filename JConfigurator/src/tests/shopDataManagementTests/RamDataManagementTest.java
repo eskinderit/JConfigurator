@@ -61,11 +61,6 @@ public class RamDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetRamsTest() throws JAXBException {
-		assertEquals(ramData.resetComp(), ramDao.setDefaultComponents(), "Makes sure that Ram.Xml file contains defauld data from RamDefault.XML file");
-	}
-	
 	@AfterAll
 	public static void restoreList() throws JAXBException {
 		ramDao.setEmptyComponents();

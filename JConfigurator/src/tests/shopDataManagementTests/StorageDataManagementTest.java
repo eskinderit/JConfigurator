@@ -64,11 +64,6 @@ public class StorageDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetStoragesTest() throws JAXBException {
-		assertEquals(storageData.resetComp(), storageDao.setDefaultComponents(), "Makes sure that Storage.Xml file contains defauld data from StorageDefault.XML file");
-	}
-	
 	@AfterAll
 	public static void restoreList() throws JAXBException {
 		storageDao.setEmptyComponents();

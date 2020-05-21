@@ -65,10 +65,6 @@ public class CaseDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetCasesTest() throws JAXBException {
-		assertEquals(caseData.resetComp(), caseDao.setDefaultComponents(), "Makes sure that Case.Xml file contains defauld data from CaseDefault.XML file");
-	}
 	
 	@AfterAll
 	public static void restoreList() throws JAXBException {

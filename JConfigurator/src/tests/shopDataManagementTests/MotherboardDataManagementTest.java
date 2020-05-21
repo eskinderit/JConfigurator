@@ -63,11 +63,6 @@ public class MotherboardDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetMotherboardsTest() throws JAXBException {
-		assertEquals(motherboardData.resetComp(), motherboardDao.setDefaultComponents(), "Makes sure that Motherboard.Xml file contains defauld data from MotherboardDefault.XML file");
-	}
-	
 	@AfterAll
 	public static void restoreList() throws JAXBException {
 		motherboardDao.setEmptyComponents();

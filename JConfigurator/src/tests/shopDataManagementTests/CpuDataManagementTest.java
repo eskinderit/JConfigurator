@@ -61,10 +61,6 @@ public class CpuDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetCpusTest() throws JAXBException {
-		assertEquals(cpuData.resetComp(), cpuDao.setDefaultComponents(), "Makes sure that Cpu.Xml file contains defauld data from CpuDefault.XML file");
-	}
 	
 	@AfterAll
 	public static void restoreList() throws JAXBException {

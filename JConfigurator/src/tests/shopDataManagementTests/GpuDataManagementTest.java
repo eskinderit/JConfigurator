@@ -61,10 +61,6 @@ public class GpuDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetGpusTest() throws JAXBException {
-		assertEquals(gpuData.resetComp(), gpuDao.setDefaultComponents(), "Makes sure that Gpu.Xml file contains defauld data from GpuDefault.XML file");
-	}
 	
 	@AfterAll
 	public static void restoreList() throws JAXBException {

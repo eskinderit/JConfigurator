@@ -61,10 +61,6 @@ public class PsuDataManagementTest {
 		parameter.close();
 	}
 	
-	@Test 
-	public void resetPsusTest() throws JAXBException {
-		assertEquals(psuData.resetComp(), psuDao.setDefaultComponents(), "Makes sure that Psu.Xml file contains defauld data from PsuDefault.XML file");
-	}
 	
 	@AfterAll
 	public static void restoreList() throws JAXBException {

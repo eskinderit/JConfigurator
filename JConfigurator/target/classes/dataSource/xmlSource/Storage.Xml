@@ -35,4 +35,11 @@
         <capacity>1000</capacity>
         <ssd>false</ssd>
     </Storage>
+    <Storage>
+        <name>storageaggiunto</name>
+        <price>2</price>
+        <power>2</power>
+        <capacity>2</capacity>
+        <ssd>true</ssd>
+    </Storage>
 </storageDao>

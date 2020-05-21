@@ -104,8 +104,4 @@ public abstract class ComponentDataManagement<T extends Component> {
 	public int getPower() {
 		return this.power;
 	}
-	
-	
-	
-	
 }
