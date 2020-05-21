@@ -6,16 +6,15 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-
 import configuratorEngine.Motherboard;
+import dataSource.ComponentDao;
 import dataSource.MotherboardDao;
 
 public class MotherboardDataManagement extends ComponentDataManagement<Motherboard>{
-
+	
+	private MotherboardDao motherboardDao = new MotherboardDao();
+	
 	ArrayList<Motherboard> motherboards = new ArrayList<Motherboard>();
-	private String name = null;
-	private int price = 0;
-	private int power = 0;
 	private String socket = null;
 	private String chipset = null;
 	private String ramType = null;
@@ -29,7 +28,6 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 	@Override
 	public ArrayList<Motherboard> deleteComp(int index) throws JAXBException {
 		
-		MotherboardDao motherboardDao = new MotherboardDao();
 		motherboards.add(motherboardDao.readComponents().get(index));
 		
 		return motherboardDao.deleteComponents(motherboards);
@@ -38,15 +36,14 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 	@Override
 	public ArrayList<Motherboard> addComp(Scanner parameter) throws JAXBException {
 		
-		MotherboardDao motherboardDao = new MotherboardDao();
 		String input;
 		
 		
 		
 		
-		name = this.setName(parameter, name);
-		price = this.setPrice(parameter, price);
-		power = this.setPower(parameter, power);
+		this.setName(parameter);
+		this.setPrice(parameter);
+		this.setPower(parameter);
 			
 		
 		System.out.println("Socket: ");
@@ -74,11 +71,11 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 		Motherboard motherboard;
 		if(input.contains("a")) {
 			oc = true;
-			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, oc, size);
+			motherboard = new Motherboard(getName(), getPrice(), getPower(), socket, chipset, ramType, oc, size);
 		}
 		else {
 			oc = false;
-			motherboard = new Motherboard(name, price, power, socket, chipset, ramType, oc, size);
+			motherboard = new Motherboard(getName(), getPrice(), getPower(), socket, chipset, ramType, oc, size);
 		}
 		motherboards.add(motherboard);
 		return motherboardDao.addComponents(motherboards);
@@ -87,37 +84,14 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 
 	@Override
 	public ArrayList<Motherboard> resetComp() throws JAXBException {
-		MotherboardDao motherboardDao = new MotherboardDao();
+
 		return motherboardDao.setDefaultComponents();
 	}
 	
 	
-	// GETTERS AND SETTERS
-	
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public int getPower() {
-		return power;
-	}
-
-	public void setPower(int power) {
-		this.power = power;
-	}
+	/**
+	 * Getters and setters of remaining Motherboard parameters (socket, chipset, ramType, size, oc)
+	 */
 
 	public String getSocket() {
 		return socket;
@@ -157,6 +131,11 @@ public class MotherboardDataManagement extends ComponentDataManagement<Motherboa
 
 	public void setOc(boolean oc) {
 		this.oc = oc;
+	}
+
+	@Override
+	public ComponentDao<Motherboard, ?> getComponentDao() {
+		return motherboardDao;
 	}
 
 }

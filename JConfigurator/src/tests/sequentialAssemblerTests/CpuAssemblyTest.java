@@ -35,7 +35,7 @@ class CpuAssemblyTest {
 		cpuDao.setEmptyComponents();
 		f1 = new FullConfig();
 	}
-
+  
 	@Test
 	void getCompatibleComponentsTest() throws JAXBException {
 

@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
-
 import configuratorEngine.Cpu;
+import dataSource.ComponentDao;
 import dataSource.CpuDao;
 
 public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 	
+	CpuDao cpuDao = new CpuDao();
+	
 	ArrayList<Cpu> cpus = new ArrayList<Cpu>();
-	private String name = null;
-	private int price = 0;
-	private int power = 0;
 	private String socket = null;
 	private boolean oc = false;
 	
@@ -36,9 +35,9 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 		String input;
 		
 		
-		name = this.setName(parameter, name);
-		price = this.setPrice(parameter, price);
-		power = this.setPower(parameter, power);
+		this.setName(parameter);
+		this.setPrice(parameter);
+		this.setPower(parameter);
 		
 		System.out.println("Socket: ");
 		socket = parameter.nextLine();
@@ -53,11 +52,11 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 		Cpu c;
 		if(input.contains("a")) {
 			oc=true;
-			c = new Cpu(name, price, power, socket, oc);
+			c = new Cpu(getName(), getPrice(), getPower(), socket, oc);
 		}
 		else {
 			oc = false;
-			c = new Cpu(name, price, power, socket, oc);
+			c = new Cpu(getName(), getPrice(), getPower(), socket, oc);
 		}
 
 		cpus.add(c);
@@ -73,39 +72,10 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 	}
 	
 	
-	// GETTERS AND SETTERS
+	/**
+	 * Getters and setters of remaining Cpu parameters (Socket, oc)
+	 */
 	
-	
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public int getPrice() {
-		return price;
-	}
-
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-
-	public int getPower() {
-		return power;
-	}
-
-
-	public void setPower(int power) {
-		this.power = power;
-	}
-
-
 	public String getSocket() {
 		return socket;
 	}
@@ -123,6 +93,12 @@ public class CpuDataManagement extends ComponentDataManagement<Cpu>{
 
 	public void setOc(boolean oc) {
 		this.oc = oc;
+	}
+
+
+	@Override
+	public ComponentDao<Cpu, ?> getComponentDao() {
+		return cpuDao;
 	}
 }
 

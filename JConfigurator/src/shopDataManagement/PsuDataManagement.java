@@ -4,24 +4,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.bind.JAXBException;
-
 import configuratorEngine.Psu;
+import dataSource.ComponentDao;
 import dataSource.PsuDao;
 
 
 public class PsuDataManagement extends ComponentDataManagement<Psu>{
 
+	PsuDao psuDao = new PsuDao();
 	private ArrayList<Psu> psus= new ArrayList<Psu>();
-	private String name = null;
-	private int price = 0; 
-	private int power = 0;
-	
-	
 
 	@Override
 	public ArrayList<Psu> deleteComp(int index) throws JAXBException {
 		
-		PsuDao psuDao = new PsuDao();
 		psus.add(psuDao.getComponent(index));
 		return psuDao.deleteComponents(psus);
 	}
@@ -29,15 +24,12 @@ public class PsuDataManagement extends ComponentDataManagement<Psu>{
 	@Override
 	public ArrayList<Psu> addComp(Scanner parameter) throws JAXBException {
 
-		PsuDao psuDao = new PsuDao();
 		
+		this.setName(parameter);
+		this.setPrice(parameter);
+		this.setPower(parameter);
 		
-		
-		name = this.setName(parameter, name);
-		price = this.setPrice(parameter, price);
-		power = this.setPower(parameter, power);
-		
-		Psu psu1 = new Psu(name, price, power);
+		Psu psu1 = new Psu(getName(), getPrice(), getPower());
 		
 		psus.add(psu1);
 		
@@ -46,39 +38,12 @@ public class PsuDataManagement extends ComponentDataManagement<Psu>{
 
 	@Override
 	public ArrayList<Psu> resetComp() throws JAXBException {
-		PsuDao psuDao = new PsuDao();
 		return psuDao.setDefaultComponents();
 	}
-	
-	
-	
-	// GETTERS AND SETTERS
-	
-	
-	
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
+	@Override
+	public ComponentDao<Psu, ?> getComponentDao() {
+		return psuDao;
 	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public int getPower() {
-		return power;
-	}
-
-	public void setPower(int power) {
-		this.power = power;
-	}
-	
 
 }

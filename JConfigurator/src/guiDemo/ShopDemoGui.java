@@ -8,8 +8,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import configuratorEngine.Component;
 import dataSource.ComponentDao;
+import shopDataManagement.CaseDataManagement;
 import shopDataManagement.ComponentDataManagement;
-import shopDataManagement.DataManagement;
+import shopDataManagement.CpuDataManagement;
+import shopDataManagement.GpuDataManagement;
+import shopDataManagement.MotherboardDataManagement;
+import shopDataManagement.PsuDataManagement;
+import shopDataManagement.RamDataManagement;
+import shopDataManagement.StorageDataManagement;
 
 public class ShopDemoGui {
 
@@ -46,9 +52,38 @@ public class ShopDemoGui {
 
 			}while(!(inputComp.contains("a") || inputComp.contains("b") || inputComp.contains("c") || inputComp.contains("d") || inputComp.contains("e") || inputComp.contains("f") || inputComp.contains("g")));
 
-			ComponentDao<?, ?> cdao;
-			cdao = ComponentDataManagement.ComponentData(inputComp);
-			DataManagement d = new DataManagement();
+			ComponentDao<?, ?> compDao;
+			ComponentDataManagement<?> com;
+			
+			if(inputComp.contains("a")) {
+				com = new CpuDataManagement();
+				compDao = com.getComponentDao();
+			}
+			else if(inputComp.contains("b")) {
+				com = new GpuDataManagement();
+				compDao = com.getComponentDao();
+			}
+			else if(inputComp.contains("c")) {
+				com = new MotherboardDataManagement();
+				compDao = com.getComponentDao();
+			}
+			else if(inputComp.contains("d")) {
+				com = new CaseDataManagement();
+				compDao = com.getComponentDao();
+			}
+			else if(inputComp.contains("e")) {
+				com = new RamDataManagement();
+				compDao = com.getComponentDao();
+			}
+			else if(inputComp.contains("f")) {
+				com = new StorageDataManagement();
+				compDao = com.getComponentDao();
+			}
+			else {
+				com= new PsuDataManagement();
+				compDao = com.getComponentDao();
+			}
+			
 
 			if(inputOp.contains("b")) {
 
@@ -60,38 +95,38 @@ public class ShopDemoGui {
 					System.out.println("Seleziona la componente che vuoi rimuovere: ");
 
 					int ind = 0;
-					for(Component c:cdao.readComponents()) {
+					for(Component c:compDao.readComponents()) {
 						System.out.println(ind+") "+c);
 						ind++;
 					}
 					inputRem = operation.nextLine();
 					if(StringUtils.isNumeric(inputRem)) {
 						index = Integer.parseInt(inputRem);
-						if(index<0 || index > cdao.readComponents().size())
+						if(index<0 || index > compDao.readComponents().size())
 							System.out.println("Input errato");
 						else {
 
-							d.deletec(index, inputComp);
+							com.deleteComp(index);
 						}
 					}
 					else 
 						index=-1;
 
-				}while(!StringUtils.isNumeric(inputRem) || (index<0 || index>cdao.readComponents().size()));
+				}while(!StringUtils.isNumeric(inputRem) || (index<0 || index>compDao.readComponents().size()));
 
 			}
 
 
 
 			else if(inputOp.contains("a"))
-				d.addc(inputComp, operation);
+				com.addComp(operation);
 
 			else
-				d.resetc(inputComp);
+				com.resetComp();
 
 
 			int ind = 0;
-			for(Component c:cdao.readComponents()) {
+			for(Component c:compDao.readComponents()) {
 				System.out.println(ind+") "+c);
 				ind++;
 			}

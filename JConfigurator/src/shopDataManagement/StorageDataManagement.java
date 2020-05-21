@@ -6,16 +6,15 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-
 import configuratorEngine.Storage;
+import dataSource.ComponentDao;
 import dataSource.StorageDao;
 
 public class StorageDataManagement extends ComponentDataManagement<Storage>{
 
+	private StorageDao storageDao = new StorageDao();
+	
 	private ArrayList<Storage> storages = new ArrayList<Storage>();
-	private String name = null;
-	private int price = 0; 
-	private int power = 0;
 	private int capacity;
 	private boolean ssd = false;
 	
@@ -24,7 +23,6 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 	@Override
 	public ArrayList<Storage> deleteComp(int index) throws JAXBException {
 		
-		StorageDao storageDao = new StorageDao();
 		storages.add(storageDao.getComponent(index));
 		return storageDao.deleteComponents(storages);
 	}
@@ -32,12 +30,11 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 	@Override
 	public ArrayList<Storage> addComp(Scanner parameter) throws JAXBException {
 		String input;
-		StorageDao storageDao = new StorageDao();
 		
 		
-		name = this.setName(parameter, name);
-		price = this.setPrice(parameter, price);
-		power = this.setPower(parameter, power);
+		this.setName(parameter);
+		this.setPrice(parameter);
+		this.setPower(parameter);
 		
 		do {
 			System.out.println("Capacity: ");
@@ -54,11 +51,11 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 		Storage storage;
 		if(input.contains("a")) {
 			ssd = true;
-			storage = new Storage(name, price, power, capacity, ssd);
+			storage = new Storage(getName(), getPrice(), getPower(), capacity, ssd);
 		}
 		else {
 			ssd = false;
-			storage = new Storage(name, price, power, capacity, ssd);
+			storage = new Storage(getName(), getPrice(), getPower(), capacity, ssd);
 		}
 		
 		storages.add(storage);
@@ -67,37 +64,13 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 
 	@Override
 	public ArrayList<Storage> resetComp() throws JAXBException {
-		StorageDao storageDao = new StorageDao();
 		return storageDao.setDefaultComponents();
 	}
 	
 	
-	// GETTERS AND SETTERS
-	
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public int getPower() {
-		return power;
-	}
-
-	public void setPower(int power) {
-		this.power = power;
-	}
+	/**
+	 * Getters and setters of remaining Storage parameters (capacity, ssd)
+	 */
 
 	public int getCapacity() {
 		return capacity;
@@ -113,6 +86,11 @@ public class StorageDataManagement extends ComponentDataManagement<Storage>{
 
 	public void setSsd(boolean ssd) {
 		this.ssd = ssd;
+	}
+
+	@Override
+	public ComponentDao<Storage, ?> getComponentDao() {
+		return storageDao;
 	}
 
 }

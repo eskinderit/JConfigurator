@@ -8,80 +8,104 @@ import javax.xml.bind.JAXBException;
 import org.apache.commons.lang3.StringUtils;
 
 import configuratorEngine.Component;
-import dataSource.CaseDao;
+
 import dataSource.ComponentDao;
-import dataSource.CpuDao;
-import dataSource.GpuDao;
-import dataSource.MotherboardDao;
-import dataSource.PsuDao;
-import dataSource.RamDao;
-import dataSource.StorageDao;
+
 
 public abstract class ComponentDataManagement<T extends Component> {
 	
-	public static ComponentDao<?, ?> ComponentData(String c) throws JAXBException {
-		
-		if(c.contains("a")) {
-			ComponentDao<?, ?> cpus = new CpuDao();
-			return cpus;
-		}
-		else if(c.contains("b")) {
-			GpuDao gpus = new GpuDao();
-			return gpus;
-		}
-		else if(c.contains("c")){
-			MotherboardDao motherboards = new MotherboardDao();
-			return motherboards;
-		}
-		else if(c.contains("d")){
-			CaseDao cases = new CaseDao();
-			return cases;
-		}
-		else if(c.contains("e")){
-			RamDao rams = new RamDao();
-			return rams;
-		}
-		else if(c.contains("f")){
-			StorageDao storages = new StorageDao();
-			return storages;
-		}
-		else {
-			PsuDao psus = new PsuDao();
-			return psus;
-		}
-	}
+	private String name;
+	private int price;
+	private int power;
 	
-	protected String setName (Scanner parameter, String name) {
+	
+	abstract public ComponentDao<T, ?> getComponentDao ();
+
+	/**
+	 * Deletes a component with index index, from his respective list, 
+	 * @param index
+	 * @return ArrayList<T>
+	 * @throws JAXBException
+	 */
+
+	abstract public  ArrayList<T> deleteComp (int index) throws JAXBException;
+	
+	/**
+	 * Adds a component to his respective list, with parameters entered by the user.
+	 * @param parameter
+	 * @return ArrayList<T>
+	 * @throws JAXBException
+	 */
+	
+	abstract public  ArrayList<T> addComp (Scanner parameter) throws JAXBException;
+	
+	/**
+	 * Restores the respective default list of a component
+	 * @return ArrayList<T>
+	 * @throws JAXBException
+	 */
+	
+	abstract public  ArrayList<T> resetComp() throws JAXBException;
+	
+	
+	
+	
+	
+	/**
+	 * Setters of name, price, power (parameters in common with all components).
+	 * Parameters are entered by the user.
+	 * @param parameter
+	 */
+	
+	
+	protected void setName (Scanner parameter) {
 
 		System.out.println("Nome: ");
-		name = parameter.nextLine();
-		return name;
+		this.name = parameter.nextLine();
+		
+		
 	}
 	
-	protected int setPrice (Scanner parameter, int price) {
+	protected void setPrice (Scanner parameter) {
 		String input;
 		do {
 			System.out.println("Prezzo: ");
 			input = parameter.nextLine();
 		}while(!StringUtils.isNumeric(input));
-		price = Integer.parseInt(input);
-		return price;
+		this.price = Integer.parseInt(input);
+		
 	}
 	
-	protected int setPower(Scanner parameter, int power) {
+	protected void setPower(Scanner parameter) {
 		String input;
 		do {
 			System.out.println("Potenza: ");
 			input = parameter.nextLine();
 		}while(!StringUtils.isNumeric(input));
-		power = Integer.parseInt(input);
-		return power;
+		this.power = Integer.parseInt(input);
 	}
 	
-	abstract public  ArrayList<T> deleteComp (int index) throws JAXBException;
 	
-	abstract public  ArrayList<T> addComp (Scanner parameter) throws JAXBException;
+	/**
+	 * getters of name, price, power parameters.
+	 */
 	
-	abstract public  ArrayList<T> resetComp() throws JAXBException;
+	
+	public String getName() {
+		return this.name;
+	}
+
+
+	public int getPrice() {
+		return this.price;
+	}
+
+
+	public int getPower() {
+		return this.power;
+	}
+	
+	
+	
 	
 }

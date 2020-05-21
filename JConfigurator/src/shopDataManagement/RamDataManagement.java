@@ -6,15 +6,13 @@ import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.StringUtils;
-
 import configuratorEngine.Ram;
+import dataSource.ComponentDao;
 import dataSource.RamDao;
 
 public class RamDataManagement extends ComponentDataManagement<Ram>{
+	RamDao ramDao = new RamDao();
 	private ArrayList<Ram> rams = new ArrayList<Ram>();
-	private String name = null;
-	private int price = 0; 
-	private int power = 0;
 	private int memory = 0;
 	private String ramType = null;
 	
@@ -25,7 +23,6 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 	@Override
 	public ArrayList<Ram> deleteComp(int index) throws JAXBException {
 		
-		RamDao ramDao = new RamDao();
 		rams.add(ramDao.getComponent(index));
 		return ramDao.deleteComponents(rams);
 	}
@@ -33,13 +30,12 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 	
 	@Override
 	public ArrayList<Ram> addComp(Scanner parameter) throws JAXBException {
-		RamDao ramDao = new RamDao();
 		String input;
 		
 		
-		name = this.setName(parameter, name);
-		price = this.setPrice(parameter, price);
-		power = this.setPower(parameter, power);
+		this.setName(parameter);
+		this.setPrice(parameter);
+		this.setPower(parameter);
 		
 		do {
 			System.out.println("Memoria: ");
@@ -50,7 +46,7 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 		System.out.println("Ram Type: ");
 		ramType = parameter.nextLine();
 		
-		Ram ram = new Ram(name, price, power, ramType, memory);
+		Ram ram = new Ram(getName(), getPrice(), getPower(), ramType, memory);
 		
 		rams.add(ram);
 		return ramDao.addComponents(rams);
@@ -58,45 +54,15 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 
 	@Override
 	public ArrayList<Ram> resetComp() throws JAXBException {
-		RamDao ramDao = new RamDao();
 		return ramDao.setDefaultComponents();
 	}
 	
 	
 	
-	// GETTERS AND SETTERS
+	/**
+	 * Getters and setters of remaining Ram parameters (memory, ramType)
+	 */
 	
-	
-	
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public int getPrice() {
-		return price;
-	}
-
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-
-	public int getPower() {
-		return power;
-	}
-
-
-	public void setPower(int power) {
-		this.power = power;
-	}
-
 
 	public int getMemory() {
 		return memory;
@@ -115,6 +81,12 @@ public class RamDataManagement extends ComponentDataManagement<Ram>{
 
 	public void setRamType(String ramType) {
 		this.ramType = ramType;
+	}
+
+
+	@Override
+	public ComponentDao<Ram, ?> getComponentDao() {
+		return ramDao;
 	}
 
 }
